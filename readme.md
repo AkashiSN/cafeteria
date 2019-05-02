@@ -63,3 +63,9 @@ $ php artisan db:seed
 $ php artisan serve
 Laravel development server started: <http://127.0.0.1:8000>
 ```
+
+## Build sass
+
+```
+$ yarn run dev
+```
