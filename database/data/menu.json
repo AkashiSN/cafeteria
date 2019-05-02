@@ -1,0 +1,101 @@
+[
+    {
+        "item_name" : "カレーライス",
+        "category" : "permanent_menu",
+        "price" : 290,
+        "energy" : 596,
+        "protein" : 11.4,
+        "lipid" : 10.5,
+        "salt" : 3.6
+    },
+    {
+        "item_name" : "カツカレー",
+        "category" : "permanent_menu",
+        "price" : 370,
+        "energy" : 832,
+        "protein" : 19.3,
+        "lipid" : 23.6,
+        "salt" : 3.6
+    },
+    {
+        "item_name" : "カレーうどん",
+        "category" : "permanent_menu",
+        "price" : 300,
+        "energy" : 650,
+        "protein" : 15.6,
+        "lipid" : 25.7,
+        "salt" : 5.6
+    },
+    {
+        "item_name" : "とんこつラーメン",
+        "category" : "permanent_menu",
+        "price" : 210,
+        "energy" : 481,
+        "protein" : 20.6,
+        "lipid" : 8.2,
+        "salt" : 8.1
+    },
+    {
+        "item_name" : "かけうどん",
+        "category" : "permanent_menu",
+        "price" : 160,
+        "energy" : 325,
+        "protein" : 10.4,
+        "lipid" : 1.8,
+        "salt" : 4.1
+    },
+    {
+        "item_name" : "かけそば",
+        "category" : "permanent_menu",
+        "price" : 160,
+        "energy" : 320,
+        "protein" : 13.3,
+        "lipid" : 2.0,
+        "salt" : 4.1
+    },
+    {
+        "item_name" : "ライス",
+        "category" : "permanent_menu",
+        "price" : 100,
+        "energy" : 386,
+        "protein" : 5.8,
+        "lipid" : 0.7,
+        "salt" : 0.0
+    },
+    {
+        "item_name" : "冷やしカレーうどん",
+        "category" : "summer_menu",
+        "price" : 300,
+        "energy" : 422,
+        "protein" : 11.3,
+        "lipid" : 6.4,
+        "salt" : 5.6
+    },
+    {
+        "item_name" : "冷やしカレーそば",
+        "category" : "summer_menu",
+        "price" : 300,
+        "energy" : 417,
+        "protein" : 14.3,
+        "lipid" : 6.7,
+        "salt" : 5.6
+    },
+    {
+        "item_name" : "冷やしうどん",
+        "category" : "summer_menu",
+        "price" : 240,
+        "energy" : 461,
+        "protein" : 12.2,
+        "lipid" : 2.1,
+        "salt" : 6.3
+    },
+    {
+        "item_name" : "冷やしそば",
+        "category" : "summer_menu",
+        "price" : 240,
+        "energy" : 489,
+        "protein" : 17.6,
+        "lipid" : 2.7,
+        "salt" : 6.3
+    }
+]
