@@ -50,6 +50,13 @@ $ composer install
 $ yarn
 ```
 
+## Migrate database
+
+```
+$ php artisan migrate
+$ php artisan db:seed
+```
+
 ## Run in the browser
 
 ```
