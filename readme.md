@@ -28,6 +28,13 @@ $ docker container run -d --rm --name postgres -e POSTGRES_USER=postgres -e POST
 $ docker stop postgres
 ```
 
+## Install dependency
+
+```
+$ composer install
+$ yarn
+```
+
 ## Configure .env
 
 ```
@@ -41,13 +48,6 @@ Set the "Google OAuth 2.0 Client ID" into the below.
 GOOGLE_CLIENT_ID =
 GOOGLE_CLIENT_SECRET =
 GOOGLE_CALLBACK_URL =
-```
-
-## Install dependency
-
-```
-$ composer install
-$ yarn
 ```
 
 ## Migrate database
