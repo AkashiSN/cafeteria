@@ -21,7 +21,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <a class="navbar-brand" href="/">Nitac Cafeteria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -58,7 +58,7 @@
                 @else
                 <li class="nav-item">
                     <a class="btn btn-block btn-social btn-google" href="auth/google">
-                        <i class="fab fa-google" aria-hidden="true"> Googleアカウントでログイン</i>
+                        <span class="fab fa-google"></span> Sign in with Google
                     </a>
                 </li>
                 @endif

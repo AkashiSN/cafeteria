@@ -1,11 +1,12 @@
 {
     "private": true,
     "scripts": {
-        "dev": "NODE_ENV=development webpack --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "NODE_ENV=development webpack --config=node_modules/laravel-mix/setup/webpack.config.js --watch",
-        "prod": "NODE_ENV=production  webpack --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome-free": "^5.8.1",
+        "@ladjs/bootstrap-social": "niftylettuce/bootstrap-social#gh-pages",
         "axios": "^0.18",
         "bootstrap": "^4.3.1",
         "browser-sync": "^2.26.5",
