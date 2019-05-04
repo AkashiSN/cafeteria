@@ -28,6 +28,9 @@ $ docker container run -d --rm --name postgres -e POSTGRES_USER=postgres -e POST
 $ docker stop postgres
 ```
 
+**When you stop the container, the container also remove itself. 
+So, when restart container, you have to run Migrate & Seed.**
+
 ## Install dependency
 
 ```
@@ -50,7 +53,7 @@ GOOGLE_CLIENT_SECRET =
 GOOGLE_CALLBACK_URL =
 ```
 
-## Migrate database
+## Migrate & Seed database
 
 ```
 $ php artisan migrate
