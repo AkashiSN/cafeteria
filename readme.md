@@ -57,6 +57,12 @@ $ php artisan migrate
 $ php artisan db:seed
 ```
 
+## Build sass
+
+```
+$ yarn run dev
+```
+
 ## Run in the browser
 
 ```
@@ -64,8 +70,3 @@ $ php artisan serve
 Laravel development server started: <http://127.0.0.1:8000>
 ```
 
-## Build sass
-
-```
-$ yarn run dev
-```
