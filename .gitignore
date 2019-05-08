@@ -14,3 +14,4 @@ _ide_helper_models.php
 .DS_Store
 .phpstorm.meta.php
 .idea
+/*.log
