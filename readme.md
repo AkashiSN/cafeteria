@@ -2,6 +2,8 @@
 
 ## Requirement
 
+### Production
+
 - PHP >= 7.0.0
     - OpenSSL PHP Extension
     - PDO PHP Extension
@@ -9,39 +11,26 @@
     - Tokenizer PHP Extension
     - XML PHP Extension
     - JSON PHP Extension
-    - PostgreSQL PHP Extension 
-- Node.js >= 10.15.0
-- Docker
-- Composer
-- yarn
+    - PostgreSQL PHP Extension
 
-## Preparing for Database
-- Run
-```
-$ docker container run -d --rm --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
-```
+### Development
 
-- Stop
-```
-$ docker stop postgres
-```
+- Vagrant
+- VirtualBox
 
-**When you stop the container, the container also remove itself. 
-So, when restart container, you have to run Migrate & Seed.**
+## Preparing for VM
+
+```
+$ vagrant up
+```
 
 ## Install dependency
 
 ```
-$ composer install
-$ yarn
+$ make init
 ```
 
 ## Configure .env
-
-```
-$ cp .env.example .env
-$ php artisan key:generate
-```
 
 Set the "Google OAuth 2.0 Client ID" into the below.
 
@@ -54,20 +43,22 @@ GOOGLE_CALLBACK_URL =
 ## Migrate & Seed database
 
 ```
-$ php artisan migrate
-$ php artisan db:seed
+$ make migrate
 ```
 
 ## Build sass
 
 ```
-$ yarn run dev
+$ make build-sass
 ```
 
 ## Run in the browser
 
 ```
-$ php artisan serve
+$ make serve
 Laravel development server started: <http://127.0.0.1:8000>
+$ make kill
 ```
+
+
 
