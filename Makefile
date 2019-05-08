@@ -9,7 +9,6 @@ init:
 .PHONY: migrate
 migrate:
 	vagrant ssh -- "cd /cafeteria && php artisan migrate:fresh"
-	vagrant ssh -- "cd /cafeteria && php artisan migrate"
 	vagrant ssh -- "cd /cafeteria && php artisan db:seed"
 
 .PHONY: build-sass

@@ -10,8 +10,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
     sed -i'~' -E "s@http://archive.ubuntu.com/ubuntu@http://jp.archive.ubuntu.com/ubuntu@g" /etc/apt/sources.list
-    apt update && apt upgrade -y
-    apt install -y unzip nodejs npm apache2 postgresql php php-mbstring php-dom php-zip
+    apt-get update && apt-get upgrade -y
+    apt-get install -y zip unzip nodejs npm apache2 postgresql
+    apt-get install -y php php-mbstring php-dom php-zip php-pgsql
     npm cache clean
     npm install -g n
     n stable

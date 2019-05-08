@@ -21,7 +21,8 @@
 ## Preparing for VM
 
 ```
-$ vagrant up
+$ vagrant up #start
+$ vagtant halt #stop
 ```
 
 ## Install dependency
