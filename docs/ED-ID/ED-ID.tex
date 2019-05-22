@@ -14,8 +14,9 @@
 \sloppy
 
 \makeatletter
+
 \def\Hline{
-    \noalign{\ifnum0=`}\fi\hrule \@height 2.\arrayrulewidth \futurelet
+    \noalign{\ifnum0=`}\fi\hrule \@height 3.\arrayrulewidth \futurelet
     \reserved@a\@xhline}
 \makeatother
 
@@ -146,137 +147,155 @@
 
 \subsection{セキュリティ対策}
     \subsubsection{不正アクセス}
+        ユーザーが入力するデータ（レビューなど）を表示する箇所では,制御文字が含まれる事により発生するXSSを防ぐためにエスケープを行う.
+        ユーザーのセッション情報を搾取してログインが必要な処理を悪意のある第三者が実行してしまうCSRFを防ぐために,
+        ログインが必要な処理ではPOSTメソッドを用いHiddenフィールドにトークンを埋め込むことで正規のユーザーかどうかを判定する.
+    \subsection{データの破壊・削除}
+        不正なSQL文が発行されることによるSQLインジェクションが発生しないようにオブジェクト関係マッピング（ORM）を用いて実装している.
 
 \subsection{ユーザーインターフェース}
     \subsubsection{画面遷移図}
+        図\ref{img:transition}に画面遷移図を示す.
+        \begin{figure}[ht]
+            \center
+            \includegraphics[width=145mm]{fig/transition.pdf}
+            \caption{画面遷移図}
+            \label{img:transition}
+        \end{figure}
     \subsubsection{画面}
-    \begin{figure}[ht]
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/home.png}
-            \caption{ホーム画面}
-            \label{img:home}
-        \end{minipage}
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/home-change-status.png}
-            \caption{ホーム画面（提供状態変更）}
-            \label{img:home-change-status}
-        \end{minipage}
-    \end{figure}
-    \begin{figure}[ht]
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/home-dropdown.png}
-            \caption{ホーム画面（ドロップダウン）}
-            \label{img:home-dropdown}
-        \end{minipage}
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/menu-search.png}
-            \caption{メニュー検索画面}
-            \label{img:menu-search}
-        \end{minipage}
-    \end{figure}
-    \begin{figure}[ht]
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/detail-head.png}
-            \caption{メニュー詳細画面}
-            \label{img:detail-head}
-        \end{minipage}
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/detail-tail.png}
-            \caption{メニュー詳細画面（スクロール）}
-            \label{img:detail-tail}
-        \end{minipage}
-    \end{figure}
-    \begin{figure}[ht]
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/detail-review.png}
-            \caption{レビュー詳細画面}
-            \label{img:detail-review}
-        \end{minipage}
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/error.png}
-            \caption{エラー画面}
-            \label{img:error}
-        \end{minipage}
-    \end{figure}
-    \begin{figure}[ht]
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/admin-home-dropdown.png}
-            \caption{管理者画面}
-            \label{img:admin-home-dropdown}
-        \end{minipage}
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/admin-home-new-menu.png}
-            \caption{管理者画面（メニュー追加 ）}
-            \label{img:admin-home-new-menu}
-        \end{minipage}
-    \end{figure}
-    \begin{figure}[ht]
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/admin-home-new-menu-error.png}
-            \caption{管理者画面（メニュー追加（エラー））}
-            \label{img:admin-home-new-menu-error}
-        \end{minipage}
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/admin-menu-search.png}
-            \caption{管理者画面（メニュー検索）}
-            \label{img:admin-menu-search}
-        \end{minipage}
-    \end{figure}
-    \begin{figure}[ht]
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/admin-modify-menu.png}
-            \caption{管理者画面（メニュー変更）}
-            \label{img:admin-modify-menu}
-        \end{minipage}
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/admin-home-set-menu.png}
-            \caption{管理者画面（日替わりメニュー登録）}
-            \label{img:admin-home-set-menu}
-        \end{minipage}
-    \end{figure}
-    \begin{figure}[ht]
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/admin-home-set-menu-modal.png}
-            \caption{管理者画面（メニュー変更モーダル）}
-            \label{img:admin-home-set-menu-modal}
-        \end{minipage}
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/my-page.png}
-            \caption{マイページ}
-            \label{img:my-page}
-        \end{minipage}
-    \end{figure}
-    \begin{figure}[ht]
-        \begin{minipage}[t]{.49\textwidth}
-            \center
-            \includegraphics[width=60mm]{ui/liked-list.png}
-            \caption{マイページ（お気に入り一覧）}
-            \label{img:liked-list}
-        \end{minipage}
-        \begin{minipage}[t]{.49\textwidth}
+        図\ref{img:home-before-login}\sim\ref{img:review-list}に各画面を示す.
+        \begin{figure}[ht]
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/home-before-login.png}
+                \caption{ホーム画面（ログイン前）}
+                \label{img:home-before-login}
+            \end{minipage}
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/home-dropdown-before-login.png}
+                \caption{ホーム画面（ドロップダウン（ログイン前））}
+                \label{img:home-dropdown-before-login}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[ht]
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/login.png}
+                \caption{ログイン画面}
+                \label{img:login}
+            \end{minipage}
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/home.png}
+                \caption{ホーム画面（ログイン後）}
+                \label{img:home}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[ht]
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/home-dropdown.png}
+                \caption{ホーム画面（ドロップダウン（ログイン後））}
+                \label{img:home-dropdown}
+            \end{minipage}
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/menu-search.png}
+                \caption{メニュー検索画面}
+                \label{img:menu-search}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[ht]
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/detail-head.png}
+                \caption{メニュー詳細画面}
+                \label{img:detail-head}
+            \end{minipage}
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/detail-tail.png}
+                \caption{メニュー詳細画面（スクロール）}
+                \label{img:detail-tail}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[ht]
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/detail-review.png}
+                \caption{レビュー詳細画面}
+                \label{img:detail-review}
+            \end{minipage}
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/error.png}
+                \caption{エラー画面}
+                \label{img:error}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[ht]
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/admin-home-dropdown.png}
+                \caption{管理者画面}
+                \label{img:admin-home-dropdown}
+            \end{minipage}
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/admin-home-new-menu.png}
+                \caption{管理者画面（メニュー追加 ）}
+                \label{img:admin-home-new-menu}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[ht]
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/admin-home-new-menu-error.png}
+                \caption{管理者画面（メニュー追加（エラー））}
+                \label{img:admin-home-new-menu-error}
+            \end{minipage}
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/admin-menu-search.png}
+                \caption{管理者画面（メニュー検索）}
+                \label{img:admin-menu-search}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[ht]
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/admin-home-set-menu.png}
+                \caption{管理者画面（日替わりメニュー登録）}
+                \label{img:admin-home-set-menu}
+            \end{minipage}
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/admin-home-set-menu-modal.png}
+                \caption{管理者画面（メニュー変更モーダル）}
+                \label{img:admin-home-set-menu-modal}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[ht]
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/my-page.png}
+                \caption{マイページ}
+                \label{img:my-page}
+            \end{minipage}
+            \begin{minipage}[t]{.49\textwidth}
+                \center
+                \includegraphics[width=60mm]{ui/liked-list.png}
+                \caption{マイページ（お気に入り一覧）}
+                \label{img:liked-list}
+            \end{minipage}
+        \end{figure}
+        \begin{figure}[ht]
             \center
             \includegraphics[width=60mm]{ui/review-list.png}
             \caption{マイページ（レビュー一覧）}
             \label{img:review-list}
-        \end{minipage}
-    \end{figure}
-
+        \end{figure}
 
 \clearpage
 
@@ -294,6 +313,7 @@
             \item PostgreSQL PHP Extension
         \end{itemize}
     \subsection{データベース}
+        データベースのテーブルを表\ref{daily-menu}\sim\ref{users}に示す.
         \begin{table}[h]
             \begin{minipage}[t]{.49\textwidth}
                 \center
@@ -368,6 +388,8 @@
                 \end{tabular}
             \end{minipage}
         \end{table}
+
+\clearpage
 
 \begin{thebibliography}{9}
     \bibitem{doc} 本実験資料
