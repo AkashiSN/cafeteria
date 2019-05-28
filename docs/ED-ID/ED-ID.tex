@@ -244,7 +244,7 @@
             \begin{minipage}[t]{.49\textwidth}
                 \center
                 \includegraphics[width=60mm]{ui/new-review-error.png}
-                \caption{レビュー投稿画面}
+                \caption{レビュー投稿(エラー) }
                 \label{img:new-review-error}
             \end{minipage}
         \end{figure}
@@ -314,7 +314,7 @@
 
 \section{内部設計}
     \subsection{サーバサイド技術}
-        サーバサイド技術はPHP\,7.0を使用し,フレームワークとしてLaravel\,5.5を使用する.
+        サーバサイド技術はPHP\,7.0を使用し,WebアプリケーションフレームワークとしてLaravel\,5.5を使用する.
         そのため,\, PHP拡張モジュールとして以下が必要となる.
         \begin{itemize}
             \item OpenSSL PHP Extension
@@ -327,6 +327,7 @@
         \end{itemize}
     \subsection{データベース}
         データベースのテーブルを表\ref{daily-menu}\sim\ref{users}に示す.
+    \clearpage
         \begin{table}[h]
             \begin{minipage}[t]{.49\textwidth}
                 \center
