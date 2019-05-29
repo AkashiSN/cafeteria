@@ -27,8 +27,8 @@ kill-vagrant:
 
 .PHONY: init
 init: yarn build-sass composer
-	.env.example .env
-	php artisan key:generate"
+	cp .env.example .env
+	php artisan key:generate
 
 .PHONY: yarn
 yarn:
