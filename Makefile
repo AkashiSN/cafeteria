@@ -67,7 +67,7 @@ deploy:
 
 	ssh radish -- "source ~/.bash_profile; cd laravel; yarn"
 	ssh radish -- "source ~/.bash_profile; cd laravel; yarn run prod"
-	ssh radish -- "source ~/.bash_profile; cd laravel; composer install"
+	ssh radish -- "source ~/.bash_profile; cd laravel; composer install --no-dev"
 	ssh radish -- "source ~/.bash_profile; cd laravel; cp .env.example .env"
 	ssh radish -- "source ~/.bash_profile; cd laravel; php artisan key:generate"
 	ssh radish -- "source ~/.bash_profile; cd laravel; php artisan migrate:fresh"
