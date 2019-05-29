@@ -16,3 +16,4 @@ _ide_helper_models.php
 .idea
 /*.log
 /.vagrant
+/deploy
