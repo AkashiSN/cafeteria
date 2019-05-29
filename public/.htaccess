@@ -3,9 +3,9 @@
         Options -MultiViews -Indexes
     </IfModule>
 
-    RewriteBase "/team3/"
     RewriteEngine On
-
+    RewriteBase /team3/
+    
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

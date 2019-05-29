@@ -11,8 +11,8 @@
 |
 */
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/','IndexController@index') -> name('index');
-Route::get('/auth/google', 'OAuthLoginController@getGoogleAuth');
+Route::get('/auth/google', 'OAuthLoginController@getGoogleAuth') -> name('login');
 Route::get('/auth/callback/google', 'OAuthLoginController@authGoogleCallback');
