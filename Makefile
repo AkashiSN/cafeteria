@@ -53,23 +53,29 @@ serve:
 
 .PHONY: deploy
 deploy:
-	rm -rf deploy
-	git clone git@github.com:AkashiSN/cafeteria.git deploy/laravel
-	mv deploy/laravel/public deploy/public_html
-	rm -rf deploy/laravel/docs
-	rm -rf deploy/laravel/.git
 	ssh radish -- "rm -rf public_html"
-	ssh radish -- "rm -rf laravel"
-	sed -e 's#'/../vendor/autoload.php'#'/../laravel/vendor/autoload.php'#g' public/index.php |	sed -e 's#'/../bootstrap/app.php'#'/../laravel/bootstrap/app.php'#g' > deploy/public_html/index.php
+	ssh radish -- "rm -rf cafeteria"
 
-	scp -r deploy/public_html/ radish:
-	scp -r deploy/laravel/ radish:
+	ssh radish -- "git clone git@github.com:AkashiSN/cafeteria.git"
 
-	ssh radish -- "source ~/.bash_profile; cd laravel; yarn"
-	ssh radish -- "source ~/.bash_profile; cd laravel; yarn run prod"
-	ssh radish -- "source ~/.bash_profile; cd laravel; composer install --no-dev"
-	ssh radish -- "source ~/.bash_profile; cd laravel; cp .env.example .env"
-	ssh radish -- "source ~/.bash_profile; cd laravel; php artisan key:generate"
-	ssh radish -- "source ~/.bash_profile; cd laravel; php artisan migrate:fresh"
-	ssh radish -- "source ~/.bash_profile; cd laravel; php artisan db:seed"
+	ssh radish -- "rm -rf cafeteria/.git"
+	ssh radish -- "rm -rf cafeteria/docs"
+
+	ssh radish -- "ln -s cafeteria/public public_html"
+	ssh radish -- "sed -i -e '163,164d' cafeteria/config/app.php"
+	ssh radish -- "sed -i -e '205d' cafeteria/config/app.php"
+	ssh radish -- "cp cafeteria/.env.example cafeteria/.env"
+	ssh radish -- "chmod -R 777 cafeteria/storage"
+	ssh radish -- "chmod -R 777 cafeteria/bootstrap/cache"
+
+	ssh radish -- "source ~/.bash_profile; cd cafeteria; yarn"
+	ssh radish -- "source ~/.bash_profile; cd cafeteria; yarn run prod"
+	ssh radish -- "source ~/.bash_profile; cd cafeteria; composer install --no-dev"
+
+	ssh radish -- "cd cafeteria; php artisan key:generate"
+
+.PHONY: deploy-migrate
+deploy-migrate:
+	ssh radish -- "cd cafeteria; php artisan migrate:fresh"
+	ssh radish -- "cd cafeteria; php artisan db:seed"
 

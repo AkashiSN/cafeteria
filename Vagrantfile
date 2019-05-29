@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
     apt-get update && apt-get upgrade -y
     apt-get install -y zip unzip apache2 postgresql
     apt-get install -y php php-mbstring php-dom php-zip php-pgsql
-    apt-get install -y nodejs npm 
+    apt-get install -y nodejs npm
     npm cache clean
     npm install -g n
     n stable
@@ -21,7 +21,8 @@ Vagrant.configure("2") do |config|
     npm install -g yarn
     curl -sS https://getcomposer.org/installer | php
     mv composer.phar /usr/bin/composer
-    sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'password';"
+    useradd team3
+    sudo -u team3 psql -c "ALTER USER team3 PASSWORD 'password';"
     echo 'host    all     all             0.0.0.0/0               password' >> /etc/postgresql/9.5/main/pg_hba.conf
     sed -i -e "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /etc/postgresql/9.5/main/postgresql.conf
     service postgresql restart
