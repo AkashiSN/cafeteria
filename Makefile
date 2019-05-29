@@ -58,9 +58,6 @@ deploy:
 
 	ssh radish -- "git clone git@github.com:AkashiSN/cafeteria.git"
 
-	ssh radish -- "rm -rf cafeteria/.git"
-	ssh radish -- "rm -rf cafeteria/docs"
-
 	ssh radish -- "ln -s cafeteria/public public_html"
 	ssh radish -- "sed -i -e '163,164d' cafeteria/config/app.php"
 	ssh radish -- "sed -i -e '205d' cafeteria/config/app.php"
