@@ -1,5 +1,5 @@
-.PHONY: init-dev
-init-dev:
+.PHONY: init-vagrant
+init-vagrant:
 	vagrant ssh -- "rm -rf cafeteria/vendor"
 	vagrant ssh -- "rm -rf cafeteria/node_modules"
 	vagrant ssh -- "cd /cafeteria && yarn"
@@ -8,21 +8,21 @@ init-dev:
 	vagrant ssh -- "cp /cafeteria/.env.example /cafeteria/.env"
 	vagrant ssh -- "cd /cafeteria && php artisan key:generate"
 
-.PHONY: migrate-dev
-migrate-dev:
+.PHONY: migrate-vagrant
+migrate-vagrant:
 	vagrant ssh -- "cd /cafeteria && php artisan migrate:fresh"
 	vagrant ssh -- "cd /cafeteria && php artisan db:seed"
 
-.PHONY: build-sass-dev
-build-sass-dev:
+.PHONY: build-sass-vagrant
+build-sass-vagrant:
 	vagrant ssh -- "cd /cafeteria && yarn run dev"
 
-.PHONY: serve-dev
-serve-dev:
+.PHONY: serve-vagrant
+serve-vagrant:
 	vagrant ssh -- "cd /cafeteria && php artisan serve --host 0.0.0.0 &" &
 
-.PHONY: kill-dev
-kill-dev:
+.PHONY: kill-vagrant
+kill-vagrant:
 	vagrant ssh -- "pkill -u vagrant" 2>/dev/null; true
 
 .PHONY: init
@@ -34,11 +34,6 @@ init: yarn build-sass composer
 yarn:
 	yarn
 
-.PHONY: migrate
-migrate:
-	php artisan migrate:fresh
-	php artisan db:seed
-
 .PHONY: build-sass
 build-sass:
 	yarn run prod
@@ -46,6 +41,11 @@ build-sass:
 .PHONY: composer
 composer:
 	composer install
+
+.PHONY: migrate
+migrate:
+	php artisan migrate:fresh
+	php artisan db:seed
 
 .PHONY: serve-dev
 serve:
