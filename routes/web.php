@@ -13,6 +13,6 @@
 
 Auth::routes();
 
-Route::get('/','IndexController@index') -> name('index');
-Route::get('/auth/google', 'OAuthLoginController@getGoogleAuth');
-Route::get('/auth/callback/google', 'OAuthLoginController@authGoogleCallback');
+Route::get('/team3/','IndexController@index') -> name('index');
+Route::get('/team3/auth/google', 'OAuthLoginController@getGoogleAuth');
+Route::get('/team3/auth/callback/google', 'OAuthLoginController@authGoogleCallback');
