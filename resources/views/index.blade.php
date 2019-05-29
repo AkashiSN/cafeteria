@@ -57,8 +57,8 @@
                     </li>
                 @else
                 <li class="nav-item">
-                    <a class="btn btn-block btn-social btn-google" href="auth/google">
-                        <span class="fab fa-google"></span> Sign in with Google
+                    <a class="btn btn-block" href="{{ route('login') }}">
+                        <span class="fab"></span> Sign in with Google
                     </a>
                 </li>
                 @endif
