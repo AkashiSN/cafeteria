@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Menus_table.php
+ * Favorites_table.php
  *
  * PHP Version = 7.0
  *
@@ -17,9 +17,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * MenusTable class
+ * FavoritesTable class
  *
- * メニューテーブルのマイグレーションを行います。
+ * ユーザーのお気に入りメニューのテーブルのマイグレーションを行います。
  *
  * @category Migration
  * @package  Migration
@@ -27,7 +27,7 @@ use Illuminate\Database\Migrations\Migration;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class MenusTable extends Migration
+class FavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -37,16 +37,11 @@ class MenusTable extends Migration
     public function up()
     {
         Schema::create(
-            'menus',
+            'favorites',
             function (Blueprint $table) {
-                $table->bigIncrements('menu_id');
-                $table->string('item_name');
-                $table->string('category');
-                $table->integer('price');
-                $table->double('energy');
-                $table->double('protein');
-                $table->double('lipid');
-                $table->double('salt');
+                $table->integer('user_id');
+                $table->integer('favorite_menu_id');
+                $table->timestamps();
             }
         );
     }
@@ -58,6 +53,6 @@ class MenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('sold_out');
     }
 }

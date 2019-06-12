@@ -1,18 +1,22 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+/**
+ * Web.php
+ *
+ * PHP Version = 7.0
+ *
+ * @category Router
+ * @package  Router
+ * @author   AkashiSN <btorntireinvynriy@gmail.com>
+ * @license  MIT https://opensource.org/licenses/mit-license.php
+ * @link     https://github.com/AkashiSN/cafeteria
+ */
 
-// Auth::routes();
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/','IndexController@index') -> name('index');
+Auth::routes();
+
+Route::get('/', 'IndexController@index') -> name('index');
 Route::get('/auth/google', 'OAuthLoginController@getGoogleAuth') -> name('login');
 Route::get('/auth/callback/google', 'OAuthLoginController@authGoogleCallback');

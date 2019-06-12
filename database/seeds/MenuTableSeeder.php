@@ -1,8 +1,31 @@
 <?php
 
-use App\Menu;
+/**
+ * MenuTableSeeder.php
+ *
+ * PHP Version = 7.0
+ *
+ * @category Seeder
+ * @package  Seeder
+ * @author   AkashiSN <btorntireinvynriy@gmail.com>
+ * @license  MIT https://opensource.org/licenses/mit-license.php
+ * @link     https://github.com/AkashiSN/cafeteria
+ */
+
+use App\Models\Menu;
 use Illuminate\Database\Seeder;
 
+/**
+ * MenuTableSeeder class
+ *
+ * メニューデータの初期挿入を行います。
+ *
+ * @category Seeder
+ * @package  Seeder
+ * @author   AkashiSN <btorntireinvynriy@gmail.com>
+ * @license  MIT https://opensource.org/licenses/mit-license.php
+ * @link     https://github.com/AkashiSN/cafeteria
+ */
 class MenuTableSeeder extends Seeder
 {
     /**
@@ -14,8 +37,9 @@ class MenuTableSeeder extends Seeder
     {
         $json = File::get("database/data/menu.json");
         $data = json_decode($json);
-        foreach ($data as $obj){
-            Menu::create(array(
+        foreach ($data as $obj) {
+            Menu::create(
+                array(
                 'item_name' => $obj->item_name,
                 'category' => $obj->category,
                 'price' => $obj->price,
@@ -23,7 +47,8 @@ class MenuTableSeeder extends Seeder
                 'protein' => $obj->protein,
                 'lipid' => $obj->lipid,
                 'salt' => $obj->salt,
-            ));
+                )
+            );
         }
     }
 }

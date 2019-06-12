@@ -28,7 +28,7 @@ $ vagtant halt #stop
 ## Install dependency
 
 ```
-$ make init
+$ make init-vagrant
 ```
 
 ## Configure .env
@@ -44,21 +44,21 @@ GOOGLE_CALLBACK_URL =
 ## Migrate & Seed database
 
 ```
-$ make migrate
+$ make migrate-vagrant
 ```
 
 ## Build sass
 
 ```
-$ make build-sass
+$ make build-sass-vagrant
 ```
 
 ## Run in the browser
 
 ```
-$ make serve
+$ make serve-vagrant
 Laravel development server started: <http://127.0.0.1:8000>
-$ make kill
+$ make kill-vagrant
 ```
 
 
