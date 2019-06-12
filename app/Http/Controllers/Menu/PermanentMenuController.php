@@ -50,15 +50,19 @@ class PermanentMenuController extends Controller
                     "menu" => $menu,
                     "description" => "常設メニュー",
                 );
-            } else {
-                if ($summer) {
-                    $menus[] = array(
-                        "menu" => Menu::where('menu_id', $menu -> alias)->first(),
-                        'description' => "夏限定メニュー",
-                    );
-                }
             }
         }
+
+        if ($summer) {
+            $summer_menus = Menu::where('category', 'summer_menu')->get();
+            foreach ($summer_menus as $menu) {
+                $menus[] = array(
+                    "menu" => $menu,
+                    'description' => "夏限定メニュー",
+                );
+            }
+        }
+
         $today_menu = DailyMenu::where('date', date("Y-m-d"))->first();
         $menus[] = array(
             "menu" => Menu::where('menu_id', $today_menu->ramen)->first(),
