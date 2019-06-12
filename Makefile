@@ -73,6 +73,6 @@ deploy:
 
 .PHONY: deploy-migrate
 deploy-migrate:
-	ssh radish -- "cd cafeteria; php artisan migrate:fresh"
-	ssh radish -- "cd cafeteria; php artisan db:seed"
+	ssh radish -- "cd cafeteria; php artisan migrate:fresh --force"
+	ssh radish -- "cd cafeteria; php artisan db:seed --force"
 

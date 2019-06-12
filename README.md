@@ -68,3 +68,8 @@ $ make kill-vagrant   #stop
 ```bash
 $ make deploy
 ```
+この後にアクセスせずにすぐに.envのパスワードを更新してマイグレーションする。
+
+```bash
+$ make deploy-migrate
+```

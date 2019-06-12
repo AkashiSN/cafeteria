@@ -1,0 +1,21 @@
+{
+    "2019-06-12": [
+    {
+        "item_name" : "タンドリーフィッシュ",
+        "category" : "a_set_menu",
+        "price" : 420,
+        "energy" : 218,
+        "protein" : 25,
+        "lipid" : 4.9,
+        "salt" : 3
+    },
+    {
+        "item_name" : "しらす丼",
+        "category" : "b_set_menu",
+        "price" : 360,
+        "energy" : 574,
+        "protein" : 24.3,
+        "lipid" : 10.0,
+        "salt" : 5.2
+    }]
+}
