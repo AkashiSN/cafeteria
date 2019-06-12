@@ -20,3 +20,19 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+// margins / paddings
+@for $i from 1 through 100 {
+  .mt-#{$i} {
+    margin-top: 1px * $i;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: 1px * $i;
+  }
+
+  .ph-#{$i} {
+    padding-left: 1px * $i;
+    padding-right: 1px * $i;
+  }
+}
