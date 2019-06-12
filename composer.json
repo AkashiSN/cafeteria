@@ -41,8 +41,7 @@
             "Model\\": "app/Models/"
         },
         "classmap": [
-            "database/seeds",
-            "database/factories"
+            "database/seeds"
         ]
     },
     "minimum-stability": "dev",

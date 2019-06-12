@@ -1,8 +1,8 @@
 # Cafeteria
 
-## Requirement
+## 依存関係
 
-### Production
+### 本番環境
 
 - PHP >= 7.0.0
     - OpenSSL PHP Extension
@@ -13,53 +13,58 @@
     - JSON PHP Extension
     - PostgreSQL PHP Extension
 
-### Development
+### 開発環境
 
 - Vagrant
 - VirtualBox
 
-## Preparing for VM
+## 開発する
 
-```
-$ vagrant up #start
+### VMを起動する
+
+```bash
+$ vagrant up   #start
 $ vagtant halt #stop
 ```
 
-## Install dependency
+### 依存関係をインストール
 
-```
+```bash
 $ make init-vagrant
 ```
 
-## Configure .env
+### .envの設定
 
-Set the "Google OAuth 2.0 Client ID" into the below.
+"Google OAuth 2.0 Client ID"をセットする
 
-```
+```bash
 GOOGLE_CLIENT_ID =
 GOOGLE_CLIENT_SECRET =
 GOOGLE_CALLBACK_URL =
 ```
 
-## Migrate & Seed database
+### データベースのマイグレーション
 
-```
+```bash
 $ make migrate-vagrant
 ```
 
-## Build sass
+### Sassのビルド
 
-```
+```bash
 $ make build-sass-vagrant
 ```
 
-## Run in the browser
+### ブラウザで試す
 
+```bash
+$ make serve-vagrant  #start
+Laravel development server started: <http://0.0.0.0:8000>
+$ make kill-vagrant   #stop
 ```
-$ make serve-vagrant
-Laravel development server started: <http://127.0.0.1:8000>
-$ make kill-vagrant
+
+## デプロイする
+
+```bash
+$ make deploy
 ```
-
-
-
