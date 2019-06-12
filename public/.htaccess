@@ -4,8 +4,12 @@
     </IfModule>
 
     RewriteEngine On
+
+    RewriteCond %{HTTP_HOST} ^cafeteria.akashisn.info$ [NC]
+    RewriteRule ^(.*)$ http://172.16.16.7/team3/$1 [L,R]
+
     RewriteBase /team3/
-    
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
