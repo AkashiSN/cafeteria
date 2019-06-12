@@ -12,10 +12,11 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -48,7 +49,7 @@ class OAuthLoginController extends Controller
      */
     public function authGoogleCallback()
     {
-        $googleUser = Socialite::driver('google')->user();
+        $googleUser = Socialite::driver('google')->stateless()->user();
         $user = User::firstOrNew(['email' => $googleUser->email]);
         if (!$user->exists) {
             $user['name'] = $googleUser->getNickname() ?? $googleUser->getName();

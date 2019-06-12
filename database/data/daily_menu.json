@@ -7,7 +7,9 @@
         "energy" : 218,
         "protein" : 25,
         "lipid" : 4.9,
-        "salt" : 3
+        "salt" : 3,
+        "week": 2,
+        "ramen" :5
     },
     {
         "item_name" : "しらす丼",
@@ -16,6 +18,8 @@
         "energy" : 574,
         "protein" : 24.3,
         "lipid" : 10.0,
-        "salt" : 5.2
+        "salt" : 5.2,
+        "week": 2,
+        "ramen" :5
     }]
 }

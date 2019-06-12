@@ -48,6 +48,7 @@ class MenuTableSeeder extends Seeder
                 'protein' => $obj->protein,
                 'lipid' => $obj->lipid,
                 'salt' => $obj->salt,
+                'alias' => $obj->alias,
                 )
             );
         }

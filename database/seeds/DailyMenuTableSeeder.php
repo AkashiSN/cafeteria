@@ -42,6 +42,8 @@ class DailyMenuTableSeeder extends Seeder
         $data = json_decode($json);
         $count = DB::table('menus')->count();
         foreach ($data as $date => $value) {
+            $week = 0;
+            $ramen = 0;
             foreach ($value as $obj) {
                 Menu::create(
                     array(
@@ -52,15 +54,20 @@ class DailyMenuTableSeeder extends Seeder
                     'protein' => $obj->protein,
                     'lipid' => $obj->lipid,
                     'salt' => $obj->salt,
+                    'alias' => 0,
                     )
                 );
+                $week = $obj->week;
+                $ramen = $obj->ramen;
                 $count++;
             }
             DailyMenu::create(
                 array(
                     'date' => date($date),
+                    'week' => $week,
                     'menu_id_A' => $count-1,
                     'menu_id_B' => $count,
+                    'ramen' => $ramen,
                 )
             );
         }

@@ -42,6 +42,7 @@ class MenusTable extends Migration
                 $table->bigIncrements('menu_id');
                 $table->string('item_name');
                 $table->string('category');
+                $table->integer('alias');
                 $table->integer('price');
                 $table->double('energy');
                 $table->double('protein');

@@ -17,6 +17,27 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', 'IndexController@index') -> name('index');
-Route::get('/auth/google', 'OAuthLoginController@getGoogleAuth') -> name('login');
-Route::get('/auth/callback/google', 'OAuthLoginController@authGoogleCallback');
+Route::get(
+    '/',
+    'Menu\DailyMenuController@daily'
+) -> name('index');
+
+Route::get(
+    '/menu/daily',
+    'Menu\DailyMenuController@daily'
+) -> name('daily');
+
+Route::get(
+    '/menu/permanent',
+    'Menu\PermanentMenuController@permanent'
+) -> name('permanent');
+
+Route::get(
+    '/auth/google',
+    'Auth\OAuthLoginController@getGoogleAuth'
+) -> name('login');
+
+Route::get(
+    '/auth/callback/google',
+    'Auth\OAuthLoginController@authGoogleCallback'
+);

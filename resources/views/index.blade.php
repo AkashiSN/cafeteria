@@ -3,12 +3,21 @@
 @section('content')
 <!-- main content -->
 <ul class="nav nav-tabs nav-fill">
+    @if ($mode == "daily")
     <li class="nav-item">
-        <a class="nav-link active" href="#">日替わりメニュー</a>
+        <a class="nav-link active" href="{{ route('daily') }}">日替わりメニュー</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">常設メニュー</a>
+        <a class="nav-link" href="{{ route('permanent') }}">常設メニュー</a>
     </li>
+    @elseif ($mode == "permanent")
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('daily') }}">日替わりメニュー</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ route('permanent') }}">常設メニュー</a>
+    </li>
+    @endif
 </ul>
 
 <div class="container ph-20 mt-10">

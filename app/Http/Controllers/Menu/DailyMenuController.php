@@ -1,7 +1,7 @@
 <?php
 
 /**
- * IndexController.php
+ * DailyMenuController.php
  *
  * PHP Version = 7.0
  *
@@ -12,20 +12,21 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Menu;
 
 use App\User;
 use App\Models\Menu;
 use App\Models\DailyMenu;
 use App\Models\Favorite;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
 /**
- * IndexController class
+ * DailyMenuController class
  *
- * ホームページを表示するコントローラです。
+ * 日替わりメニューを表示するコントローラです。
  *
  * @category Contoller
  * @package  Contoller
@@ -33,15 +34,14 @@ use Illuminate\Http\Request;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class IndexController extends Controller
+class DailyMenuController extends Controller
 {
-
     /**
-     * ホームページを表示する。
+     * 日替わりメニューを表示する。
      *
      * @return Renderable
      */
-    public function index()
+    public function daily()
     {
         // if (Auth::check()) {
         //     $user = Auth::user();
@@ -62,7 +62,6 @@ class IndexController extends Controller
             "description" => "Bセット（味噌汁付き）"
         );
 
-        return view('index', compact('menus'));
+        return view('index', compact('menus'), ['mode' => 'daily']);
     }
-
 }

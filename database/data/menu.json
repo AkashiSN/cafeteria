@@ -6,7 +6,8 @@
         "energy" : 596,
         "protein" : 11.4,
         "lipid" : 10.5,
-        "salt" : 3.6
+        "salt" : 3.6,
+        "alias": 0
     },
     {
         "item_name" : "カツカレー",
@@ -15,7 +16,8 @@
         "energy" : 832,
         "protein" : 19.3,
         "lipid" : 23.6,
-        "salt" : 3.6
+        "salt" : 3.6,
+        "alias": 0
     },
     {
         "item_name" : "カレーうどん",
@@ -24,16 +26,38 @@
         "energy" : 650,
         "protein" : 15.6,
         "lipid" : 25.7,
-        "salt" : 5.6
+        "salt" : 5.6,
+        "alias": 10
+    },
+    {
+        "item_name" : "味噌ラーメン",
+        "category" : "ramen",
+        "price" : 210,
+        "energy" : 535,
+        "protein" : 20.4,
+        "lipid" : 12.1,
+        "salt" : 9.5,
+        "alias": 0
+    },
+    {
+        "item_name" : "醤油ラーメン",
+        "category" : "ramen",
+        "price" : 210,
+        "energy" : 442,
+        "protein" : 17.1,
+        "lipid" : 6.6,
+        "salt" : 7.5,
+        "alias": 0
     },
     {
         "item_name" : "とんこつラーメン",
-        "category" : "permanent_menu",
+        "category" : "ramen",
         "price" : 210,
         "energy" : 481,
         "protein" : 20.6,
         "lipid" : 8.2,
-        "salt" : 8.1
+        "salt" : 8.1,
+        "alias": 0
     },
     {
         "item_name" : "かけうどん",
@@ -42,7 +66,8 @@
         "energy" : 325,
         "protein" : 10.4,
         "lipid" : 1.8,
-        "salt" : 4.1
+        "salt" : 4.1,
+        "alias": 12
     },
     {
         "item_name" : "かけそば",
@@ -51,7 +76,8 @@
         "energy" : 320,
         "protein" : 13.3,
         "lipid" : 2.0,
-        "salt" : 4.1
+        "salt" : 4.1,
+        "alias": 13
     },
     {
         "item_name" : "ライス",
@@ -60,7 +86,8 @@
         "energy" : 386,
         "protein" : 5.8,
         "lipid" : 0.7,
-        "salt" : 0.0
+        "salt" : 0.0,
+        "alias": 0
     },
     {
         "item_name" : "冷やしカレーうどん",
@@ -69,7 +96,8 @@
         "energy" : 422,
         "protein" : 11.3,
         "lipid" : 6.4,
-        "salt" : 5.6
+        "salt" : 5.6,
+        "alias": 0
     },
     {
         "item_name" : "冷やしカレーそば",
@@ -78,7 +106,8 @@
         "energy" : 417,
         "protein" : 14.3,
         "lipid" : 6.7,
-        "salt" : 5.6
+        "salt" : 5.6,
+        "alias": 0
     },
     {
         "item_name" : "冷やしうどん",
@@ -87,7 +116,8 @@
         "energy" : 461,
         "protein" : 12.2,
         "lipid" : 2.1,
-        "salt" : 6.3
+        "salt" : 6.3,
+        "alias": 0
     },
     {
         "item_name" : "冷やしそば",
@@ -96,6 +126,7 @@
         "energy" : 489,
         "protein" : 17.6,
         "lipid" : 2.7,
-        "salt" : 6.3
+        "salt" : 6.3,
+        "alias": 0
     }
 ]
