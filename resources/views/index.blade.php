@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>NITAC Cafeteria</title>
-</head>
-
 @extends('layouts.default')
 
-<!-- main content -->
 @section('content')
+<!-- main content -->
 <ul class="nav nav-tabs nav-fill">
     <li class="nav-item">
         <a class="nav-link active" href="#">日替わりメニュー</a>
@@ -96,5 +89,3 @@
     </div>
 </div>
 @endsection
-
-</html>
