@@ -16,7 +16,7 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('index') }}">Nitac Cafeteria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,21 +39,13 @@
                 <li class="dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::getUser()->name }}<span class="caret"></span></a>
                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
                     </div>
                 </li>
                 @else
                 <li class="nav-item">
-                    <a class="btn btn-block" href="{{ route('login') }}">
-                        <span class="fab"></span> Sign in with Google
-                    </a>
+                    <a class="nav-link" href="{{ route('login') }}">Sign in with Google</a>
                 </li>
                 @endif
             </ul>
@@ -66,7 +58,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="py-5 bg-dark">
+<footer class="py-4 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Team3 2019</p>
     </div>

@@ -39,7 +39,7 @@
         @foreach ($menus as $menu)
         <p class="text-justify text-muted">{{ $menu['description'] }}</p>
 
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-8">
