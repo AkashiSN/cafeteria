@@ -41,6 +41,7 @@ class MenuTableSeeder extends Seeder
         foreach ($data as $obj) {
             Menu::create(
                 array(
+                'menu_id' => $obj->id,
                 'item_name' => $obj->item_name,
                 'category' => $obj->category,
                 'price' => $obj->price,

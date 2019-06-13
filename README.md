@@ -38,9 +38,9 @@ $ make init-vagrant
 "Google OAuth 2.0 Client ID"をセットする
 
 ```bash
-GOOGLE_CLIENT_ID =
-GOOGLE_CLIENT_SECRET =
-GOOGLE_CALLBACK_URL =
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_CALLBACK_URL=
 ```
 
 ### データベースのマイグレーション

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 /**
  * DailyMenuTableSeeder class
  *
- * メニューデータの初期挿入を行います。
+ * 日替わりメニューデータの初期挿入を行います。
  *
  * @category Seeder
  * @package  Seeder
@@ -45,8 +45,10 @@ class DailyMenuTableSeeder extends Seeder
             $week = 0;
             $ramen = 0;
             foreach ($value as $obj) {
+                $count++;
                 Menu::create(
                     array(
+                    'menu_id' => $count,
                     'item_name' => $obj->item_name,
                     'category' => $obj->category,
                     'price' => $obj->price,
@@ -59,7 +61,6 @@ class DailyMenuTableSeeder extends Seeder
                 );
                 $week = $obj->week;
                 $ramen = $obj->ramen;
-                $count++;
             }
             DailyMenu::create(
                 array(
