@@ -56,7 +56,7 @@ class DailyMenuController extends Controller
         // }
 
         foreach (self::this_weekdays() as $weekdays) {
-            $weekdays_list[] = $weekdays[0] -> format('n月j日') . '〜' . end($weekdays) -> format('n月j日');
+            $select_options[] = $weekdays[0] -> format('n月j日') . '〜' . end($weekdays) -> format('n月j日');
         }
 
         $today_menu = DailyMenu::where('date', date("Y-m-d"))->first();

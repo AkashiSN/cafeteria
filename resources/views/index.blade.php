@@ -22,9 +22,9 @@
 <div class="container mt-10 ph-70">
     <div class="row">
         <div class="col-4">
-            <select class="form-control">
-                @foreach($weekdays_list as $weekdays)
-                    <option>{{$weekdays}}</option>
+            <select class="custom-select custom-select-sm">
+                @foreach($select_options as $option)
+                <option>{{ $option }}</option>
                 @endforeach
             </select>
         </div>
