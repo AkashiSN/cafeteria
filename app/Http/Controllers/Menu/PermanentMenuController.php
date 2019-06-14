@@ -31,7 +31,7 @@ use App\Http\Controllers\Controller;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class PermanentMenuController extends Controller
+class PermanentMenuController extends MenuController
 {
     /**
      * 常設メニューを表示する。
@@ -40,6 +40,10 @@ class PermanentMenuController extends Controller
      */
     public function permanent()
     {
+        foreach (self::this_weekdays() as $weekdays) {
+            $select_options[] = $weekdays[0] -> format('n月j日') . '〜' . end($weekdays) -> format('n月j日');
+        }
+
         $summer = true;
 
         $permanent_menus = Menu::where('category', 'permanent_menu')->get();
@@ -69,6 +73,6 @@ class PermanentMenuController extends Controller
             "description" => "常設メニュー（ラーメン）",
         );
 
-        return view('index', compact('menus'), ['mode' => 'permanent']);
+        return view('index', compact('menus', 'select_options'), ['mode' => 'permanent']);
     }
 }
