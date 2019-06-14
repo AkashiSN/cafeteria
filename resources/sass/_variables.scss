@@ -24,15 +24,15 @@ $cyan: #6cb2eb;
 // margins / paddings
 @for $i from 1 through 100 {
   .mt-#{$i} {
-    margin-top: 1px * $i;
+    margin-top: 1px * $i !important;
   }
 
   .mb-#{$i} {
-    margin-bottom: 1px * $i;
+    margin-bottom: 1px * $i !important;
   }
 
   .ph-#{$i} {
-    padding-left: 1px * $i;
-    padding-right: 1px * $i;
+    padding-left: 1px * $i !important;
+    padding-right: 1px * $i !important;
   }
 }
