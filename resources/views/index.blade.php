@@ -1,7 +1,6 @@
 @extends('layouts.default')
 
 @section('content')
-<!-- main content -->
 <ul class="nav nav-tabs nav-fill">
     @if ($mode == "daily")
     <li class="nav-item">

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card ph-10 pv-10">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-10">
