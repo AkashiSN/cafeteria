@@ -23,21 +23,19 @@
     <div class="row">
         <div class="col-4">
             <select class="form-control">
-                <option>7/1〜7/5</option>
-                <option>7/15〜7/12</option>
-                <option>7/15〜7/19</option>
-                <option>7/22〜7/26</option>
-                <option>7/29〜7/31</option>
+                @foreach($weekdays_list as $weekdays)
+                    <option>{{$weekdays}}</option>
+                @endforeach
             </select>
         </div>
     </div>
 
-        <p class="mt-10">7月1日</p>
-        <div class="container mt-10 ph-70">
-            @foreach ($menus as $menu)
-            <p class="text-justify text-muted mt-3">{{ $menu['description'] }}</p>
-            @include('components.menu_card', ['is_served' => true])
-            @endforeach
-        </div>
+    <p class="mt-10">7月1日</p>
+    <div class="container mt-10 ph-70">
+        @foreach ($menus as $menu)
+        <p class="text-justify text-muted mt-3">{{ $menu['description'] }}</p>
+        @include('components.menu_card', ['valid_sold_button' => true])
+        @endforeach
+    </div>
 </div>
 @endsection

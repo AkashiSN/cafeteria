@@ -9,26 +9,24 @@
             </div>
         </div>
 
-        <div class="row mb-2">
+        <div class="row">
             <div class="col-sm-2">
                 <p class="card-text">¥{{ $menu['menu'] -> price }}</p>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 お星様
             </div>
         </div>
 
-        <div class="container-fluid">
-            <div class="row flex-row flex-nowrap">
-                <div class="col-3">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" width="150" height="100" />
-                </div>
-                <div class="col-3">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" width="150" height="100" />
-                </div>
-                <div class="col-3">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" width="150" height="100" />
-                </div>
+        <div class="row flex-row flex-nowrap mt-2">
+            <div class="col-3">
+                <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" width="180" height="120" />
+            </div>
+            <div class="col-3">
+                <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" width="180" height="120" />
+            </div>
+            <div class="col-3">
+                <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" width="180" height="120" />
             </div>
         </div>
 
@@ -47,11 +45,12 @@
                     <div class="col-sm-2 card-text">{{ sprintf('%.1f', $menu['menu'] -> salt) }} g</div>
                 </div>
             </div>
-            @if ($is_served)
+            @if ($valid_sold_button)
             <div class="col-sm-2">
                 <button type="button" class="btn btn-success" id="button-sold-out">提供中</button>
             </div>
             @endif
         </div>
+        @endif
     </div>
 </div>

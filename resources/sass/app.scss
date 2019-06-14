@@ -12,12 +12,6 @@
     background-color: #F0AD4E;
 }
 
-.card {
-    .text-in-card {
-        font-size: 16px;
-    }
-}
-
 .menu {
     position: relative;
     a {
@@ -38,6 +32,13 @@
   width: 600px;
   text-align: center;
 }
+
 .error p {
   font-size:30px
+}
+
+.card {
+    .text-in-card {
+        font-size: 16px;
+    }
 }
