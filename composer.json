@@ -30,18 +30,13 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Model\\": "app/Models/"
         },
         "classmap": [
-            "database/seeds",
-            "database/factories"
+            "database/seeds"
         ]
     },
     "minimum-stability": "dev",

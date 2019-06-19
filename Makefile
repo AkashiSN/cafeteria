@@ -59,7 +59,7 @@ deploy:
 	ssh radish -- "git clone git@github.com:AkashiSN/cafeteria.git"
 
 	ssh radish -- "ln -s cafeteria/public public_html"
-	ssh radish -- "sed -i -e '163,164d' cafeteria/config/app.php"
+	ssh radish -- "sed -i -e '164,165d' cafeteria/config/app.php"
 	ssh radish -- "sed -i -e '205d' cafeteria/config/app.php"
 	ssh radish -- "cp cafeteria/.env.example cafeteria/.env"
 	ssh radish -- "chmod -R 777 cafeteria/storage"
@@ -73,6 +73,6 @@ deploy:
 
 .PHONY: deploy-migrate
 deploy-migrate:
-	ssh radish -- "cd cafeteria; php artisan migrate:fresh"
-	ssh radish -- "cd cafeteria; php artisan db:seed"
+	ssh radish -- "cd cafeteria; php artisan migrate:fresh --force"
+	ssh radish -- "cd cafeteria; php artisan db:seed --force"
 

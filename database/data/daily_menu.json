@@ -1,0 +1,146 @@
+{
+    "2019-06-12": [
+        {
+            "item_name" : "タンドリーフィッシュ",
+            "category" : "a_set_menu",
+            "price" : 420,
+            "energy" : 218,
+            "protein" : 25,
+            "lipid" : 4.9,
+            "salt" : 3,
+            "week": 2,
+            "ramen" :5
+        },
+        {
+            "item_name" : "しらす丼",
+            "category" : "b_set_menu",
+            "price" : 360,
+            "energy" : 574,
+            "protein" : 24.3,
+            "lipid" : 10.0,
+            "salt" : 5.2,
+            "week": 2,
+            "ramen" : 5
+        }
+    ],
+    "2019-06-13": [
+        {
+            "item_name" : "ポークソテー粗挽きジンジャーソース",
+            "category" : "a_set_menu",
+            "price" : 420,
+            "energy" : 339,
+            "protein" : 20.7,
+            "lipid" : 22.7,
+            "salt" : 1.7,
+            "week": 2,
+            "ramen" : 5
+        },
+        {
+            "item_name" : "鶏唐マヨ丼",
+            "category" : "b_set_menu",
+            "price" : 360,
+            "energy" : 780,
+            "protein" : 28.5,
+            "lipid" : 27.4,
+            "salt" : 2.6,
+            "week": 2,
+            "ramen" : 5
+        }
+    ],
+    "2019-06-14": [
+        {
+            "item_name" : "まぐろカツタルタルソース",
+            "category" : "a_set_menu",
+            "price" : 420,
+            "energy" : 927,
+            "protein" : 26.9,
+            "lipid" : 42.3,
+            "salt" : 2.8,
+            "week": 2,
+            "ramen" : 5
+        },
+        {
+            "item_name" : "天津飯",
+            "category" : "b_set_menu",
+            "price" : 360,
+            "energy" : 613,
+            "protein" : 16.4,
+            "lipid" : 11.0,
+            "salt" : 2.9,
+            "week": 2,
+            "ramen" : 5
+        }
+    ],
+    "2019-06-17": [
+        {
+            "item_name" : "白身魚のピリ辛南蛮漬け",
+            "category" : "a_set_menu",
+            "price" : 420,
+            "energy" : 790,
+            "protein" : 30.9,
+            "lipid" : 29.6,
+            "salt" : 4.9,
+            "week": 3,
+            "ramen" : 6
+        },
+        {
+            "item_name" : "焼き鳥二色そぼろ丼",
+            "category" : "b_set_menu",
+            "price" : 360,
+            "energy" : 698,
+            "protein" : 30.9,
+            "lipid" : 29.6,
+            "salt" : 4.7,
+            "week": 3,
+            "ramen" :6
+        }
+    ],
+    "2019-06-18": [
+        {
+            "item_name" : "豚つくねの甘辛照り焼き",
+            "category" : "a_set_menu",
+            "price" : 420,
+            "energy" : 640,
+            "protein" :24.2,
+            "lipid" : 15,
+            "salt" : 3.2,
+            "week":3,
+            "ramen" : 6
+        },
+        {
+            "item_name" : "葱チャーシュー丼",
+            "category" : "b_set_menu",
+            "price" : 360,
+            "energy" : 617,
+            "protein" : 14.2,
+            "lipid" : 15.5,
+            "salt" : 2.8,
+            "week": 3,
+            "ramen" : 6
+        }
+    ],
+    "2019-06-19": [
+        {
+            "item_name" : "チャプチェ",
+            "category" : "a_set_menu",
+            "price" : 420,
+            "energy" : 868,
+            "protein" : 16.6,
+            "lipid" : 21.7,
+            "salt" : 5.1,
+            "week": 3,
+            "ramen" : 6
+        },
+        {
+            "item_name" : "エビマヨ丼",
+            "category" : "b_set_menu",
+            "price" : 360,
+            "energy" : 927,
+            "protein" : 25.4,
+            "lipid" : 36.1,
+            "salt" : 2.6,
+            "week": 3,
+            "ramen" : 6
+        }
+    ]
+}

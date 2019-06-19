@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Users_table.php
+ * Favorites_table.php
  *
  * PHP Version = 7.0
  *
@@ -17,9 +17,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * UsersTable class
+ * FavoritesTable class
  *
- * ユーザーテーブルのマイグレーションを行います。
+ * ユーザーのお気に入りメニューのテーブルのマイグレーションを行います。
  *
  * @category Migration
  * @package  Migration
@@ -27,7 +27,7 @@ use Illuminate\Database\Migrations\Migration;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class UsersTable extends Migration
+class FavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -37,12 +37,10 @@ class UsersTable extends Migration
     public function up()
     {
         Schema::create(
-            'users',
+            'favorites',
             function (Blueprint $table) {
-                $table->bigIncrements('user_id');
-                $table->string('name');
-                $table->string('email')->unique();
-                $table->rememberToken();
+                $table->integer('user_id');
+                $table->integer('favorite_menu_id');
                 $table->timestamps();
             }
         );
@@ -55,6 +53,6 @@ class UsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('sold_out');
     }
 }

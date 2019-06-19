@@ -1,108 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.default')
 
-<head>
+@section('content')
+<!-- main content -->
+<ul class="nav nav-tabs nav-fill">
+    @if ($mode == "daily")
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ route('daily') }}">日替わりメニュー</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('permanent') }}">常設メニュー</a>
+    </li>
+    @elseif ($mode == "permanent")
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('daily') }}">日替わりメニュー</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ route('permanent') }}">常設メニュー</a>
+    </li>
+    @endif
+</ul>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Nitac Cafeteria</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-</head>
-
-<body>
-
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="{{ route('index') }}">Nitac Cafeteria</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                @if (Auth::check())
-                    <li class="dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::getUser()->name }} <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </div>
-                    </li>
-                @else
-                <li class="nav-item">
-                    <a class="btn btn-block" href="{{ route('login') }}">
-                        <span class="fab"></span> Sign in with Google
-                    </a>
-                </li>
-                @endif
-            </ul>
+<div class="container ph-20 mt-10">
+    <div class="row">
+        <div class="col-4">
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>7/1〜7/5</option>
+                <option>7/15〜7/12</option>
+                <option>7/15〜7/19</option>
+                <option>7/22〜7/26</option>
+                <option>7/29〜7/31</option>
+            </select>
         </div>
     </div>
-</nav>
 
-<!-- Header - set the background image for the header in the line below -->
-<header class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
-    <img class="img-fluid d-block mx-auto" src="http://placehold.it/200x200&text=Logo" alt="">
-</header>
+    <div class="container mt-10">
+        <p>7月1日</p>
 
-<!-- Content section -->
-<section class="py-5">
-    <div class="container">
-        <h1>Section Heading</h1>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, suscipit, rerum quos facilis repellat architecto commodi officia atque nemo facere eum non illo voluptatem quae delectus odit vel itaque amet.</p>
+        @foreach ($menus as $menu)
+        <p class="text-justify text-muted">{{ $menu['description'] }}</p>
+
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h4 class="card-title">{{ $menu['menu'] -> item_name }}</h4>
+                    </div>
+                    <div class="col-sm-2">
+                        はぁと
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h4 class="text-in-card">{{ $menu['menu'] -> price}} Yen</h4>
+                    </div>
+                    <div class="col-sm-2">
+                        お星様
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row flex-row flex-nowrap">
+                        <div class="col-2">
+                            <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" width="150" height="100" />
+                        </div>
+                        <div class="col-2">
+                            <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" width="150" height="100" />
+                        </div>
+                        <div class="col-2">
+                            <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" width="150" height="100" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-15">
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <div class="col-sm-2 font-weight-bold text-in-card">エネルギー</div>
+                            <div class="col-sm-2 text-in-card">{{ $menu['menu'] -> energy }} kcal</div>
+                            <div class="col-sm-2 font-weight-bold text-in-card">脂質</div>
+                            <div class="col-sm-2 text-in-card">{{ sprintf('%.1f', $menu['menu'] -> lipid) }} g</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-2 font-weight-bold text-in-card">タンパク質</div>
+                            <div class="col-sm-2 text-in-card">{{ sprintf('%.1f', $menu['menu'] -> protein) }} g</div>
+                            <div class="col-sm-2 font-weight-bold text-in-card">塩分</div>
+                            <div class="col-sm-2 text-in-card">{{ sprintf('%.1f', $menu['menu'] -> salt) }} g</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-success btn-lg">提供中</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
-</section>
-
-<!-- Image Section - set the background image for the header in the line below -->
-<section class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1081');">
-    <!-- Put anything you want here! There is just a spacer below for demo purposes! -->
-    <div style="height: 200px;"></div>
-</section>
-
-<!-- Content section -->
-<section class="py-5">
-    <div class="container">
-        <h1>Section Heading</h1>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, suscipit, rerum quos facilis repellat architecto commodi officia atque nemo facere eum non illo voluptatem quae delectus odit vel itaque amet.</p>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-</footer>
-</body>
-    <script src="{{ asset('js/app.js') }}"></script>
-</html>
+</div>
+@endsection
