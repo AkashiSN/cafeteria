@@ -32,6 +32,12 @@ Vue.component('menu-card', require('./components/MenuCard.vue').default);
 const app = new Vue({
     el: '#app',
     data: {
-        activeContent: '0'
+        activeContent: '0',
+        tabContent: '1'
+    },
+    methods: {
+        change: function(num){
+            this.tabContent = num
+        }
     }
 });

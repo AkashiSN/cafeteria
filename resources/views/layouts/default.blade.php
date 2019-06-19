@@ -54,7 +54,7 @@
 </nav>
 
 <!-- main content -->
-<div class="container container-stack mt-70 mb-10">
+<div id="app" class="container container-stack mt-70 mb-10">
     @yield('content')
 </div>
 

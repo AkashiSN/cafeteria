@@ -31,6 +31,11 @@ $cyan: #6cb2eb;
     margin-bottom: 1px * $i !important;
   }
 
+  .mv-#{$i} {
+    margin-top: 1px * $i !important;
+    margin-bottom: 1px * $i !important;
+  }
+
   .pv-#{$i} {
     padding-top: 1px * $i !important;
     padding-bottom: 1px * $i !important;

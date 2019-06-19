@@ -1,5 +1,5 @@
 <template>
-    <div class="card ph-15 pv-10">
+    <div class="card mv-15 ph-15 pv-10">
         <div v-if="menu == null" class="card-body">
             <h4 class="card-title">未定</h4>
             <p class="card-text">なんかメッセージが入るやで</p>
