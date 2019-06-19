@@ -9,8 +9,10 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "./", "/cafeteria"
 
   config.vm.provision "shell", inline: <<-SHELL
-    apt-get update && apt-get upgrade -y
-    apt-get install -y zip unzip apache2 postgresql
+    sed -i -e 's@http://archive.ubuntu.com/ubuntu@http://ftp.riken.jp/Linux/ubuntu/@g' /etc/apt/sources.list
+    sed -i -e 's@http://security.ubuntu.com/ubuntu@http://ftp.riken.jp/Linux/ubuntu/@g' /etc/apt/sources.list
+    apt-get update
+    apt-get install -y zip unzip postgresql
     apt-get install -y php php-mbstring php-dom php-zip php-pgsql
     apt-get install -y nodejs npm
     npm cache clean
