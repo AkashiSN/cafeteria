@@ -11,7 +11,7 @@
 </div>
 
 <div class="container ph-5">
-@foreach($daily_menu_schedule as $index => $weekly_list)
+@foreach($daily_schedule as $index => $weekly_list)
     <div v-if="activeContent === '{{ $index }}'">
         @foreach($weekly_list as $menus)
             @foreach($menus as $date => $todays_menu)
@@ -20,7 +20,7 @@
                     @foreach ($todays_menu as $menu)
                         <p class="text-justify text-muted">{{ $menu['description'] }}</p>
                         <a href="{{ route('menu.detail', ['menu_id' => $menu['menu'] -> menu_id]) }}">
-                            <menu-card :menu="{{ $menu['menu'] }}" :valid_sold_button="true"></menu-card>
+                            <menu-card :menu="{{ $menu['menu'] }}" :valid_sold_button="true" />
                         </a>
                     @endforeach
                 </div>

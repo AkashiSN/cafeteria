@@ -47,6 +47,10 @@ class MenuController extends Controller
         'summer_menu'    => '夏限定メニュー',
     );
 
+    private $japanese_weekday = array(
+        '日', '月', '火', '水', '木', '金', '土'
+    );
+
     /**
      * 常設メニューを表示する。
      *
@@ -63,17 +67,17 @@ class MenuController extends Controller
         //     }
         // }
 
-        list($daily_menu_schedule, $select_options) = self::get_daily();
-        $permanent_menu_list = self::get_permanent();
+        list($daily_schedule, $select_options) = self::get_daily();
+        $permanent_list = self::get_permanent();
 
-        return view('home', compact('daily_menu_schedule', 'permanent_menu_list', 'select_options'));
+        return view('home', compact('daily_schedule', 'permanent_list', 'select_options'));
     }
 
     // 日替わりメニューの取得
     private function get_daily() {
-        foreach (self::this_weekdays() as $weekdays) {
-            $select_options[] = $weekdays[0] -> format('n月j日') . '〜' . end($weekdays) -> format('n月j日');
-            $daily_menus = DailyMenu::whereBetween('date', [$weekdays[0], end($weekdays)]) -> get();
+        foreach (self::this_weekdays() as $workdays) {
+            $select_options[] = $workdays[0] -> format('n月j日') . '〜' . end($workdays) -> format('n月j日');
+            $daily_menus = DailyMenu::whereBetween('date', [$workdays[0], end($workdays)]) -> get();
 
             $weekly_list = array();
             foreach ($daily_menus as $daily_menu) {
@@ -85,8 +89,11 @@ class MenuController extends Controller
                     'menu' => Menu::where('menu_id', $daily_menu -> menu_id_B) -> first(),
                     'description' => $this -> daily_descriptions['b_set_menu']
                 );
+
+                $date = $daily_menu -> date;
+                $weekday = $this -> japanese_weekday[$date -> format("w")];
                 $weekly_list[] = array(
-                    ($daily_menu -> date -> format('n月j日')) => array($a_menu, $b_menu)
+                    ($date -> format("n月j日") . '（' . $weekday . '）') => array($a_menu, $b_menu)
                 );
             }
 
@@ -136,15 +143,15 @@ class MenuController extends Controller
         $interval = new DateInterval('P1D');  // interval: 1day
 
         $result  = array();
-        $weekday = array();
+        $workdays = array();
 
         while((int)$datetime -> format('m') == $month) {
             $week = (int)$datetime -> format('w');
             if(in_array($week, $target)) {
-                $weekday[] = clone $datetime;
+                $workdays[] = clone $datetime;
                 if($week == 5) {
-                    $result[] = $weekday;
-                    $weekday  = array();
+                    $result[] = $workdays;
+                    $workdays = array();
                 }
             }
             $datetime -> add($interval);
