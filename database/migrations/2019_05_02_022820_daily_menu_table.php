@@ -40,7 +40,6 @@ class DailyMenuTable extends Migration
             'daily_menu',
             function (Blueprint $table) {
                 $table->date('date')->primary()->unique();
-                $table->integer('week');
                 $table->integer('menu_id_A');
                 $table->integer('menu_id_B');
                 $table->integer('ramen');
