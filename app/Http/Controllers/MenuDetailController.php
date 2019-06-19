@@ -12,7 +12,7 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
-namespace App\Http\Controllers\Menu;
+namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
@@ -42,6 +42,6 @@ class MenuDetailController extends Controller
     {
         $menu = Menu::where('menu_id', $menu_id)->first();
 
-        return view('menu', compact('menu'));
+        return view('detail', compact('menu'));
     }
 }

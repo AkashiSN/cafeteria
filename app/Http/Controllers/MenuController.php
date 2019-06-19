@@ -52,7 +52,7 @@ class MenuController extends Controller
      *
      * @return Renderable
      */
-    public function index() {
+    public function home() {
         // if (Auth::check()) {
         //     $user = Auth::user();
         //     $user_id = $user -> user_id;
@@ -66,7 +66,7 @@ class MenuController extends Controller
         list($daily_menu_schedule, $select_options) = self::get_daily();
         $permanent_menu_list = self::get_permanent();
 
-        return view('index', compact('daily_menu_schedule', 'permanent_menu_list', 'select_options'));
+        return view('home', compact('daily_menu_schedule', 'permanent_menu_list', 'select_options'));
     }
 
     // 日替わりメニューの取得

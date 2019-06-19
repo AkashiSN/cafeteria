@@ -10,7 +10,9 @@
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
                 <div class="col-2">
-                    <button type="button" v-on:click="updateFavorite()" class="btn" v-bind:class="{ 'btn-danger': isLiked }">はぁと</button>
+                    <button type="button" v-on:click="updateFavorite()" class="btn" v-bind:class="{ 'btn-danger': isLiked }">
+                        はぁと
+                    </button>
                 </div>
             </div>
 
@@ -51,7 +53,9 @@
                     </div>
                 </div>
                 <div v-if="valid_sold_button" class="col-2">
-                    <button type="button" v-on:click="updateIsSold()" class="btn" v-bind:class="{ 'btn-success': isSold, 'btn-danger': !isSold }">{{ isSold ? '提供中' : '売り切れ' }}</button>
+                    <button type="button" v-on:click="updateIsSold()" class="btn" v-bind:class="{ 'btn-success': isSold, 'btn-danger': !isSold }">
+                        {{ isSold ? '提供中' : '売り切れ' }}
+                    </button>
                 </div>
             </div>
         </div>

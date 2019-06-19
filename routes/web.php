@@ -19,8 +19,26 @@ Auth::routes();
 
 Route::get(
     '/',
-    'MenuController@index'
-) -> name('index');
+    'MenuController@home'
+) -> name('home');
+
+Route::get(
+    '/menu/{menu_id}',
+    'MenuDetailController@menuDetail'
+) -> name('menu.detail');
+
+Route::get(
+    '/menu/{menu_id}/reviews',
+    'Review\ReviewController@reviews'
+) -> name('menu.reviews');
+Route::get(
+    '/menu/{menu_id}/review',
+    'Review\ReviewController@review'
+) -> name('menu.review');
+Route::post(
+    '/menu/{menu_id}/review/post',
+    'Review\ReviewController@postReview'
+) -> name('menu.review.post');
 
 Route::get(
     '/auth/google',
