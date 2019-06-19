@@ -4,6 +4,8 @@
 <div class="container mt-10">
         <div class="card mb-3">
             <div class="card-body">
+            <a href="{{ route('menu.review', ['menu_id' => $menu -> menu_id]) }}">レビューする</a>
+            <a href="{{ route('menu.reviews', ['menu_id' => $menu -> menu_id]) }}">レビュ一覧</a>
                 <div class="row">
                     <div class="col-sm-8">
                         <h4 class="card-title">{{ $menu -> item_name }}</h4>
