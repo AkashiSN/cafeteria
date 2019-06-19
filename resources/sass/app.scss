@@ -8,13 +8,24 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar {
+.thema-color {
     background-color: #F0AD4E;
 }
 
 .card {
     .text-in-card {
         font-size: 16px;
+    }
+}
+
+.menu {
+    position: relative;
+    a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height:100%;
+        width: 100%;
     }
 }
 
