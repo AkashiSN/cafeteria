@@ -28,6 +28,11 @@ Route::get(
 ) -> name('daily');
 
 Route::get(
+    '/error',
+    'ErrorController@error'
+) -> name('error');
+
+Route::get(
     '/menu/permanent',
     'Menu\PermanentMenuController@permanent'
 ) -> name('permanent');
@@ -41,3 +46,9 @@ Route::get(
     '/auth/callback/google',
     'Auth\OAuthLoginController@authGoogleCallback'
 );
+
+
+Route::get(
+    '/menuregister',
+    'MenuRegisterController@menuregister'
+) -> name('menuregister');
