@@ -16,7 +16,7 @@
 <body>
 
 <!-- Navigation -->
-<nav class="thema-color navbar navbar-expand-lg fixed-top navbar-dark">
+<nav class="theme-color navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">Nitac Cafeteria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +59,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="thema-color py-3">
+<footer class="theme-color py-3">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Team3 2019</p>
     </div>

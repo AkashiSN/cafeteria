@@ -1,16 +1,12 @@
 <template>
-    <div class="card mv-15 ph-15 pv-10">
-        <div v-if="menu == null" class="card-body">
-            <h4 class="card-title">未定</h4>
-            <p class="card-text">なんかメッセージが入るやで</p>
-        </div>
-        <div v-else class="card-body">
+    <div class="card mv-15 ph-15 pv-10" v-on:click="jump()">
+        <div class="card-body">
             <div class="row">
                 <div class="col-10">
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
                 <div class="col-2">
-                    <button type="button" v-on:click="updateFavorite()" class="btn" v-bind:class="{ 'btn-danger': isLiked }">
+                    <button type="button" v-on:click.stop="updateFavorite()" class="btn" v-bind:class="{ 'btn-danger': isLiked }">
                         はぁと
                     </button>
                 </div>
@@ -53,7 +49,7 @@
                     </div>
                 </div>
                 <div v-if="valid_sold_button" class="col-2">
-                    <button type="button" v-on:click="updateIsSold()" class="btn" v-bind:class="{ 'btn-success': isSold, 'btn-danger': !isSold }">
+                    <button type="button" v-on:click.stop="updateIsSold()" class="btn" v-bind:class="[isSold ? 'btn-success': 'btn-danger']">
                         {{ isSold ? '提供中' : '売り切れ' }}
                     </button>
                 </div>
@@ -67,11 +63,15 @@
         props: {
             menu: {
                 type: Object,
-                required: true,
+                required: true
             },
             valid_sold_button: {
                 type: Boolean,
                 default: true
+            },
+            route: {
+                type: String,
+                required: true
             }
         },
         data: function() {
@@ -87,6 +87,9 @@
             },
             updateFavorite: function() {
                 this.isLiked = !this.isLiked
+            },
+            jump: function() {
+                location.href = this.route
             }
         },
     }
