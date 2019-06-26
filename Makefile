@@ -17,6 +17,10 @@ migrate-vagrant:
 build-sass-vagrant:
 	vagrant ssh -- "cd /cafeteria && yarn run dev"
 
+.PHONY: watch-vagrant
+.watch-vagrant:
+	vagrant ssh -- "cd /cafeteria && yarn run watch"
+
 .PHONY: serve-vagrant
 serve-vagrant:
 	vagrant ssh -- "cd /cafeteria && php artisan serve --host 0.0.0.0 &" &
@@ -42,6 +46,10 @@ yarn:
 build-sass:
 	yarn run prod
 
+.PHONY: watch
+.watch:
+	yarn run watch
+
 .PHONY: composer
 composer:
 	composer install
@@ -51,7 +59,7 @@ migrate:
 	php artisan migrate:fresh
 	php artisan db:seed
 
-.PHONY: serve-dev
+.PHONY: serve
 serve:
 	php artisan serve --host 0.0.0.0
 
