@@ -49,6 +49,16 @@ Route::get(
 
 
 Route::get(
-    '/menuregister',
-    'MenuRegisterController@menuregister'
+    'menus/menuregister',
+    'MenuEditController@menuregister'
 ) -> name('menuregister');
+
+Route::get(
+    'menus/menuset',
+    'MenuEditController@menuset'
+) -> name('menuset');
+
+Route::post(
+    'menus/menuconfirm',
+    'MenuEditController@confirm'
+) -> name('confirm');
