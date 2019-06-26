@@ -42,6 +42,6 @@ class MenuDetailController extends Controller
     {
         $menu = Menu::where('menu_id', $menu_id)->first();
 
-        return view('detail', compact('menu'));
+        return view('menus.detail', compact('menu'));
     }
 }

@@ -43,20 +43,12 @@ class ReviewController extends Controller
      */
     public function reviews($menu_id)
     {
-        $review_list = Review::where('menu_id', $menu_id)->get();
-        foreach ($review_list as $review) {
-            $user_id = $review->user_id;
-            $user_name = User::where('user_id', $user_id)->first()->name;
+        $reviews = Review::where('menu_id', $menu_id)
+            -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')
+            -> get();
+        $menu = Menu::where('menu_id', $menu_id) -> first();
 
-            $reviews[] = array(
-                "user_name" => $user_name,
-                "create_date" => $review->created_at,
-                "evaluation" => $review->evaluation,
-                "comment" => $review->comment,
-            );
-        }
-
-        return view('reviews', compact('reviews'));
+        return view('reviews', compact('reviews', 'menu'));
     }
 
     /**

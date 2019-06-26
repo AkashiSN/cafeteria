@@ -12,10 +12,10 @@
 
 <div class="container mt-10 ph-70">
     <div v-if="tabContent === '1'">
-        @include('menus.daily')
+        @include('menus._daily')
     </div>
     <div v-else-if="tabContent === '2'">
-        @include('menus.permanent')
+        @include('menus._permanent')
     </div>
 </div>
 @endsection
