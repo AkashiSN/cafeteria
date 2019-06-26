@@ -21,15 +21,24 @@
                 </div>
             </div>
 
-            <div class="row flex-row flex-nowrap mt-2">
-                <div class="col-auto">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="140" />
+            <div class="row row-scrollable mt-2">
+                <div class="col-auto col-scrollable">
+                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
                 </div>
-                <div class="col-auto">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="140" />
+                <div class="col-auto col-scrollable">
+                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
                 </div>
-                <div class="col-auto">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="140" />
+                <div class="col-auto col-scrollable">
+                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
+                </div>
+                <div class="col-auto col-scrollable">
+                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
+                </div>
+                <div class="col-auto col-scrollable">
+                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
+                </div>
+                <div class="col-auto col-scrollable">
+                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
                 </div>
             </div>
 

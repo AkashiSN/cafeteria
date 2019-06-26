@@ -55,5 +55,7 @@
         <h4 class="col">レビュー</h4>
         <a class="col align-self-end" href="{{ route('menu.reviews', ['menu_id' => $menu -> menu_id]) }}">もっとみる</a>
     </div>
+
+    <p>レビューはありません</p>
 </div>
 @endsection

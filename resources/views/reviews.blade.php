@@ -7,12 +7,16 @@
 </div>
 
 <div class="container mt-10">
-    @foreach ($reviews as $review)
-    {{ $review["user_name"] }}
-    {{ $review["create_date"] }}
-    {{ $review["evaluation"] }}
-    {{ $review["comment"] }}
-    <br>
-    @endforeach
+    @if ($reviews -> all())
+        @foreach ($reviews as $review)
+            {{ $review["user_name"] }}
+            {{ $review["create_date"] }}
+            {{ $review["evaluation"] }}
+            {{ $review["comment"] }}
+            <br>
+        @endforeach
+    @else
+        <p>レビューはありません</p>
+    @endif
 </div>
 @endsection
