@@ -21,6 +21,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('review-card', require('./components/ReviewCard.vue').default);
 Vue.component('menu-card', require('./components/MenuCard.vue').default);
 
 /**
