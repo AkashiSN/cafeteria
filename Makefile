@@ -17,6 +17,10 @@ migrate-vagrant:
 build-sass-vagrant:
 	vagrant ssh -- "cd /cafeteria && yarn run dev"
 
+.PHONY: watch-vagrant
+watch-vagrant:
+	vagrant ssh -- "cd /cafeteria && yarn run watch"
+
 .PHONY: serve-vagrant
 serve-vagrant:
 	vagrant ssh -- "cd /cafeteria && php artisan serve --host 0.0.0.0 &" &
@@ -37,6 +41,10 @@ yarn:
 .PHONY: build-sass
 build-sass:
 	yarn run prod
+
+.PHONY: watch
+watch:
+	yarn run watch
 
 .PHONY: composer
 composer:
@@ -60,7 +68,7 @@ deploy:
 
 	ssh radish -- "ln -s cafeteria/public public_html"
 	ssh radish -- "sed -i -e '164,165d' cafeteria/config/app.php"
-	ssh radish -- "sed -i -e '205d' cafeteria/config/app.php"
+	ssh radish -- "sed -i -e '206d' cafeteria/config/app.php"
 	ssh radish -- "cp cafeteria/.env.example cafeteria/.env"
 	ssh radish -- "chmod -R 777 cafeteria/storage"
 	ssh radish -- "chmod -R 777 cafeteria/bootstrap/cache"
