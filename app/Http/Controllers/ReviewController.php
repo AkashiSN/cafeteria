@@ -48,7 +48,7 @@ class ReviewController extends Controller
             -> get();
         $menu = Menu::where('menu_id', $menu_id) -> first();
 
-        return view('reviews', compact('reviews', 'menu'));
+        return view('reviews.list', compact('reviews', 'menu'));
     }
 
     /**
@@ -61,7 +61,7 @@ class ReviewController extends Controller
     public function review($menu_id)
     {
         $menu = Menu::where('menu_id', $menu_id)->first();
-        return view('reviews.review', compact('menu', 'menu_id'));
+        return view('reviews.post', compact('menu', 'menu_id'));
     }
 
     /**
