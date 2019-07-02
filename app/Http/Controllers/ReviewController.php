@@ -12,7 +12,7 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
-namespace App\Http\Controllers\Review;
+namespace App\Http\Controllers;
 
 use App\User;
 use App\Models\Menu;
@@ -43,20 +43,12 @@ class ReviewController extends Controller
      */
     public function reviews($menu_id)
     {
-        $review_list = Review::where('menu_id', $menu_id)->get();
-        foreach ($review_list as $review) {
-            $user_id = $review->user_id;
-            $user_name = User::where('user_id', $user_id)->first()->name;
+        $reviews = Review::where('menu_id', $menu_id)
+            -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')
+            -> get();
+        $menu = Menu::where('menu_id', $menu_id) -> first();
 
-            $reviews[] = array(
-                "user_name" => $user_name,
-                "create_date" => $review->created_at,
-                "evaluation" => $review->evaluation,
-                "comment" => $review->comment,
-            );
-        }
-
-        return view('reviews', compact('reviews'));
+        return view('reviews.list', compact('reviews', 'menu'));
     }
 
     /**
@@ -68,7 +60,8 @@ class ReviewController extends Controller
      */
     public function review($menu_id)
     {
-        return view('review', ['menu_id' => $menu_id, 'message' => "hoge"]);
+        $menu = Menu::where('menu_id', $menu_id)->first();
+        return view('reviews.post', compact('menu', 'menu_id'));
     }
 
     /**
@@ -82,12 +75,12 @@ class ReviewController extends Controller
     public function postReview(Request $request, $menu_id)
     {
         if (!Auth::check()) {
-            return view('review', ['menu_id' => $menu_id, 'message' => "authocation"]);
+            return view('reviews.review', ['menu_id' => $menu_id, 'message' => "authocation"]);
         }
 
         $menu = Menu::where('menu_id', $menu_id)->first();
         if (!$menu->exists) {
-            return view('review', ['menu_id' => $menu_id, 'message' => "menu"]);
+            return view('reviews.review', ['menu_id' => $menu_id, 'message' => "menu"]);
         }
 
         $user = Auth::user();
@@ -102,6 +95,6 @@ class ReviewController extends Controller
         );
 
         Review::create($review);
-        return redirect() -> route('menu.review', ['menu_id' => $menu_id]);
+        return redirect() -> route('menu.reviews', ['menu_id' => $menu_id]);
     }
 }

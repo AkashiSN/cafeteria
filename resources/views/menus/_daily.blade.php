@@ -19,9 +19,7 @@
                 <div class="container mt-20 ph-65">
                     @foreach ($todays_menu as $menu)
                         <p class="text-justify text-muted">{{ $menu['description'] }}</p>
-                        <a href="{{ route('menu.detail', ['menu_id' => $menu['menu'] -> menu_id]) }}">
-                            <menu-card :menu="{{ $menu['menu'] }}" :valid_sold_button="true" />
-                        </a>
+                        <menu-card :menu="{{ $menu['menu'] }}" :valid_sold_button="true" :route="'{{ route('menu.detail', ['menu_id' => $menu['menu'] -> menu_id]) }}'"/>
                     @endforeach
                 </div>
             @endforeach
