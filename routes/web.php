@@ -29,15 +29,17 @@ Route::get(
 
 Route::get(
     '/menu/{menu_id}/reviews',
-    'Review\ReviewController@reviews'
+    'ReviewController@reviews'
 ) -> name('menu.reviews');
+
 Route::get(
     '/menu/{menu_id}/review',
-    'Review\ReviewController@review'
+    'ReviewController@review'
 ) -> name('menu.review');
+
 Route::post(
     '/menu/{menu_id}/review/post',
-    'Review\ReviewController@postReview'
+    'ReviewController@postReview'
 ) -> name('menu.review.post');
 
 Route::get(
