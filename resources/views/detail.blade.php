@@ -1,49 +1,14 @@
 @extends('layouts.default')
 
 @section('content')
-<!-- main content -->
-<ul class="nav nav-tabs nav-fill">
-    @if ($mode == "daily")
-    <li class="nav-item">
-        <a class="nav-link active" href="{{ route('daily') }}">日替わりメニュー</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('permanent') }}">常設メニュー</a>
-    </li>
-    @elseif ($mode == "permanent")
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('daily') }}">日替わりメニュー</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="{{ route('permanent') }}">常設メニュー</a>
-    </li>
-    @endif
-</ul>
-
-<div class="container ph-20 mt-10">
-    <div class="row">
-        <div class="col-4">
-            <select class="form-control" id="exampleFormControlSelect1">
-                <option>7/1〜7/5</option>
-                <option>7/15〜7/12</option>
-                <option>7/15〜7/19</option>
-                <option>7/22〜7/26</option>
-                <option>7/29〜7/31</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="container mt-10">
-        <p>7月1日</p>
-
-        @foreach ($menus as $menu)
-        <p class="text-justify text-muted">{{ $menu['description'] }}</p>
-
+<div class="container mt-10">
         <div class="card mb-3">
             <div class="card-body">
+            <a href="{{ route('menu.review', ['menu_id' => $menu -> menu_id]) }}">レビューする</a>
+            <a href="{{ route('menu.reviews', ['menu_id' => $menu -> menu_id]) }}">レビュ一覧</a>
                 <div class="row">
                     <div class="col-sm-8">
-                        <h4 class="card-title">{{ $menu['menu'] -> item_name }}</h4>
+                        <h4 class="card-title">{{ $menu -> item_name }}</h4>
                     </div>
                     <div class="col-sm-2">
                         はぁと
@@ -52,7 +17,7 @@
 
                 <div class="row">
                     <div class="col-sm-2">
-                        <h4 class="text-in-card">{{ $menu['menu'] -> price}} Yen</h4>
+                        <h4 class="text-in-card">{{ $menu -> price}} Yen</h4>
                     </div>
                     <div class="col-sm-2">
                         お星様
@@ -77,15 +42,15 @@
                     <div class="col-sm-8">
                         <div class="row">
                             <div class="col-sm-2 font-weight-bold text-in-card">エネルギー</div>
-                            <div class="col-sm-2 text-in-card">{{ $menu['menu'] -> energy }} kcal</div>
+                            <div class="col-sm-2 text-in-card">{{ $menu -> energy }} kcal</div>
                             <div class="col-sm-2 font-weight-bold text-in-card">脂質</div>
-                            <div class="col-sm-2 text-in-card">{{ sprintf('%.1f', $menu['menu'] -> lipid) }} g</div>
+                            <div class="col-sm-2 text-in-card">{{ sprintf('%.1f', $menu -> lipid) }} g</div>
                         </div>
                         <div class="row">
                             <div class="col-sm-2 font-weight-bold text-in-card">タンパク質</div>
-                            <div class="col-sm-2 text-in-card">{{ sprintf('%.1f', $menu['menu'] -> protein) }} g</div>
+                            <div class="col-sm-2 text-in-card">{{ sprintf('%.1f', $menu -> protein) }} g</div>
                             <div class="col-sm-2 font-weight-bold text-in-card">塩分</div>
-                            <div class="col-sm-2 text-in-card">{{ sprintf('%.1f', $menu['menu'] -> salt) }} g</div>
+                            <div class="col-sm-2 text-in-card">{{ sprintf('%.1f', $menu -> salt) }} g</div>
                         </div>
                     </div>
                     <div class="col-sm-2">
@@ -94,7 +59,6 @@
                 </div>
             </div>
         </div>
-        @endforeach
     </div>
 </div>
 @endsection

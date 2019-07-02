@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class MenuRegisterController extends Controller
 {
     public function menuregister(){
-        return view('menuregister');
+        return view('menu.register');
     }
 }

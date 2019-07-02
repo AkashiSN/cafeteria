@@ -16,9 +16,9 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+<nav class="thema-color navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('index') }}">Nitac Cafeteria</a>
+        <a class="navbar-brand" href="{{ route('home') }}">Nitac Cafeteria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -53,12 +53,13 @@
     </div>
 </nav>
 
-<div class="container container-stack mt-60 mb-10">
+<!-- main content -->
+<div id="app" class="container container-stack mt-70 mb-10">
     @yield('content')
 </div>
 
 <!-- Footer -->
-<footer class="py-4 bg-dark">
+<footer class="thema-color py-3">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Team3 2019</p>
     </div>
