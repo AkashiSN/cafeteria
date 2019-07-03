@@ -58,8 +58,8 @@
                     </div>
                 </div>
                 <div v-if="valid_sold_button" class="col-2">
-                    <button type="button" v-on:click.stop="updateIsSold()" class="btn" v-bind:class="[isSold ? 'btn-success': 'btn-danger']">
-                        {{ isSold ? '提供中' : '売り切れ' }}
+                    <button type="button" v-on:click.stop="updateIsSold()" class="btn" v-bind:class="[soldOut ? 'btn-danger' : 'btn-success']">
+                        {{ soldOut ? '売り切れ' : '提供中' }}
                     </button>
                 </div>
             </div>
@@ -86,13 +86,17 @@
         data: function() {
             return {
                 // for now
-                isSold: true,
+                soldOut: this.menu.sold_out,
                 isLiked: true
             }
         },
         methods: {
             updateIsSold: function() {
-                this.isSold = !this.isSold
+                this.soldOut = !this.soldOut
+                var req = { 'sold_out': this.soldOut }
+                axios.post('/api/menus/' + this.menu.menu_id + '/sold_out', req).then(res => {
+                    console.log(res)
+                })
             },
             updateFavorite: function() {
                 this.isLiked = !this.isLiked

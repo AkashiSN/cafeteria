@@ -33,6 +33,10 @@ kill-vagrant:
 repl-vagrant:
 	vagrant ssh -- "cd /cafeteria && php artisan tinker"
 
+.PHONY: cache-clear-vagrant
+cache-clear-vagrant:
+	vagrant ssh -- "cd /cafeteria && php artisan config:cache"
+
 .PHONY: init
 init: yarn build-sass composer
 	cp .env.example .env
@@ -66,6 +70,10 @@ serve:
 .PHONY: repl
 repl:
 	php artisan tinker
+
+.PHONY: cache-clear
+cache-clear:
+	php artisan config:cache
 
 .PHONY: deploy
 deploy:
