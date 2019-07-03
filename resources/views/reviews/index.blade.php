@@ -6,9 +6,11 @@
         <div class="col-10">
             <h2 class="text-justify text-muted">レビュー一覧</h2>
         </div>
-        <div class="col-2">
-            <a href="{{route("menu.reviews.create", ['menu_id' => $menu->menu_id])}}">レビューする</a>
-        </div>
+        @if (Auth::check())
+            <div class="col-2">
+                <a href="{{route("menu.reviews.create", ['menu_id' => $menu->menu_id])}}">レビューする</a>
+            </div>
+        @endif
     </div>
     @if ($reviews_list)
         @foreach ($reviews_list as $review)

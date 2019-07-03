@@ -50,7 +50,7 @@ class ReviewController extends Controller
             -> get();
         $menu = Menu::where('menu_id', $menu_id) -> first();
 
-        return view('reviews.list', compact('reviews_list', 'menu'));
+        return view('reviews.index', compact('reviews_list', 'menu'));
     }
 
     /**
@@ -62,8 +62,14 @@ class ReviewController extends Controller
      */
     public function create($menu_id)
     {
+        if (!Auth::check()) {
+            return view(
+                'reviews.list',
+                ['menu_id' => $menu_id, 'message' => "authocation"]
+            );
+        }
         $menu = Menu::where('menu_id', $menu_id)->first();
-        return view('reviews.post', compact('menu', 'menu_id'));
+        return view('reviews.create', compact('menu', 'menu_id'));
     }
 
     /**
@@ -78,16 +84,20 @@ class ReviewController extends Controller
     {
         if (!Auth::check()) {
             return view(
-                'reviews.post',
+                'reviews.index',
                 ['menu_id' => $menu_id, 'message' => "authocation"]
             );
         }
 
         $menu = Menu::where('menu_id', $menu_id)->first();
         if (!$menu->exists) {
-            return view(
-                'reviews.index',
-                ['menu_id' => $menu_id, 'message' => "menu"]
+            return view('home');
+        }
+
+        if ($request -> input('evaluation') === null) {
+            return redirect() -> route(
+                'menu.reviews.create',
+                ['menu_id' => $menu_id]
             );
         }
 
@@ -99,20 +109,20 @@ class ReviewController extends Controller
             "user_id" => $user_id,
             "menu_id" => $menu_id,
             "evaluation" => $request -> input('evaluation'),
-            "comment" => $request -> input('comment'),
+            "comment" => $request -> input('comment') ?? "",
             ]
         );
 
-        // POSTされた画像ごとにforeach
-        foreach ($request -> file("files") as $index => $e) {
-            $ext = $e['image']->guessExtension();
-            $image_name = uniqid("image_").".".$ext;
+        if ($request -> file("files") !== null) {
+            foreach ($request -> file("files") as $index => $e) {
+                $ext = $e['image']->guessExtension();
+                $image_name = uniqid("image_").".".$ext;
 
-            $image_path = $e['image'] -> storeAs('images', $image_name); // public/reviews/images/以下に保存
+                $image_path = $e['image'] -> storeAs('images', $image_name); // public/reviews/images/以下に保存
 
-            $review -> images()->create(['image_path'=> $image_path]); // review_idに対応したものを登録する
+                $review -> images()->create(['image_path'=> $image_path]); // review_idに対応したものを登録する
+            }
         }
-
         return redirect() -> route('menu.reviews.index', ['menu_id' => $menu_id]);
     }
 }

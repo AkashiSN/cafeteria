@@ -64,3 +64,34 @@ ul.switched-contents {
 .evaluation:before{
 	content: "★★★★★";
 }
+
+.evaluation-submit {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+
+    input[type='radio'] {
+        display: none;
+    }
+    label {
+        position: relative;
+        padding: 10px 10px 0;
+        color: gray;
+        cursor: pointer;
+        font-size: 50px;
+    }
+    label .text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        text-align: center;
+        font-size: 12px;
+        color: gray;
+    }
+    label:hover,
+    label:hover ~ label,
+    input[type='radio']:checked ~ label {
+        color: #ffcc00;
+    }
+}
