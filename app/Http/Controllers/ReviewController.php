@@ -43,12 +43,12 @@ class ReviewController extends Controller
      */
     public function reviews($menu_id)
     {
-        $reviews = Review::where('menu_id', $menu_id)
+        $reviews_list = Review::where('menu_id', $menu_id)
             -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')
             -> get();
         $menu = Menu::where('menu_id', $menu_id) -> first();
 
-        return view('reviews.list', compact('reviews', 'menu'));
+        return view('reviews.list', compact('reviews_list', 'menu'));
     }
 
     /**

@@ -19,17 +19,25 @@
     <p class="text-justify text-muted">ディスクリプション</p>
     <h2>{{ $menu -> item_name }}</h2>
     <div class="row">
-        <div class="col-auto">
-            <p class="text-justify text-mute font-weight-bold">¥{{ $menu -> price }}</p>
-        </div>
-        <div class="col-auto">
-            お星様
+        <div class="col-10">
+            <div class="row">
+                <div class="col-auto">
+                    <p class="text-justify text-mute font-weight-bold">¥{{ $menu -> price }}</p>
+                </div>
+                <div class="col-auto">
+                    お星様
+                </div>
+            </div>
         </div>
         <div class="col-2">
-            はぁと
-        </div>
-        <div class="col-2">
-            <button type="button" class="btn btn-success">提供中</button>
+            <div class="row">
+                <div class="col-auto">
+                    はぁと
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-success">提供中</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -52,10 +60,18 @@
     </div>
 
     <div class="row mt-3">
-        <h4 class="col">レビュー</h4>
-        <a class="col align-self-end" href="{{ route('menu.reviews', ['menu_id' => $menu -> menu_id]) }}">もっとみる</a>
+        <h4 class="col-10">レビュー</h4>
+        <a class="col-2" href="{{ route('menu.reviews', ['menu_id' => $menu -> menu_id]) }}">もっとみる</a>
     </div>
 
-    <p>レビューはありません</p>
+    @if ($reviews_list)
+        @foreach ($reviews_list as $review)
+            <div class="container mt-20">
+                <review-card :review="{{$review["review"]}}" :user_name="'{{$review["user_name"]}}'" />
+            </div>
+        @endforeach
+    @else
+        <p>レビューはありません</p>
+    @endif
 </div>
 @endsection
