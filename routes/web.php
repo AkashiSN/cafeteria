@@ -19,23 +19,38 @@ Auth::routes();
 
 Route::get(
     '/',
-    'Menu\DailyMenuController@daily'
-) -> name('index');
+    'MenuController@home'
+) -> name('home');
 
 Route::get(
-    '/menu/daily',
-    'Menu\DailyMenuController@daily'
-) -> name('daily');
-
-Route::get(
-    '/error',
-    'ErrorController@error'
-) -> name('error');
+    '/menu/{menu_id}',
+    'MenuDetailController@menuDetail'
+) -> name('menu.detail');
 
 Route::get(
     '/menu/permanent',
     'Menu\PermanentMenuController@permanent'
 ) -> name('permanent');
+
+Route::get(
+    '/menu/{menu_id}/reviews',
+    'ReviewController@reviews'
+) -> name('menu.reviews');
+
+Route::get(
+    '/menu/{menu_id}/review',
+    'ReviewController@review'
+) -> name('menu.review');
+
+Route::post(
+    '/menu/{menu_id}/review/post',
+    'ReviewController@postReview'
+) -> name('menu.review.post');
+
+Route::get(
+    '/menu/register',
+    'MenuRegisterController@menuregister'
+) -> name('menu.register');
 
 Route::get(
     '/auth/google',
@@ -46,7 +61,6 @@ Route::get(
     '/auth/callback/google',
     'Auth\OAuthLoginController@authGoogleCallback'
 );
-
 
 Route::get(
     'menus/menuregister',
@@ -62,3 +76,8 @@ Route::post(
     'menus/menuconfirm',
     'MenuEditController@confirm'
 ) -> name('confirm');
+
+Route::get(
+    '/error',
+    'ErrorController@error'
+) -> name('error');

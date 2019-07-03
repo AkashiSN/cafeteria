@@ -31,5 +31,8 @@ class DailyMenu extends Model
 {
     protected $table = "daily_menu";
     protected $primaryKey = "date";
+    protected $casts = [
+        'date' => 'date'
+    ];
     public $timestamps = false;
 }

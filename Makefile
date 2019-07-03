@@ -29,6 +29,10 @@ serve-vagrant:
 kill-vagrant:
 	vagrant ssh -- "pkill -u vagrant" 2>/dev/null; true
 
+.PHONY: repl-vagrant
+repl-vagrant:
+	vagrant ssh -- "cd /cafeteria && php artisan tinker"
+
 .PHONY: init
 init: yarn build-sass composer
 	cp .env.example .env
@@ -55,9 +59,13 @@ migrate:
 	php artisan migrate:fresh
 	php artisan db:seed
 
-.PHONY: serve-dev
+.PHONY: serve
 serve:
 	php artisan serve --host 0.0.0.0
+
+.PHONY: repl
+repl:
+	php artisan tinker
 
 .PHONY: deploy
 deploy:

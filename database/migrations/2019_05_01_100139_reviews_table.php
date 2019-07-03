@@ -40,6 +40,7 @@ class ReviewsTable extends Migration
             'reviews',
             function (Blueprint $table) {
                 $table->bigIncrements('review_id');
+                $table->integer('user_id');
                 $table->integer('menu_id');
                 $table->integer('evaluation');
                 $table->string('comment');
