@@ -68,8 +68,8 @@ class ReviewController extends Controller
                 ['menu_id' => $menu_id, 'message' => "authocation"]
             );
         }
-        $menu = Menu::where('menu_id', $menu_id)->first();
-        return view('reviews.create', compact('menu', 'menu_id'));
+        $item_name = Menu::where('menu_id', $menu_id)->first()->item_name;
+        return view('reviews.create', compact('item_name', 'menu_id'));
     }
 
     /**
