@@ -13,6 +13,7 @@
  */
 
 use App\Models\Menu;
+use App\Models\SoldOut;
 use Illuminate\Database\Seeder;
 
 /**
@@ -50,6 +51,12 @@ class MenuTableSeeder extends Seeder
                 'lipid' => $obj->lipid,
                 'salt' => $obj->salt,
                 'alias' => $obj->alias,
+                )
+            );
+            SoldOut::create(
+                array(
+                'menu_id' => $obj->id,
+                'sold_out' => false
                 )
             );
         }

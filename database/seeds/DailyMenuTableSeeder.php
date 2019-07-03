@@ -14,6 +14,7 @@
 
 use App\Models\Menu;
 use App\Models\DailyMenu;
+use App\Models\SoldOut;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -56,6 +57,12 @@ class DailyMenuTableSeeder extends Seeder
                     'lipid' => $obj->lipid,
                     'salt' => $obj->salt,
                     'alias' => 0,
+                    )
+                );
+                SoldOut::create(
+                    array(
+                    'menu_id' => $count,
+                    'sold_out' => false
                     )
                 );
                 $ramen = $obj->ramen;
