@@ -36,18 +36,18 @@ use DateInterval;
 class MenuController extends Controller
 {
 
-    private $daily_descriptions = array(
+    private $_daily_descriptions = array(
         'a_set_menu'     => 'Aセット（ライス・味噌汁付）',
         'b_set_menu'     => 'Bセット（味噌汁付）'
     );
 
-    private $permanent_descriptions = array(
+    private $_permanent_descriptions = array(
         'permanent_menu' => '常設メニュー',
         'ramen'          => '常設メニュー（ラーメン）',
         'summer_menu'    => '夏限定メニュー',
     );
 
-    private $japanese_weekday = array(
+    private $_japanese_weekday = array(
         '日', '月', '火', '水', '木', '金', '土'
     );
 
@@ -56,7 +56,8 @@ class MenuController extends Controller
      *
      * @return Renderable
      */
-    public function home() {
+    public function home()
+    {
         // if (Auth::check()) {
         //     $user = Auth::user();
         //     $user_id = $user -> user_id;
@@ -67,33 +68,63 @@ class MenuController extends Controller
         //     }
         // }
 
-        list($daily_schedule, $select_options) = self::get_daily();
-        $permanent_list = self::get_permanent();
+        list($daily_schedule, $select_options) = self::_getDaily();
+        $permanent_list = self::_getPermanent();
 
-        return view('home', compact('daily_schedule', 'permanent_list', 'select_options'));
+        return view(
+            'home',
+            compact('daily_schedule', 'permanent_list', 'select_options')
+        );
     }
 
-    // 日替わりメニューの取得
-    private function get_daily() {
-        foreach (self::this_weekdays() as $workdays) {
-            $select_options[] = $workdays[0] -> format('n月j日') . '〜' . end($workdays) -> format('n月j日');
-            $daily_menus = DailyMenu::whereBetween('date', [$workdays[0], end($workdays)]) -> get();
+    /**
+     * 日替わりメニューの取得
+     *
+     * @return [$menu_schedule, $select_options]
+     */
+    private function _getDaily()
+    {
+        foreach (self::thisWeekdays() as $workdays) {
+            $select_options[] = $workdays[0] -> format('n月j日')
+                    . '〜' . end($workdays) -> format('n月j日');
+
+            $daily_menus = DailyMenu::whereBetween(
+                'date',
+                [$workdays[0], end($workdays)]
+            ) -> get();
 
             $weekly_list = array();
             foreach ($daily_menus as $daily_menu) {
                 $a_menu = array(
-                    'menu' => Menu::where('menus.menu_id', $daily_menu -> menu_id_A) -> leftJoin('sold_out', 'menus.menu_id', '=', 'sold_out.menu_id') -> first(),
-                    'description' => $this -> daily_descriptions['a_set_menu']
+                    'menu' => Menu::where(
+                        'menus.menu_id',
+                        $daily_menu -> menu_id_A
+                    ) -> leftJoin(
+                        'sold_out',
+                        'menus.menu_id',
+                        '=',
+                        'sold_out.menu_id'
+                    ) -> first(),
+                    'description' => $this -> _daily_descriptions['a_set_menu']
                 );
                 $b_menu = array(
-                    'menu' => Menu::where('menus.menu_id', $daily_menu -> menu_id_B) -> leftJoin('sold_out', 'menus.menu_id', '=', 'sold_out.menu_id') -> first(),
-                    'description' => $this -> daily_descriptions['b_set_menu']
+                    'menu' => Menu::where(
+                        'menus.menu_id',
+                        $daily_menu -> menu_id_B
+                    ) -> leftJoin(
+                        'sold_out',
+                        'menus.menu_id',
+                        '=',
+                        'sold_out.menu_id'
+                    ) -> first(),
+                    'description' => $this -> _daily_descriptions['b_set_menu']
                 );
 
                 $date = $daily_menu -> date;
-                $weekday = $this -> japanese_weekday[$date -> format("w")];
+                $weekday = $this -> _japanese_weekday[$date -> format("w")];
                 $weekly_list[] = array(
-                    ($date -> format("n月j日") . '（' . $weekday . '）') => array($a_menu, $b_menu)
+                    ($date -> format("n月j日") . '（' . $weekday . '）')
+                        => array($a_menu, $b_menu)
                 );
             }
 
@@ -103,26 +134,35 @@ class MenuController extends Controller
         return [$menu_schedule, $select_options];
     }
 
-    // 常設メニューの取得
-    private function get_permanent()
+    /**
+     * 常設メニューの取得
+     *
+     * @return $menu_list
+     */
+    private function _getPermanent()
     {
         $summer = true;
 
-        $permanent_menus = Menu::where('category', 'permanent_menu') -> where('alias', 0) -> leftJoin('sold_out', 'menus.menu_id', '=', 'sold_out.menu_id') -> get();
+        $permanent_menus = Menu::where('category', 'permanent_menu')
+            -> where('alias', 0)
+            -> leftJoin('sold_out', 'menus.menu_id', '=', 'sold_out.menu_id')
+            -> get();
         $menu_list[] = array(
             'menus' => $permanent_menus,
-            'description' => $this -> permanent_descriptions['permanent_menu']
+            'description' => $this -> _permanent_descriptions['permanent_menu']
         );
 
         $menu_list[] = array(
             'menus' => Menu::where('category', 'summer_menu') -> get(),
-            'description' => $this -> permanent_descriptions['summer_menu']
+            'description' => $this -> _permanent_descriptions['summer_menu']
         );
 
         $today_menu = DailyMenu::where('date', date('Y-m-d')) -> first();
         $menu_list[] = array(
-            'menus' => Menu::where('menus.menu_id', $today_menu -> ramen) -> leftJoin('sold_out', 'menus.menu_id', '=', 'sold_out.menu_id') -> get(),
-            'description' => $this -> permanent_descriptions['ramen']
+            'menus' => Menu::where('menus.menu_id', $today_menu -> ramen)
+                -> leftJoin('sold_out', 'menus.menu_id', '=', 'sold_out.menu_id')
+                -> get(),
+            'description' => $this -> _permanent_descriptions['ramen']
         );
 
         return $menu_list;
@@ -130,9 +170,10 @@ class MenuController extends Controller
 
     /**
      * 今月の平日のリストを以下の形式で返す
-     * [[1st Mon, ..., 1st Fri], [2nd Mon, ..., 2nd Fri], ...]
+     *
+     * @return [[1st Mon, ..., 1st Fri], [2nd Mon, ..., 2nd Fri], ...]
      */
-    protected function this_weekdays()
+    protected function thisWeekdays()
     {
         $datetime = new DateTime();
         $year  = (int)$datetime -> format('Y');
@@ -145,11 +186,11 @@ class MenuController extends Controller
         $result  = array();
         $workdays = array();
 
-        while((int)$datetime -> format('m') == $month) {
+        while ((int)$datetime -> format('m') == $month) {
             $week = (int)$datetime -> format('w');
-            if(in_array($week, $target)) {
+            if (in_array($week, $target)) {
                 $workdays[] = clone $datetime;
-                if($week == 5) {
+                if ($week == 5) {
                     $result[] = $workdays;
                     $workdays = array();
                 }
