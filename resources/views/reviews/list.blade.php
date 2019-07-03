@@ -12,9 +12,9 @@
     </div>
     @if ($reviews_list)
         @foreach ($reviews_list as $review)
-            <div class="container mt-20">
-                <review-card : review="{{$review}}" />
-            </div>
+        <div class="container mt-20">
+            <review-card :review="{{$review}}" />
+        </div>
         @endforeach
     @else
     <p>レビューはありません</p>
