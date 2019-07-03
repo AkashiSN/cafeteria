@@ -37,4 +37,9 @@ Route::middleware('auth:api') -> get(
 Route::post(
     '/menus/{menu_id}/sold_out',
     'SoldOutController@store'
-) -> name('menu.sold_out.store');
+) -> name('menus.sold_out.store');
+
+Route::get(
+    '/menus/{menu_id}/reviews/{review_id}/images',
+    'ReviewController@getReviewImages'
+) -> name('menus.reviews.images');

@@ -61,7 +61,7 @@
 
     <div class="row mt-3">
         <h4 class="col-10">レビュー</h4>
-        <a class="col-2" href="{{ route('menu.reviews.index', ['menu_id' => $menu -> menu_id]) }}">もっとみる</a>
+        <a class="col-2" href="{{ route('menus.reviews.index', ['menu_id' => $menu -> menu_id]) }}">もっとみる</a>
     </div>
 
     @if ($reviews_list)

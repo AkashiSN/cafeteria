@@ -52,18 +52,18 @@
             },
             back_route: {
                 type: String,
-                required: true
+                required: true,
+                default: ""
             },
             store_route: {
                 type: String,
-                required: true
+                required: true,
+                default: ""
             }
         },
         data: function() {
             return {
                 // for now
-                store_route: this.store_route,
-                back_route: this.back_route,
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             }
         }

@@ -8,7 +8,7 @@
         </div>
         @if (Auth::check())
             <div class="col-2">
-                <a href="{{route("menu.reviews.create", ['menu_id' => $menu->menu_id])}}">レビューする</a>
+                <a href="{{route("menus.reviews.create", ['menu_id' => $menu->menu_id])}}">レビューする</a>
             </div>
         @endif
     </div>

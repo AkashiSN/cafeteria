@@ -17,6 +17,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Models\Menu;
 use App\Models\Review;
+use App\Models\ReviewImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewRequest;
@@ -51,6 +52,42 @@ class ReviewController extends Controller
         $menu = Menu::where('menu_id', $menu_id) -> first();
 
         return view('reviews.index', compact('reviews_list', 'menu'));
+    }
+
+    /**
+     * レビューIDに対応した画像のURLを取得
+     *
+     * @param int $menu_id   メニューID
+     * @param int $review_id レビューID
+     *
+     * @return string json形式のURLのリスト
+     */
+    public function getReviewImages($menu_id, $review_id)
+    {
+        $review_images = ReviewImage::where('review_id', $review_id) -> get();
+        if (count($review_images) === 0) {
+            $status = 404;
+            return response() -> json(
+                [
+                    'status' => $status,
+                    'errors' => 'Review image does not exist'
+                ],
+                204
+            );
+        }
+        $url_list = array();
+        foreach ($review_images as $review_image) {
+            $url_list[] = url("/review/" . $review_image -> image_path);
+        }
+
+        $status = 200;
+        return response() -> json(
+            [
+                'status' => $status,
+                'url_list' => $url_list
+            ],
+            $status
+        );
     }
 
     /**
@@ -96,7 +133,7 @@ class ReviewController extends Controller
 
         if ($request -> input('evaluation') === null) {
             return redirect() -> route(
-                'menu.reviews.create',
+                'menus.reviews.create',
                 ['menu_id' => $menu_id]
             );
         }
@@ -123,6 +160,6 @@ class ReviewController extends Controller
                 $review -> images()->create(['image_path'=> $image_path]); // review_idに対応したものを登録する
             }
         }
-        return redirect() -> route('menu.reviews.index', ['menu_id' => $menu_id]);
+        return redirect() -> route('menus.reviews.index', ['menu_id' => $menu_id]);
     }
 }

@@ -25,22 +25,22 @@ Route::get(
 Route::get(
     '/menus/{menu_id}',
     'MenuDetailController@menuDetail'
-) -> name('menu.detail');
+) -> name('menus.detail');
 
 Route::get(
     '/menus/{menu_id}/reviews',
     'ReviewController@index'
-) -> name('menu.reviews.index');
+) -> name('menus.reviews.index');
 
 Route::get(
     '/menus/{menu_id}/reviews/create',
     'ReviewController@create'
-) -> name('menu.reviews.create');
+) -> name('menus.reviews.create');
 
 Route::post(
     '/menus/{menu_id}/reviews',
     'ReviewController@store'
-) -> name('menu.reviews.store');
+) -> name('menus.reviews.store');
 
 Route::get(
     '/auth/google',
