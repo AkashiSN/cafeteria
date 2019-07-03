@@ -438,5 +438,445 @@
             "salt": 4.4,
             "ramen": 4
         }
+    ],
+    "2019-07-01": [
+        {
+            "item_name": "ジャンボ鱈フライ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 968,
+            "protein": 31.6,
+            "lipid": 38.5,
+            "salt": 2.9
+        },
+        {
+            "item_name": "葱チャーシュー丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 617,
+            "protein": 14.2,
+            "lipid": 15.5,
+            "salt": 2.8
+        }
+    ],
+    "2019-07-02": [
+        {
+            "item_name": "鶏肉の胡麻味噌照り焼き",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 810,
+            "protein": 37.2,
+            "lipid": 27.9,
+            "salt": 3.4
+        },
+        {
+            "item_name": "三色丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 683,
+            "protein": 22.0,
+            "lipid": 10.3,
+            "salt": 2.4
+        }
+    ],
+    "2019-07-03": [
+        {
+            "item_name": "牛肉ジューシーフライ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 888,
+            "protein": 27.5,
+            "lipid": 33.5,
+            "salt": 3.1
+        },
+        {
+            "item_name": "豚肉の卵とじ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 804,
+            "protein": 10.2,
+            "lipid": 23.0,
+            "salt": 4.3
+        }
+    ],
+    "2019-07-04": [
+        {
+            "item_name": "カレイの煮付け",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 518,
+            "protein": 28.3,
+            "lipid": 3.5,
+            "salt": 4.0
+        },
+        {
+            "item_name": "鶏唐マヨ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 858,
+            "protein": 34.9,
+            "lipid": 32.7,
+            "salt": 2.8
+        }
+    ],
+    "2019-07-05": [
+        {
+            "item_name": "月見ハンバーグ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 929,
+            "protein": 30.4,
+            "lipid": 36.3,
+            "salt": 3.9
+        },
+        {
+            "item_name": "プルコギ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 777,
+            "protein": 23.7,
+            "lipid": 27.1,
+            "salt": 2.8
+        }
+    ],
+    "2019-07-08": [
+        {
+            "item_name": "油淋鶏鶏唐揚げ香味ソース",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 856,
+            "protein": 38.1,
+            "lipid": 32.6,
+            "salt": 4.6
+        },
+        {
+            "item_name": "豚塩カルビ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 845,
+            "protein": 23.2,
+            "lipid": 37.7,
+            "salt": 4.7
+        }
+    ],
+    "2019-07-09": [
+        {
+            "item_name": "白身魚のフリット　ジンジャーソース",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 615,
+            "protein": 20.9,
+            "lipid": 12.3,
+            "salt": 3.4
+        },
+        {
+            "item_name": "照焼チキン丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 699,
+            "protein": 23.6,
+            "lipid": 17.7,
+            "salt": 2.8
+        }
+    ],
+    "2019-07-10": [
+        {
+            "item_name": "ポークチャップ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 751,
+            "protein": 29.1,
+            "lipid": 21.2,
+            "salt": 3.5
+        },
+        {
+            "item_name": "天津飯",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 645,
+            "protein": 18.9,
+            "lipid": 12.2,
+            "salt": 4.3
+        }
+    ],
+    "2019-07-11": [
+        {
+            "item_name": "白身魚の明太子マヨネーズ焼き",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 739,
+            "protein": 26.9,
+            "lipid": 25.6,
+            "salt": 3.8
+        },
+        {
+            "item_name": "味噌カツ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 760,
+            "protein": 20.0,
+            "lipid": 20.9,
+            "salt": 4.3
+        }
+    ],
+    "2019-07-12": [
+        {
+            "item_name": "ミラノ風　豚肉のカツレツ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 878,
+            "protein": 33.4,
+            "lipid": 31.1,
+            "salt": 3.5
+        },
+        {
+            "item_name": "蒸し鶏と白菜キムチ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 549,
+            "protein": 20.8,
+            "lipid": 5.3,
+            "salt": 5.2
+        }
+    ],
+    "2019-07-16": [
+        {
+            "item_name": "牛肉の南蛮焼き",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 743,
+            "protein": 19.5,
+            "lipid": 27.7,
+            "salt": 3.9
+        },
+        {
+            "item_name": "鶏の竜田揚げ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 775,
+            "protein": 30.0,
+            "lipid": 24.2,
+            "salt": 4.0
+        }
+    ],
+    "2019-07-17": [
+        {
+            "item_name": "鯖の味噌煮",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 779,
+            "protein": 26.8,
+            "lipid": 28.7,
+            "salt": 3.9
+        },
+        {
+            "item_name": "タコライス",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 633,
+            "protein": 18.9,
+            "lipid": 14.6,
+            "salt": 2.8
+        }
+    ],
+    "2019-07-18": [
+        {
+            "item_name": "黒酢の酢豚",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 876,
+            "protein": 25.2,
+            "lipid": 27.4,
+            "salt": 4.2
+        },
+        {
+            "item_name": "チキンソースかつ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 731,
+            "protein": 18.4,
+            "lipid": 15.2,
+            "salt": 4.5
+        }
+    ],
+    "2019-07-19": [
+        {
+            "item_name": "グリル一平　メンチカツ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 858,
+            "protein": 25.3,
+            "lipid": 32.0,
+            "salt": 4.1
+        },
+        {
+            "item_name": "豚肉の生姜焼き丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 815,
+            "protein": 10.2,
+            "lipid": 32.2,
+            "salt": 3.1
+        }
+    ],
+    "2019-07-20": [
+        {
+            "item_name": "ヒレカツ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 712,
+            "protein": 25.6,
+            "lipid": 19.0,
+            "salt": 2.4
+        },
+        {
+            "item_name": "しらす丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 574,
+            "protein": 24.3,
+            "lipid": 10.2,
+            "salt": 5.2
+        }
+    ],
+    "2019-07-23": [
+        {
+            "item_name": "チャプチェ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 868,
+            "protein": 16.6,
+            "lipid": 21.7,
+            "salt": 5.1
+        },
+        {
+            "item_name": "鶏天丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 881,
+            "protein": 36.6,
+            "lipid": 28.9,
+            "salt": 4.2
+        }
+    ],
+    "2019-07-24": [
+        {
+            "item_name": "海老カツ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 546,
+            "protein": 13.8,
+            "lipid": 10.6,
+            "salt": 2.4
+        },
+        {
+            "item_name": "ロコモコハンバーグ目玉焼き添え",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 740,
+            "protein": 23.8,
+            "lipid": 24.7,
+            "salt": 3.2
+        }
+    ],
+    "2019-07-25": [
+        {
+            "item_name": "チキン南蛮",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 873,
+            "protein": 34.8,
+            "lipid": 33.9,
+            "salt": 3.4
+        },
+        {
+            "item_name": "豚肉の辛味炒め麦とろ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 587,
+            "protein": 20.4,
+            "lipid": 13.6,
+            "salt": 2.4
+        }
+    ],
+    "2019-07-26": [
+        {
+            "item_name": "月見メンチカツ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 981,
+            "protein": 27.9,
+            "lipid": 43.6,
+            "salt": 3.3
+        },
+        {
+            "item_name": "親子丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 783,
+            "protein": 32.7,
+            "lipid": 21.2,
+            "salt": 4.4
+        }
+    ],
+    "2019-07-27": [
+        {
+            "item_name": "ハンバーグステーキデミグラスソース",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 830,
+            "protein": 23.6,
+            "lipid": 29.5,
+            "salt": 3.6
+        },
+        {
+            "item_name": "いか天丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 681,
+            "protein": 23.3,
+            "lipid": 13.1,
+            "salt": 3.7
+        }
+    ],
+    "2019-07-30": [
+        {
+            "item_name": "やわらか照り煮チキン",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 658,
+            "protein": 28.0,
+            "lipid": 18.2,
+            "salt": 3.0
+        },
+        {
+            "item_name": "豚キムチ丼",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 668,
+            "protein": 21.7,
+            "lipid": 15.4,
+            "salt": 4.7
+        }
+    ],
+    "2019-07-31": [
+        {
+            "item_name": "シーフードミックスフライ",
+            "category": "a_set_menu",
+            "price": 420,
+            "energy": 914,
+            "protein": 21.5,
+            "lipid": 37.7,
+            "salt": 3.8
+        },
+        {
+            "item_name": "麻婆豆腐飯",
+            "category": "b_set_menu",
+            "price": 360,
+            "energy": 691,
+            "protein": 24.3,
+            "lipid": 16.0,
+            "salt": 5.2
+        }
     ]
 }
