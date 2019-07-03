@@ -49,3 +49,18 @@ ul.switched-contents {
         float: none !important;
     }
 }
+
+.evaluation {
+	font-size: 20px;
+	color: transparent;
+	background-image: linear-gradient(orange, orange), linear-gradient(gray, gray);
+	background-position: left, right;
+	background-repeat: no-repeat;
+	background-size: var(--rate) 100%, calc(100% - var(--rate)) 100%;
+	background-clip: text;
+	-webkit-background-clip: text;
+}
+
+.evaluation:before{
+	content: "★★★★★";
+}

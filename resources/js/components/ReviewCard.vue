@@ -2,15 +2,16 @@
     <div class="card mv-15 ph-15 pv-10">
         <div class="card-body">
             <div class="row">
-                <div class="col-8">
-                    <h5 class="card-text">{{ user_name }}</h5>
+                <div class="col-2">
+                    <h5 class="card-text">{{ review.name }}</h5>
                 </div>
-                <div class="col-3">
+                <div class="col-4">
+                    <span class="evaluation" v-bind:style="{ '--rate': evaluation }"></span><br/>
+                </div>
+                <div class="col-6">
                     <p class="card-text text-muted">{{ review.created_at }}</p>
                 </div>
-                <div class="col-1">
-                    <p class="card-text">{{ review.evaluation }}</p>
-                </div>
+
             </div>
 
             <div class="row mt-15">
@@ -39,10 +40,12 @@
             review: {
                 type: Object,
                 required: true,
-            },
-            user_name: {
-                type: String,
-                required: true
+            }
+        },
+        data: function() {
+            return {
+                // for now
+                evaluation: this.review.evaluation * 20 + "%"
             }
         }
     }
