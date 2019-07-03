@@ -61,13 +61,13 @@
 
     <div class="row mt-3">
         <h4 class="col-10">レビュー</h4>
-        <a class="col-2" href="{{ route('menu.reviews', ['menu_id' => $menu -> menu_id]) }}">もっとみる</a>
+        <a class="col-2" href="{{ route('menu.reviews.index', ['menu_id' => $menu -> menu_id]) }}">もっとみる</a>
     </div>
 
     @if ($reviews_list)
         @foreach ($reviews_list as $review)
             <div class="container mt-20">
-                <review-card :review="{{$review["review"]}}" :user_name="'{{$review["user_name"]}}'" />
+                <review-card :review="{{$review}}" />
             </div>
         @endforeach
     @else

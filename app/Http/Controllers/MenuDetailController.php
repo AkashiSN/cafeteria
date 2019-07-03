@@ -44,16 +44,9 @@ class MenuDetailController extends Controller
     {
         $menu = Menu::where('menu_id', $menu_id) -> first();
 
-        $reviews_list = array();
-        $reviews = Review::where('menu_id', $menu_id)
+        $reviews_list = Review::where('menu_id', $menu_id)
             -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')
             -> get();
-        foreach ($reviews as $review) {
-            $reviews_list[] = array(
-                "user_name" => $review -> name,
-                "review" => $review
-            );
-        }
 
         return view('menus.detail', compact('menu', 'reviews_list'));
 

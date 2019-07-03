@@ -7,10 +7,10 @@
                 <h4 class="card-title">{{ $menu['item_name'] }}</h4>
             </div>
             <div class="col-1">
-                <a href="{{ route('menu.reviews', ['menu_id' => $menu_id]) }}">戻る</a>
+                <a href="{{ route('menu.reviews.create', ['menu_id' => $menu_id]) }}">戻る</a>
             </div>
         </div>
-    {!! Form::open(['route' => array('menu.review.post','menu_id' => $menu_id), 'method' => 'post']) !!}
+    {!! Form::open(['route' => array('menu.reviews.store','menu_id' => $menu_id), 'method' => 'post', "enctype"=>"multipart/form-data"]) !!}
         <div class="form-group">
             {!! Form::label('evaluation', '評価:') !!}
             {!! Form::text('evaluation', null, ['class' => 'form-control']) !!}
@@ -20,8 +20,8 @@
             {!! Form::text('comment', null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('image', '写真:') !!}
-            {!! Form::file('image', null, ['class' => 'form-control']) !!}
+            {!! Form::label('files[][image]', '写真:') !!}
+            {!! Form::file('files[][image]', null, ['class' => 'form-control', 'multiple' => 'multiple']) !!}
             </div>
         <div class="form-group">
             {!! Form::submit('送信', ['class' => 'btn btn-primary form-control']) !!}

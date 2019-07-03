@@ -29,18 +29,18 @@ Route::get(
 
 Route::get(
     '/menu/{menu_id}/reviews',
-    'ReviewController@reviews'
-) -> name('menu.reviews');
+    'ReviewController@index'
+) -> name('menu.reviews.index');
 
 Route::get(
-    '/menu/{menu_id}/review',
-    'ReviewController@review'
-) -> name('menu.review');
+    '/menu/{menu_id}/reviews/create',
+    'ReviewController@create'
+) -> name('menu.reviews.create');
 
 Route::post(
-    '/menu/{menu_id}/review/post',
-    'ReviewController@postReview'
-) -> name('menu.review.post');
+    '/menu/{menu_id}/reviews',
+    'ReviewController@store'
+) -> name('menu.reviews.store');
 
 Route::get(
     '/auth/google',

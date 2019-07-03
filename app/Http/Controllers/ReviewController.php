@@ -19,7 +19,9 @@ use App\Models\Menu;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Auth;
+
 
 /**
  * ReviewController class
@@ -41,7 +43,7 @@ class ReviewController extends Controller
      *
      * @return Renderable
      */
-    public function reviews($menu_id)
+    public function index($menu_id)
     {
         $reviews_list = Review::where('menu_id', $menu_id)
             -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')
@@ -58,7 +60,7 @@ class ReviewController extends Controller
      *
      * @return Renderable
      */
-    public function review($menu_id)
+    public function create($menu_id)
     {
         $menu = Menu::where('menu_id', $menu_id)->first();
         return view('reviews.post', compact('menu', 'menu_id'));
@@ -72,29 +74,45 @@ class ReviewController extends Controller
      *
      * @return Renderable
      */
-    public function postReview(Request $request, $menu_id)
+    public function store(Request $request, $menu_id)
     {
         if (!Auth::check()) {
-            return view('reviews.review', ['menu_id' => $menu_id, 'message' => "authocation"]);
+            return view(
+                'reviews.post',
+                ['menu_id' => $menu_id, 'message' => "authocation"]
+            );
         }
 
         $menu = Menu::where('menu_id', $menu_id)->first();
         if (!$menu->exists) {
-            return view('reviews.review', ['menu_id' => $menu_id, 'message' => "menu"]);
+            return view(
+                'reviews.index',
+                ['menu_id' => $menu_id, 'message' => "menu"]
+            );
         }
 
         $user = Auth::user();
         $user_id = $user -> user_id;
 
-        $review = array(
+        $review = Review::create(
+            [
             "user_id" => $user_id,
             "menu_id" => $menu_id,
-            "evaluation" => $request->input('evaluation'),
-            "comment" => $request->input('comment'),
-            "image_path" => "hoge",
+            "evaluation" => $request -> input('evaluation'),
+            "comment" => $request -> input('comment'),
+            ]
         );
 
-        Review::create($review);
-        return redirect() -> route('menu.reviews', ['menu_id' => $menu_id]);
+        // POSTされた画像ごとにforeach
+        foreach ($request -> file("files") as $index => $e) {
+            $ext = $e['image']->guessExtension();
+            $image_name = uniqid("image_").".".$ext;
+
+            $image_path = $e['image'] -> storeAs('images', $image_name); // public/reviews/images/以下に保存
+
+            $review -> images()->create(['image_path'=> $image_path]); // review_idに対応したものを登録する
+        }
+
+        return redirect() -> route('menu.reviews.index', ['menu_id' => $menu_id]);
     }
 }

@@ -39,12 +39,11 @@ class ReviewsTable extends Migration
         Schema::create(
             'reviews',
             function (Blueprint $table) {
-                $table->bigIncrements('review_id');
+                $table->bigIncrements('id');
                 $table->integer('user_id');
                 $table->integer('menu_id');
                 $table->integer('evaluation');
                 $table->string('comment');
-                $table->string('image_path');
                 $table->timestamps();
             }
         );
