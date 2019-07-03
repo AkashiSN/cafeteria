@@ -121,7 +121,7 @@ class MenuController extends Controller
 
         $today_menu = DailyMenu::where('date', date('Y-m-d')) -> first();
         $menu_list[] = array(
-            'menus' => Menu::where('menu_id', $today_menu->ramen) -> get(),
+            'menus' => Menu::where('menu_id', $today_menu -> ramen) -> get(),
             'description' => $this -> permanent_descriptions['ramen']
         );
 

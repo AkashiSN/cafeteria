@@ -14,7 +14,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Menu;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -40,8 +42,20 @@ class MenuDetailController extends Controller
      */
     public function menuDetail($menu_id)
     {
-        $menu = Menu::where('menu_id', $menu_id)->first();
+        $menu = Menu::where('menu_id', $menu_id) -> first();
 
-        return view('menus.detail', compact('menu'));
+        $reviews_list = array();
+        $reviews = Review::where('menu_id', $menu_id)
+            -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')
+            -> get();
+        foreach ($reviews as $review) {
+            $reviews_list[] = array(
+                "user_name" => $review -> name,
+                "review" => $review
+            );
+        }
+
+        return view('menus.detail', compact('menu', 'reviews_list'));
+
     }
 }
