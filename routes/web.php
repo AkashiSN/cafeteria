@@ -23,22 +23,22 @@ Route::get(
 ) -> name('home');
 
 Route::get(
-    '/menu/{menu_id}',
+    '/menus/{menu_id}',
     'MenuDetailController@menuDetail'
 ) -> name('menu.detail');
 
 Route::get(
-    '/menu/{menu_id}/reviews',
+    '/menus/{menu_id}/reviews',
     'ReviewController@index'
 ) -> name('menu.reviews.index');
 
 Route::get(
-    '/menu/{menu_id}/reviews/create',
+    '/menus/{menu_id}/reviews/create',
     'ReviewController@create'
 ) -> name('menu.reviews.create');
 
 Route::post(
-    '/menu/{menu_id}/reviews',
+    '/menus/{menu_id}/reviews',
     'ReviewController@store'
 ) -> name('menu.reviews.store');
 
