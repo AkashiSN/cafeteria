@@ -445,6 +445,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 968,
+            "ramen": 5,
             "protein": 31.6,
             "lipid": 38.5,
             "salt": 2.9
@@ -454,6 +455,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 617,
+            "ramen": 5,
             "protein": 14.2,
             "lipid": 15.5,
             "salt": 2.8
@@ -465,6 +467,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 810,
+            "ramen": 5,
             "protein": 37.2,
             "lipid": 27.9,
             "salt": 3.4
@@ -474,6 +477,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 683,
+            "ramen": 5,
             "protein": 22.0,
             "lipid": 10.3,
             "salt": 2.4
@@ -485,6 +489,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 888,
+            "ramen": 5,
             "protein": 27.5,
             "lipid": 33.5,
             "salt": 3.1
@@ -494,6 +499,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 804,
+            "ramen": 5,
             "protein": 10.2,
             "lipid": 23.0,
             "salt": 4.3
@@ -505,6 +511,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 518,
+            "ramen": 5,
             "protein": 28.3,
             "lipid": 3.5,
             "salt": 4.0
@@ -514,6 +521,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 858,
+            "ramen": 5,
             "protein": 34.9,
             "lipid": 32.7,
             "salt": 2.8
@@ -525,6 +533,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 929,
+            "ramen": 5,
             "protein": 30.4,
             "lipid": 36.3,
             "salt": 3.9
@@ -534,6 +543,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 777,
+            "ramen": 5,
             "protein": 23.7,
             "lipid": 27.1,
             "salt": 2.8
@@ -545,6 +555,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 856,
+            "ramen": 6,
             "protein": 38.1,
             "lipid": 32.6,
             "salt": 4.6
@@ -554,6 +565,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 845,
+            "ramen": 6,
             "protein": 23.2,
             "lipid": 37.7,
             "salt": 4.7
@@ -565,6 +577,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 615,
+            "ramen": 6,
             "protein": 20.9,
             "lipid": 12.3,
             "salt": 3.4
@@ -574,6 +587,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 699,
+            "ramen": 6,
             "protein": 23.6,
             "lipid": 17.7,
             "salt": 2.8
@@ -585,6 +599,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 751,
+            "ramen": 6,
             "protein": 29.1,
             "lipid": 21.2,
             "salt": 3.5
@@ -594,6 +609,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 645,
+            "ramen": 6,
             "protein": 18.9,
             "lipid": 12.2,
             "salt": 4.3
@@ -605,6 +621,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 739,
+            "ramen": 6,
             "protein": 26.9,
             "lipid": 25.6,
             "salt": 3.8
@@ -614,6 +631,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 760,
+            "ramen": 6,
             "protein": 20.0,
             "lipid": 20.9,
             "salt": 4.3
@@ -625,6 +643,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 878,
+            "ramen": 6,
             "protein": 33.4,
             "lipid": 31.1,
             "salt": 3.5
@@ -634,6 +653,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 549,
+            "ramen": 6,
             "protein": 20.8,
             "lipid": 5.3,
             "salt": 5.2
@@ -645,6 +665,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 743,
+            "ramen": 4,
             "protein": 19.5,
             "lipid": 27.7,
             "salt": 3.9
@@ -654,6 +675,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 775,
+            "ramen": 4,
             "protein": 30.0,
             "lipid": 24.2,
             "salt": 4.0
@@ -665,6 +687,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 779,
+            "ramen": 4,
             "protein": 26.8,
             "lipid": 28.7,
             "salt": 3.9
@@ -674,6 +697,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 633,
+            "ramen": 4,
             "protein": 18.9,
             "lipid": 14.6,
             "salt": 2.8
@@ -685,6 +709,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 876,
+            "ramen": 4,
             "protein": 25.2,
             "lipid": 27.4,
             "salt": 4.2
@@ -694,6 +719,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 731,
+            "ramen": 4,
             "protein": 18.4,
             "lipid": 15.2,
             "salt": 4.5
@@ -705,6 +731,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 858,
+            "ramen": 4,
             "protein": 25.3,
             "lipid": 32.0,
             "salt": 4.1
@@ -714,6 +741,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 815,
+            "ramen": 4,
             "protein": 10.2,
             "lipid": 32.2,
             "salt": 3.1
@@ -725,6 +753,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 712,
+            "ramen": 4,
             "protein": 25.6,
             "lipid": 19.0,
             "salt": 2.4
@@ -734,6 +763,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 574,
+            "ramen": 4,
             "protein": 24.3,
             "lipid": 10.2,
             "salt": 5.2
@@ -745,6 +775,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 868,
+            "ramen": 5,
             "protein": 16.6,
             "lipid": 21.7,
             "salt": 5.1
@@ -754,6 +785,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 881,
+            "ramen": 5,
             "protein": 36.6,
             "lipid": 28.9,
             "salt": 4.2
@@ -765,6 +797,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 546,
+            "ramen": 5,
             "protein": 13.8,
             "lipid": 10.6,
             "salt": 2.4
@@ -774,6 +807,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 740,
+            "ramen": 5,
             "protein": 23.8,
             "lipid": 24.7,
             "salt": 3.2
@@ -785,6 +819,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 873,
+            "ramen": 5,
             "protein": 34.8,
             "lipid": 33.9,
             "salt": 3.4
@@ -794,6 +829,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 587,
+            "ramen": 5,
             "protein": 20.4,
             "lipid": 13.6,
             "salt": 2.4
@@ -805,6 +841,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 981,
+            "ramen": 5,
             "protein": 27.9,
             "lipid": 43.6,
             "salt": 3.3
@@ -814,6 +851,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 783,
+            "ramen": 5,
             "protein": 32.7,
             "lipid": 21.2,
             "salt": 4.4
@@ -825,6 +863,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 830,
+            "ramen": 5,
             "protein": 23.6,
             "lipid": 29.5,
             "salt": 3.6
@@ -834,6 +873,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 681,
+            "ramen": 5,
             "protein": 23.3,
             "lipid": 13.1,
             "salt": 3.7
@@ -845,6 +885,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 658,
+            "ramen": 6,
             "protein": 28.0,
             "lipid": 18.2,
             "salt": 3.0
@@ -854,6 +895,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 668,
+            "ramen": 6,
             "protein": 21.7,
             "lipid": 15.4,
             "salt": 4.7
@@ -865,6 +907,7 @@
             "category": "a_set_menu",
             "price": 420,
             "energy": 914,
+            "ramen": 6,
             "protein": 21.5,
             "lipid": 37.7,
             "salt": 3.8
@@ -874,6 +917,7 @@
             "category": "b_set_menu",
             "price": 360,
             "energy": 691,
+            "ramen": 6,
             "protein": 24.3,
             "lipid": 16.0,
             "salt": 5.2
