@@ -33,5 +33,14 @@ class Review extends Model
         "user_id", "menu_id","evaluation","comment","image_path"
     ];
     protected $table = "reviews";
-    protected $primaryKey = "review_id";
+
+    /**
+     * レビュー画像を登録する
+     *
+     * @return void
+     */
+    public function images()
+    {
+        return $this->hasMany('App\Models\ReviewImage');
+    }
 }

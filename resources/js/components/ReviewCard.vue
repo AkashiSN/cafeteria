@@ -11,7 +11,6 @@
                 <div class="col-6">
                     <p class="card-text text-muted">{{ review.created_at }}</p>
                 </div>
-
             </div>
 
             <div class="row mt-15">
@@ -19,15 +18,10 @@
                     <p class="card-text">{{ review.comment }}</p>
                 </div>
             </div>
+
             <div class="row flex-row flex-nowrap mt-2">
-                <div class="col-auto">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="140" />
-                </div>
-                <div class="col-auto">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="140" />
-                </div>
-                <div class="col-auto">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="140" />
+                <div class="col-auto" v-for='(url, index) in url_list' :key='index'>
+                    <img :src="url" height="140" >
                 </div>
             </div>
         </div>
@@ -45,8 +39,14 @@
         data: function() {
             return {
                 // for now
-                evaluation: this.review.evaluation * 20 + "%"
+                evaluation: this.review.evaluation * 20 + "%",
+                url_list: []
             }
+        },
+        mounted () {
+            axios.get('/api/menus/' + this.review.menu_id + '/reviews/' + this.review.id + '/images').then(res => {
+                this.url_list = res.data.url_list
+            })
         }
     }
 </script>

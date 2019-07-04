@@ -39,7 +39,7 @@ class SoldOutController extends Controller
      * @param Request $request APIリクエスト
      * @param int     $menu_id メニューID
      *
-     * @return string  json形式のステータス
+     * @return string json形式のステータス
      */
     public function store(Request $request, $menu_id)
     {
