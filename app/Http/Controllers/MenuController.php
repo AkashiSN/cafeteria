@@ -97,11 +97,11 @@ class MenuController extends Controller
             foreach ($daily_menus as $daily_menu) {
                 $a_menu = array(
                     'menu' => Menu::where(
-                        'menus.menu_id',
+                        'menus.id',
                         $daily_menu -> menu_id_A
                     ) -> leftJoin(
                         'sold_out',
-                        'menus.menu_id',
+                        'menus.id',
                         '=',
                         'sold_out.menu_id'
                     ) -> first(),
@@ -109,11 +109,11 @@ class MenuController extends Controller
                 );
                 $b_menu = array(
                     'menu' => Menu::where(
-                        'menus.menu_id',
+                        'menus.id',
                         $daily_menu -> menu_id_B
                     ) -> leftJoin(
                         'sold_out',
-                        'menus.menu_id',
+                        'menus.id',
                         '=',
                         'sold_out.menu_id'
                     ) -> first(),
@@ -145,7 +145,7 @@ class MenuController extends Controller
 
         $permanent_menus = Menu::where('category', 'permanent_menu')
             -> where('alias', 0)
-            -> leftJoin('sold_out', 'menus.menu_id', '=', 'sold_out.menu_id')
+            -> leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id')
             -> get();
         $menu_list[] = array(
             'menus' => $permanent_menus,
@@ -159,8 +159,8 @@ class MenuController extends Controller
 
         $today_menu = DailyMenu::where('date', date('Y-m-d')) -> first();
         $menu_list[] = array(
-            'menus' => Menu::where('menus.menu_id', $today_menu -> ramen)
-                -> leftJoin('sold_out', 'menus.menu_id', '=', 'sold_out.menu_id')
+            'menus' => Menu::where('menus.id', $today_menu -> ramen)
+                -> leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id')
                 -> get(),
             'description' => $this -> _permanent_descriptions['ramen']
         );

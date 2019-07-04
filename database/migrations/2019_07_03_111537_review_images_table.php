@@ -40,6 +40,7 @@ class ReviewImagesTable extends Migration
             'review_images',
             function (Blueprint $table) {
                 $table->increments('id');
+                $table->integer('menu_id');
                 $table->integer('review_id')->unsigned();
                 $table->foreign('review_id')->references('id')->on('reviews');
                 $table->string('image_path');

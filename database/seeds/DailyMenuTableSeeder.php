@@ -48,7 +48,7 @@ class DailyMenuTableSeeder extends Seeder
                 $count++;
                 Menu::create(
                     array(
-                    'menu_id' => $count,
+                    'id' => $count,
                     'item_name' => $obj->item_name,
                     'category' => $obj->category,
                     'price' => $obj->price,

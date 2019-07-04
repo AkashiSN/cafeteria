@@ -61,13 +61,13 @@
 
     <div class="row mt-3">
         <h4 class="col-10">レビュー</h4>
-        <a class="col-2" href="{{ route('menus.reviews.index', ['menu_id' => $menu -> menu_id]) }}">もっとみる</a>
+        <a class="col-2" href="{{ route('menus.reviews.index', ['menu_id' => $menu->id]) }}">もっとみる</a>
     </div>
 
     @if ($reviews_list)
         @foreach ($reviews_list as $review)
             <div class="container mt-20">
-                <review-card :review="{{$review}}" />
+                <review-card :review="{{ $review }}" :image_api_url="'{{ route("menus.reviews.images", ['menu_id' => $menu->id, 'review_id' => $review->id]) }}'" />
             </div>
         @endforeach
     @else

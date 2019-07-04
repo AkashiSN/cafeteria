@@ -49,10 +49,46 @@ class ReviewController extends Controller
         $reviews_list = Review::where('menu_id', $menu_id)
             -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')
             -> get();
-        $menu = Menu::where('menu_id', $menu_id) -> first();
+        $menu = Menu::where('id', $menu_id) -> first();
 
         return view('reviews.index', compact('reviews_list', 'menu'));
     }
+
+    /**
+     * メニューIDに対応した画像のURLを取得
+     *
+     * @param int $menu_id メニューID
+     *
+     * @return string json形式のURLのリスト
+     */
+    public function getImages($menu_id)
+    {
+        $images = ReviewImage::where('menu_id', $menu_id) -> get();
+        if (count($images) === 0) {
+            $status = 204;
+            return response() -> json(
+                [
+                    'status' => $status,
+                    'errors' => 'Image does not exist'
+                ],
+                204
+            );
+        }
+        $url_list = array();
+        foreach ($images as $image) {
+            $url_list[] = url("/data/" . $image -> image_path);
+        }
+
+        $status = 200;
+        return response() -> json(
+            [
+                'status' => $status,
+                'url_list' => $url_list
+            ],
+            $status
+        );
+    }
+
 
     /**
      * レビューIDに対応した画像のURLを取得
@@ -66,7 +102,7 @@ class ReviewController extends Controller
     {
         $review_images = ReviewImage::where('review_id', $review_id) -> get();
         if (count($review_images) === 0) {
-            $status = 404;
+            $status = 204;
             return response() -> json(
                 [
                     'status' => $status,
@@ -77,7 +113,7 @@ class ReviewController extends Controller
         }
         $url_list = array();
         foreach ($review_images as $review_image) {
-            $url_list[] = url("/review/" . $review_image -> image_path);
+            $url_list[] = url("/data/" . $review_image -> image_path);
         }
 
         $status = 200;
@@ -105,7 +141,7 @@ class ReviewController extends Controller
                 ['menu_id' => $menu_id, 'message' => "authocation"]
             );
         }
-        $item_name = Menu::where('menu_id', $menu_id)->first()->item_name;
+        $item_name = Menu::where('id', $menu_id)->first()->item_name;
         return view('reviews.create', compact('item_name', 'menu_id'));
     }
 
@@ -126,7 +162,7 @@ class ReviewController extends Controller
             );
         }
 
-        $menu = Menu::where('menu_id', $menu_id)->first();
+        $menu = Menu::where('id', $menu_id)->first();
         if (!$menu->exists) {
             return view('home');
         }
@@ -155,9 +191,9 @@ class ReviewController extends Controller
                 $ext = $e['image']->guessExtension();
                 $image_name = uniqid("image_").".".$ext;
 
-                $image_path = $e['image'] -> storeAs('images', $image_name); // public/reviews/images/以下に保存
+                $image_path = $e['image'] -> storeAs('images', $image_name); // public/data/images/以下に保存
 
-                $review -> images()->create(['image_path'=> $image_path]); // review_idに対応したものを登録する
+                $review -> images()->create(['image_path' => $image_path, 'menu_id' => $menu_id]); // review_idに対応したものを登録する
             }
         }
         return redirect() -> route('menus.reviews.index', ['menu_id' => $menu_id]);

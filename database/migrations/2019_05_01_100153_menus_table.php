@@ -39,7 +39,7 @@ class MenusTable extends Migration
         Schema::create(
             'menus',
             function (Blueprint $table) {
-                $table->bigIncrements('menu_id');
+                $table->bigIncrements('id');
                 $table->string('item_name');
                 $table->string('category');
                 $table->integer('alias');

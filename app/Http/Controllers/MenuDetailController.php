@@ -42,7 +42,7 @@ class MenuDetailController extends Controller
      */
     public function menuDetail($menu_id)
     {
-        $menu = Menu::where('menu_id', $menu_id) -> first();
+        $menu = Menu::where('id', $menu_id) -> first();
 
         $reviews_list = Review::where('menu_id', $menu_id)
             -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')

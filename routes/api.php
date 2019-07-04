@@ -40,6 +40,11 @@ Route::post(
 ) -> name('menus.sold_out.store');
 
 Route::get(
+    '/menus/{menu_id}/images',
+    'ReviewController@getImages'
+) -> name('menus.images');
+
+Route::get(
     '/menus/{menu_id}/reviews/{review_id}/images',
     'ReviewController@getReviewImages'
 ) -> name('menus.reviews.images');

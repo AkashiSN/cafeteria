@@ -45,7 +45,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => public_path('review'),
+            'root' => public_path('data'),
         ],
 
         'public' => [

@@ -34,6 +34,10 @@
             review: {
                 type: Object,
                 required: true,
+            },
+            image_api_url: {
+                type: String,
+                required: true
             }
         },
         data: function() {
@@ -44,7 +48,7 @@
             }
         },
         mounted () {
-            axios.get('/api/menus/' + this.review.menu_id + '/reviews/' + this.review.id + '/images').then(res => {
+            axios.get(this.image_api_url).then(res => {
                 this.url_list = res.data.url_list
             })
         }
