@@ -42,7 +42,7 @@
                         <div class="col-2 card-text">{{ menu.salt }} g</div>
                     </div>
                 </div>
-                <div v-if="valid_sold_button" class="col-2">
+                <div v-if="validSoldButton" class="col-2">
                     <button type="button" v-on:click.stop="updateIsSold()" class="btn" v-bind:class="[soldOut ? 'btn-danger' : 'btn-success']">
                         {{ soldOut ? '売り切れ' : '提供中' }}
                     </button>
@@ -59,19 +59,19 @@
                 type: Object,
                 required: true
             },
-            valid_sold_button: {
+            validSoldButton: {
                 type: Boolean,
                 default: true
             },
-            route: {
+            menuRoute: {
                 type: String,
                 required: true
             },
-            sold_out_api_url: {
+            soldOutRoute: {
                 type: String,
                 required: true
             },
-            image_api_url: {
+            imageRoute: {
                 type: String,
                 required: true
             }
@@ -79,28 +79,36 @@
         data: function() {
             return {
                 // for now
-                soldOut: this.menu.sold_out,
                 isLiked: true,
+                soldOut: this.menu.sold_out,
                 url_list: []
             }
         },
         methods: {
             updateIsSold: function() {
-                this.soldOut = !this.soldOut
-                var req = { 'sold_out': this.soldOut }
-                axios.post(this.sold_out_api_url, req).then(res => {
-                    console.log(res)
+                var newSoldOut = !this.soldOut
+                var req = { 'sold_out': newSoldOut }
+
+                axios.post(this.soldOutRoute, req).then(res => {
+                    if(res.status == 200) {
+                        this.soldOut = newSoldOut
+                    }
                 })
             },
             updateFavorite: function() {
                 this.isLiked = !this.isLiked
             },
             jump: function() {
-                location.href = this.route
+                location.href = this.menuRoute
+            }
+        },
+        watch: {
+            'menu.menu_id': function() {
+                this.soldOut = this.menu.sold_out
             }
         },
         mounted () {
-            axios.get(this.image_api_url).then(res => {
+            axios.get(this.imageRoute).then(res => {
                 this.url_list = res.data.url_list
             })
         }
