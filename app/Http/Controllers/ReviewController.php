@@ -136,12 +136,10 @@ class ReviewController extends Controller
     public function create($menu_id)
     {
         if (!Auth::check()) {
-            return view(
-                'reviews.list',
-                ['menu_id' => $menu_id, 'message' => "authocation"]
-            );
+            return redirect() -> route('menus.reviews.index', ['menu_id' => $menu_id])
+                              -> with(['message' => 'authocation']);
         }
-        $item_name = Menu::where('id', $menu_id)->first()->item_name;
+        $item_name = Menu::where('id', $menu_id) -> first() -> item_name;
         return view('reviews.create', compact('item_name', 'menu_id'));
     }
 
@@ -156,22 +154,17 @@ class ReviewController extends Controller
     public function store(Request $request, $menu_id)
     {
         if (!Auth::check()) {
-            return view(
-                'reviews.index',
-                ['menu_id' => $menu_id, 'message' => "authocation"]
-            );
+            return redirect() -> route('menus.reviews.index', ['menu_id' => $menu_id])
+                              -> with(['message' => 'authocation']);
         }
 
-        $menu = Menu::where('id', $menu_id)->first();
-        if (!$menu->exists) {
-            return view('home');
+        $menu = Menu::where('id', $menu_id) -> first();
+        if (!$menu -> exists) {
+            return redirect() -> route('home');
         }
 
         if ($request -> input('evaluation') === null) {
-            return redirect() -> route(
-                'menus.reviews.create',
-                ['menu_id' => $menu_id]
-            );
+            return view('reviews.create', ['message' => 'Evaluation']);
         }
 
         $user = Auth::user();
@@ -188,14 +181,16 @@ class ReviewController extends Controller
 
         if ($request -> file("files") !== null) {
             foreach ($request -> file("files") as $index => $e) {
-                $ext = $e['image']->guessExtension();
+                $ext = $e['image'] -> guessExtension();
                 $image_name = uniqid("image_").".".$ext;
 
                 $image_path = $e['image'] -> storeAs('images', $image_name); // public/data/images/以下に保存
 
-                $review -> images()->create(['image_path' => $image_path, 'menu_id' => $menu_id]); // review_idに対応したものを登録する
+                $review -> images()
+                        -> create(['image_path' => $image_path, 'menu_id' => $menu_id]); // review_idに対応したものを登録する
             }
         }
+
         return redirect() -> route('menus.reviews.index', ['menu_id' => $menu_id]);
     }
 }
