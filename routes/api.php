@@ -34,6 +34,11 @@ Route::middleware('auth:api') -> get(
     }
 );
 
+Route::get(
+    '/menus/{menu_id}/sold_out',
+    'SoldOutController@show'
+) -> name('menus.sold_out');
+
 Route::post(
     '/menus/{menu_id}/sold_out',
     'SoldOutController@store'

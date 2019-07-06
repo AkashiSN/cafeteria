@@ -22,7 +22,7 @@
             </div>
 
             <div class="row row-scrollable mt-2">
-                <div class="col-auto" v-for='(url, index) in url_list' :key='index'>
+                <div class="col-auto" v-for='(url, index) in urlList' :key='index'>
                     <img :src="url" height="140" >
                 </div>
             </div>
@@ -62,26 +62,16 @@
             validSoldButton: {
                 type: Boolean,
                 default: true
-            },
-            menuRoute: {
-                type: String,
-                required: true
-            },
-            soldOutRoute: {
-                type: String,
-                required: true
-            },
-            imageRoute: {
-                type: String,
-                required: true
             }
         },
         data: function() {
             return {
-                // for now
                 isLiked: true,
+                menuRoute: '/menus/' + this.menu.id,
+                soldOutRoute: '/api/menus/' + this.menu.id + '/sold_out',
+                imageRoute: '/api/menus/' + this.menu.id + '/images',
                 soldOut: this.menu.sold_out,
-                url_list: []
+                urlList: []
             }
         },
         methods: {
@@ -102,14 +92,12 @@
                 location.href = this.menuRoute
             }
         },
-        watch: {
-            'menu.menu_id': function() {
-                this.soldOut = this.menu.sold_out
-            }
-        },
         mounted () {
+            axios.get(this.soldOutRoute).then(res => {
+                this.soldOut = res.data.sold_out
+            })
             axios.get(this.imageRoute).then(res => {
-                this.url_list = res.data.url_list
+                this.urlList = res.data.url_list
             })
         }
     }

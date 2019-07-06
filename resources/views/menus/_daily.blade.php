@@ -19,7 +19,7 @@
                 <div class="container mt-20 ph-65">
                     @foreach ($todays_menu as $menu)
                         <p class="text-justify text-muted">{{ $menu['description'] }}</p>
-                        <menu-card :menu="{{ $menu['menu'] }}" :menu-route="'{{ route('menus.detail', ['menu_id' => $menu['menu']->id]) }}'" :sold-out-route="'{{ route('menus.sold_out.store', ['menu_id' => $menu['menu']->id]) }}'" :image-route="'{{ route('menus.images', ['menu_id' => $menu['menu']->id]) }}'" />
+                        <menu-card :menu="{{ $menu['menu'] }}" />
                     @endforeach
                 </div>
             @endforeach

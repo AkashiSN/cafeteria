@@ -34,6 +34,36 @@ use Illuminate\Support\Facades\Auth;
 class SoldOutController extends Controller
 {
     /**
+     * 売り切れ情報をjson形式で返します。
+     *
+     * @param int     $menu_id メニューID
+     *
+     * @return string json形式のステータス
+     */
+    public function show($menu_id)
+    {
+        $sold_out = SoldOut::where('menu_id', $menu_id) -> first();
+        if (!$sold_out -> exists) {
+            $status = 500;
+            return response() -> json(
+                [
+                    'status' => $status,
+                    'errors' => 'Menu does not exist'
+                ],
+                $status
+            );
+        }
+
+        $status = 200;
+        return response() -> json(
+            [
+            'sold_out' => $sold_out -> sold_out,
+            ],
+            $status
+        );
+    }
+
+    /**
      * 売り切れ情報を更新します。
      *
      * @param Request $request APIリクエスト
