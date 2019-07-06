@@ -23,29 +23,24 @@ Route::get(
 ) -> name('home');
 
 Route::get(
-    '/menu/{menu_id}',
+    '/menus/{menu_id}',
     'MenuDetailController@menuDetail'
-) -> name('menu.detail');
+) -> name('menus.detail');
 
 Route::get(
-    '/menu/permanent',
-    'Menu\PermanentMenuController@permanent'
-) -> name('permanent');
+    '/menus/{menu_id}/reviews',
+    'ReviewController@index'
+) -> name('menus.reviews.index');
 
 Route::get(
-    '/menu/{menu_id}/reviews',
-    'ReviewController@reviews'
-) -> name('menu.reviews');
-
-Route::get(
-    '/menu/{menu_id}/review',
-    'ReviewController@review'
-) -> name('menu.review');
+    '/menus/{menu_id}/reviews/create',
+    'ReviewController@create'
+) -> name('menus.reviews.create');
 
 Route::post(
-    '/menu/{menu_id}/review/post',
-    'ReviewController@postReview'
-) -> name('menu.review.post');
+    '/menus/{menu_id}/reviews',
+    'ReviewController@store'
+) -> name('menus.reviews.store');
 
 Route::get(
     '/menu/register',

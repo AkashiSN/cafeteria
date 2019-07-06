@@ -31,7 +31,6 @@ use Illuminate\Support\Facades\DB;
 class Menu extends Model
 {
     protected $table = 'menus';
-    protected $primaryKey = 'menu_id';
     public $timestamps = false;
 
     protected $fillable = [

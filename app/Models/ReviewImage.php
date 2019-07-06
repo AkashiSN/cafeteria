@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Favorite.php
+ * ReviewImage.php
  *
  * PHP Version = 7.0
  *
@@ -17,9 +17,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Menu class
+ * Review class
  *
- * お気に入りメニューのモデルです。
+ * レビュー画像のモデルです。
  *
  * @category Model
  * @package  Model
@@ -27,18 +27,18 @@ use Illuminate\Database\Eloquent\Model;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class Favorite extends Model
+class ReviewImage extends Model
 {
-    protected $table = "favorites";
-    protected $primaryKey = "user_id";
+    protected $fillable = ['menu_id', 'review_id', 'image_path'];
+    protected $table = "review_images";
 
     /**
-     * ユーザーが親であることを指定する
+     * レビューが親であることを指定する
      *
      * @return void
      */
-    public function user()
+    public function review()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\Review');
     }
 }
