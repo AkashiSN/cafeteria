@@ -40,8 +40,7 @@ class ReviewsTableSeeder extends Seeder
             'menu_id' => 1,
             'user_id' => 1,
             'evaluation' => 1,
-            'comment' => "あまり美味しくない",
-            'image_path' => "hoge"
+            'comment' => "あまり美味しくない"
             )
         );
     }

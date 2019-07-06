@@ -22,23 +22,8 @@
             </div>
 
             <div class="row row-scrollable mt-2">
-                <div class="col-auto col-scrollable">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
-                </div>
-                <div class="col-auto col-scrollable">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
-                </div>
-                <div class="col-auto col-scrollable">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
-                </div>
-                <div class="col-auto col-scrollable">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
-                </div>
-                <div class="col-auto col-scrollable">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
-                </div>
-                <div class="col-auto col-scrollable">
-                    <img src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/710131.jpeg" height="120" />
+                <div class="col-auto" v-for='(url, index) in url_list' :key='index'>
+                    <img :src="url" height="140" >
                 </div>
             </div>
 
@@ -58,8 +43,8 @@
                     </div>
                 </div>
                 <div v-if="valid_sold_button" class="col-2">
-                    <button type="button" v-on:click.stop="updateIsSold()" class="btn" v-bind:class="[isSold ? 'btn-success': 'btn-danger']">
-                        {{ isSold ? '提供中' : '売り切れ' }}
+                    <button type="button" v-on:click.stop="updateIsSold()" class="btn" v-bind:class="[soldOut ? 'btn-danger' : 'btn-success']">
+                        {{ soldOut ? '売り切れ' : '提供中' }}
                     </button>
                 </div>
             </div>
@@ -81,18 +66,31 @@
             route: {
                 type: String,
                 required: true
+            },
+            sold_out_api_url: {
+                type: String,
+                required: true
+            },
+            image_api_url: {
+                type: String,
+                required: true
             }
         },
         data: function() {
             return {
                 // for now
-                isSold: true,
-                isLiked: true
+                soldOut: this.menu.sold_out,
+                isLiked: true,
+                url_list: []
             }
         },
         methods: {
             updateIsSold: function() {
-                this.isSold = !this.isSold
+                this.soldOut = !this.soldOut
+                var req = { 'sold_out': this.soldOut }
+                axios.post(this.sold_out_api_url, req).then(res => {
+                    console.log(res)
+                })
             },
             updateFavorite: function() {
                 this.isLiked = !this.isLiked
@@ -101,5 +99,10 @@
                 location.href = this.route
             }
         },
+        mounted () {
+            axios.get(this.image_api_url).then(res => {
+                this.url_list = res.data.url_list
+            })
+        }
     }
 </script>

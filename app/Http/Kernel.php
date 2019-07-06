@@ -42,6 +42,10 @@ class Kernel extends HttpKernel
         ],
     ];
 
+    protected $routeMiddleware = [
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+    ];
 
     /**
      * The priority-sorted list of middleware.

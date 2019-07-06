@@ -33,6 +33,10 @@ kill-vagrant:
 repl-vagrant:
 	vagrant ssh -- "cd /cafeteria && php artisan tinker"
 
+.PHONY: cache-clear-vagrant
+cache-clear-vagrant:
+	vagrant ssh -- "cd /cafeteria && php artisan config:cache"
+
 .PHONY: init
 init: yarn build-sass composer
 	cp .env.example .env
@@ -67,6 +71,10 @@ serve:
 repl:
 	php artisan tinker
 
+.PHONY: cache-clear
+cache-clear:
+	php artisan config:cache
+
 .PHONY: deploy
 deploy:
 	ssh radish -- "rm -rf public_html"
@@ -78,6 +86,7 @@ deploy:
 	ssh radish -- "sed -i -e '164,165d' cafeteria/config/app.php"
 	ssh radish -- "sed -i -e '206d' cafeteria/config/app.php"
 	ssh radish -- "cp cafeteria/.env.example cafeteria/.env"
+	ssh radish -- "chmod -R 777 cafeteria/public"
 	ssh radish -- "chmod -R 777 cafeteria/storage"
 	ssh radish -- "chmod -R 777 cafeteria/bootstrap/cache"
 
