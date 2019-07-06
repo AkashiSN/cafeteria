@@ -92,13 +92,19 @@
                 location.href = this.menuRoute
             }
         },
-        mounted () {
-            axios.get(this.soldOutRoute).then(res => {
-                this.soldOut = res.data.sold_out
-            })
-            axios.get(this.imageRoute).then(res => {
-                this.urlList = res.data.url_list
-            })
+        watch: {
+            'menu.id': function() {
+                this.menuRoute = '/menus/' + this.menu.id,
+                this.soldOutRoute = '/api/menus/' + this.menu.id + '/sold_out',
+                this.imageRoute = '/api/menus/' + this.menu.id + '/images',
+
+                axios.get(this.soldOutRoute).then(res => {
+                    this.soldOut = res.data.sold_out
+                })
+                axios.get(this.imageRoute).then(res => {
+                    this.urlList = res.data.url_list
+                })
+            }
         }
     }
 </script>
