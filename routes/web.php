@@ -19,13 +19,13 @@ Auth::routes();
 
 Route::get(
     '/',
-    'MenuController@home'
+    'MenuController@index'
 ) -> name('home');
 
 Route::get(
     '/menus/{menu_id}',
-    'MenuDetailController@menuDetail'
-) -> name('menus.detail');
+    'MenuController@show'
+) -> name('menus.show');
 
 Route::get(
     '/menus/{menu_id}/reviews',

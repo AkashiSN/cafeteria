@@ -37,4 +37,11 @@ class Menu extends Model
         "item_name", "category", "price", "energy", "protein", "lipid", "salt"
     ];
 
+    static public $descriptions = array(
+        'a_set_menu'     => 'Aセット（ライス・味噌汁付）',
+        'b_set_menu'     => 'Bセット（味噌汁付）',
+        'permanent_menu' => '常設メニュー',
+        'ramen'          => '常設メニュー（ラーメン）',
+        'summer_menu'    => '夏限定メニュー',
+    );
 }

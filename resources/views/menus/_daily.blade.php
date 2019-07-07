@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-4">
         <select class="custom-select custom-select-sm mv-3" v-model="activeContent">
-            @foreach($select_options as $index => $option)
+            @foreach($options as $index => $option)
             <option value="{{ $index }}">
                 {{ $option }}
             </option>
