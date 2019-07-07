@@ -18,7 +18,7 @@
                         <div class="container mt-20 ph-65">
                             <div v-for="menu in todays_menu">
                                 <p class="text-justify text-muted">{{ menu.description }}</p>
-                                <menu-card v-model="menu" />
+                                <menu-card :menu="menu" v-on:update-sold-out="updateStatus" />
                             </div>
                         </div>
                     </div>
@@ -40,5 +40,10 @@
                 required: true
             }
         },
+        methods: {
+            updateStatus: function(menu_id, newSoldOut) {
+                dailySchedule.
+            }
+        }
     }
 </script>

@@ -12,7 +12,7 @@
 
 <div class="container ph-5">
 @foreach($daily_schedule as $index => $weekly_list)
-    <div v-if="activeContent === '{{ $index }}'">
+    <div class="select-content" v-bind:class="{ active: activeContent === '{{ $index }}' }">
         @foreach($weekly_list as $menus)
             @foreach($menus as $date => $todays_menu)
                 <p class="mt-3">{{ $date }}</p>
