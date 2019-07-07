@@ -57,27 +57,11 @@ class MenuUsecase
             $weekly_list = array();
             foreach ($daily_menus as $daily_menu) {
                 $a_menu = array(
-                    'menu' => Menu::where(
-                        'menus.id',
-                        $daily_menu -> menu_id_A
-                    ) -> leftJoin(
-                        'sold_out',
-                        'menus.id',
-                        '=',
-                        'sold_out.menu_id'
-                    ) -> first(),
+                    'menu' => Menu::getWithStatuses() -> find($daily_menu -> menu_id_A),
                     'description' => Menu::$descriptions['a_set_menu']
                 );
                 $b_menu = array(
-                    'menu' => Menu::where(
-                        'menus.id',
-                        $daily_menu -> menu_id_B
-                    ) -> leftJoin(
-                        'sold_out',
-                        'menus.id',
-                        '=',
-                        'sold_out.menu_id'
-                    ) -> first(),
+                    'menu' => Menu::getWithStatuses() -> find($daily_menu -> menu_id_B),
                     'description' => Menu::$descriptions['b_set_menu']
                 );
 
@@ -104,9 +88,9 @@ class MenuUsecase
     {
         $summer = true;
 
-        $permanent_menus = Menu::where('category', 'permanent_menu')
+        $permanent_menus = Menu::getWithStatuses()
+            -> where('category', 'permanent_menu')
             -> where('alias', 0)
-            -> leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id')
             -> get();
 
         $menu_list[] = array(
@@ -115,16 +99,16 @@ class MenuUsecase
         );
 
         $menu_list[] = array(
-            'menus' => Menu::where('category', 'summer_menu')
-                -> leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id')
+            'menus' => Menu::getWithStatuses()
+                -> where('category', 'summer_menu')
                 -> get(),
             'description' => Menu::$descriptions['summer_menu']
         );
 
         $today_menu = DailyMenu::where('date', date('Y-m-d')) -> first();
         $menu_list[] = array(
-            'menus' => Menu::where('menus.id', $today_menu -> ramen)
-                -> leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id')
+            'menus' => Menu::getWithStatuses()
+                -> where('menus.id', $today_menu -> ramen)
                 -> get(),
             'description' => Menu::$descriptions['ramen']
         );

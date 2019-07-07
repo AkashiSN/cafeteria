@@ -73,7 +73,7 @@ class MenuController extends Controller
      */
     public function show($menu_id)
     {
-        $menu = Menu::where('id', $menu_id) -> first();
+        $menu = Menu::getWithStatuses() -> find($menu_id);
 
         $reviews_list = Review::where('menu_id', $menu_id)
             -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')

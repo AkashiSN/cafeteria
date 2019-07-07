@@ -44,4 +44,8 @@ class Menu extends Model
         'ramen'          => '常設メニュー（ラーメン）',
         'summer_menu'    => '夏限定メニュー',
     );
+
+    static public function getWithStatuses() {
+        return Menu::leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id');
+    }
 }
