@@ -35,7 +35,7 @@
                     はぁと
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-success">提供中</button>
+                    <sold-out-button :menu-id="'{{ $menu -> id }}'" :sold-out="'{{ $menu -> sold_out }}'" />
                 </div>
             </div>
         </div>

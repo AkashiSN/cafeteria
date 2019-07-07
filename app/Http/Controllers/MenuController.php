@@ -147,13 +147,16 @@ class MenuController extends Controller
             -> where('alias', 0)
             -> leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id')
             -> get();
+
         $menu_list[] = array(
             'menus' => $permanent_menus,
             'description' => $this -> _permanent_descriptions['permanent_menu']
         );
 
         $menu_list[] = array(
-            'menus' => Menu::where('category', 'summer_menu') -> get(),
+            'menus' => Menu::where('category', 'summer_menu')
+                -> leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id')
+                -> get(),
             'description' => $this -> _permanent_descriptions['summer_menu']
         );
 
