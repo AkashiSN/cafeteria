@@ -41,13 +41,12 @@ class MenuUsecase
     /**
      * 日替わりメニューの取得
      *
-     * @return [$menu_schedule, $select_options]
+     * @return [$menu_schedule, $options]
      */
     public function getDaily()
     {
         foreach (self::_thisWeekdays() as $workdays) {
-            $select_options[] = $workdays[0] -> format('n月j日')
-                    . '〜' . end($workdays) -> format('n月j日');
+            $options = $workdays[0] -> format('n月j日') . '〜' . end($workdays) -> format('n月j日');
 
             $daily_menus = DailyMenu::whereBetween(
                 'date',
@@ -76,7 +75,7 @@ class MenuUsecase
             $menu_schedule[] = $weekly_list;
         }
 
-        return [$menu_schedule, $select_options];
+        return [$menu_schedule, $options];
     }
 
     /**

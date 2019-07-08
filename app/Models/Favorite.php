@@ -39,6 +39,16 @@ class Favorite extends Model
      */
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this -> belongsTo('App\User');
+    }
+
+    /**
+     * メニューが子であることを指定する
+     *
+     * @return void
+     */
+    Public function menu()
+    {
+        return  $this -> hasOne('App\Models\Menu');
     }
 }

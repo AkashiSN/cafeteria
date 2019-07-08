@@ -1,42 +1,46 @@
 <?php
 
 /**
- * DatabaseSeeder.php
+ * FavoritesTableSeeder.php
  *
  * PHP Version = 7.0
  *
  * @category Seeder
  * @package  Seeder
- * @author   AkashiSN <btorntireinvynriy@gmail.com>
+ * @author   shikibu9419 <shikibu9419@gmail.com>
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
+use App\Models\Favorite;
 use Illuminate\Database\Seeder;
 
 /**
- * DatabaseSeeder class
+ * FavoritesTableSeeder class
  *
- * データの初期挿入を行います。
+ * お気に入り情報データの初期挿入を行います。
  *
  * @category Seeder
  * @package  Seeder
- * @author   AkashiSN <btorntireinvynriy@gmail.com>
+ * @author   shikibu9419 <shikibu9419@gmail.com>
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class DatabaseSeeder extends Seeder
+class FavoritesTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(MenuTableSeeder::class);
-        $this->call(DailyMenuTableSeeder::class);
-        $this->call(ReviewsTableSeeder::class);
-        $this->call(FavoritesTableSeeder::class);
+        Favorite::create(
+            array(
+            'id' => 1,
+            'user_id' => 1,
+            'favorite_menu_id' => 1
+            )
+        );
     }
 }

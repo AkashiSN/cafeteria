@@ -37,6 +37,35 @@ class Menu extends Model
         "item_name", "category", "price", "energy", "protein", "lipid", "salt"
     ];
 
+    /**
+     * 売り切れ情報が子であることを指定する
+     *
+     * @return void
+     */
+    Public function sold_out()
+    {
+        return $this -> hasOne('App\Models\SoldOut');
+    }
+
+    /**
+     * 売り切れ情報が子であることを指定する
+     *
+     * @return void
+     */
+    Public function reviews()
+    {
+        return $this -> hasMany('App\Models\Review');
+    }
+
+    /**
+     * 売り切れ情報, お気に入り情報がjoinされたMenuのEloquentを返す
+     *
+     * @return Illuminate\Database\Eloquent\Builder
+     */
+    static public function getWithStatuses() {
+        return Menu::leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id');
+    }
+
     static public $descriptions = array(
         'a_set_menu'     => 'Aセット（ライス・味噌汁付）',
         'b_set_menu'     => 'Bセット（味噌汁付）',
@@ -44,8 +73,4 @@ class Menu extends Model
         'ramen'          => '常設メニュー（ラーメン）',
         'summer_menu'    => '夏限定メニュー',
     );
-
-    static public function getWithStatuses() {
-        return Menu::leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id');
-    }
 }

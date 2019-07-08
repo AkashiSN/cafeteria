@@ -27,6 +27,7 @@ Route::get(
     'MenuController@show'
 ) -> name('menus.show');
 
+
 Route::get(
     '/menus/{menu_id}/reviews',
     'ReviewController@index'
@@ -41,6 +42,18 @@ Route::post(
     '/menus/{menu_id}/reviews',
     'ReviewController@store'
 ) -> name('menus.reviews.store');
+
+
+Route::get(
+    '/users/{user_id}/favorites',
+    'FavoriteController@index'
+) -> name('user_favorites');
+
+Route::get(
+    '/users/{user_id}/reviews',
+    'ReviewController@user_reviews'
+) -> name('user_reviews');
+
 
 Route::get(
     '/auth/google',
