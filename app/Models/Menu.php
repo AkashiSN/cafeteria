@@ -38,7 +38,7 @@ class Menu extends Model
     ];
 
     /**
-     * 売り切れ情報が子であることを指定する
+     * Relations
      *
      * @return void
      */
@@ -47,11 +47,16 @@ class Menu extends Model
         return $this -> hasOne('App\Models\SoldOut');
     }
 
-    /**
-     * 売り切れ情報が子であることを指定する
-     *
-     * @return void
-     */
+    Public function favorites()
+    {
+        return $this -> hasMany('App\Models\Favorite');
+    }
+
+    Public function users()
+    {
+        return $this -> belongsToMany('App\Models\User', 'favorites');
+    }
+
     Public function reviews()
     {
         return $this -> hasMany('App\Models\Review');
@@ -63,7 +68,9 @@ class Menu extends Model
      * @return Illuminate\Database\Eloquent\Builder
      */
     static public function getWithStatuses() {
-        return Menu::leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id');
+        return Menu::with(['favorites' => function ($query) {
+            $query->where('user_id', 1);
+        }]) -> leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id');
     }
 
     static public $descriptions = array(

@@ -30,25 +30,7 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     protected $table = "favorites";
-    protected $primaryKey = "user_id";
-
-    /**
-     * ユーザーが親であることを指定する
-     *
-     * @return void
-     */
-    public function user()
-    {
-        return $this -> belongsTo('App\User');
-    }
-
-    /**
-     * メニューが子であることを指定する
-     *
-     * @return void
-     */
-    Public function menu()
-    {
-        return  $this -> hasOne('App\Models\Menu');
-    }
+    protected $fillable = [
+        "user_id", "menu_id"
+    ];
 }

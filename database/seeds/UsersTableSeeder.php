@@ -1,7 +1,7 @@
 <?php
 
 /**
- * FavoritesTableSeeder.php
+ * UsersTableSeeder.php
  *
  * PHP Version = 7.0
  *
@@ -12,13 +12,13 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
-use App\Models\Favorite;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 /**
- * FavoritesTableSeeder class
+ * UsersTableSeeder class
  *
- * お気に入り情報データの初期挿入を行います。
+ * ユーザデータの初期挿入を行います。
  *
  * @category Seeder
  * @package  Seeder
@@ -26,7 +26,7 @@ use Illuminate\Database\Seeder;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class FavoritesTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -35,16 +35,11 @@ class FavoritesTableSeeder extends Seeder
      */
     public function run()
     {
-        Favorite::create(
+        User::create(
             array(
             'id' => 1,
-            'user_id' => 1,
-            'menu_id' => 1
-            ),
-            array(
-            'id' => 2,
-            'user_id' => 1,
-            'menu_id' => 2
+            'name' => '名無しのVIPさん',
+            'email' => 'noname@noname.tv'
             )
         );
     }

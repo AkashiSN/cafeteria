@@ -14,7 +14,6 @@
 
 namespace App\Http\Controllers;
 
-use Log;
 use App\Models\SoldOut;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -43,7 +42,7 @@ class SoldOutController extends Controller
     public function show($menu_id)
     {
         $sold_out = SoldOut::where('menu_id', $menu_id) -> first();
-        if (!$sold_out -> exists) {
+        if ($sold_out === null) {
             $status = 500;
             return response() -> json(
                 [
@@ -74,7 +73,7 @@ class SoldOutController extends Controller
     public function store(Request $request, $menu_id)
     {
         $sold_out = SoldOut::where('menu_id', $menu_id) -> first();
-        if (!$sold_out -> exists) {
+        if ($sold_out === null) {
             $status = 500;
             return response() -> json(
                 [

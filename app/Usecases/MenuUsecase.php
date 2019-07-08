@@ -46,7 +46,7 @@ class MenuUsecase
     public function getDaily()
     {
         foreach (self::_thisWeekdays() as $workdays) {
-            $options = $workdays[0] -> format('n月j日') . '〜' . end($workdays) -> format('n月j日');
+            $options[] = $workdays[0] -> format('n月j日') . '〜' . end($workdays) -> format('n月j日');
 
             $daily_menus = DailyMenu::whereBetween(
                 'date',

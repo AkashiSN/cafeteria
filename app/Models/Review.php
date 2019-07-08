@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     protected $fillable = [
-        "user_id", "menu_id","evaluation","comment","image_path"
+        "user_id", "menu_id", "evaluation", "comment", "image_path"
     ];
     protected $table = "reviews";
 

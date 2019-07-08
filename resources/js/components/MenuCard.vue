@@ -6,9 +6,7 @@
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
                 <div class="col-2">
-                    <button type="button" v-on:click.stop="updateFavorite()" class="btn" v-bind:class="{ 'btn-danger': isLiked }">
-                        はぁと
-                    </button>
+                    <favorite-button :menu-id="menu.id" :favorite="menu.favorites" />
                 </div>
             </div>
 

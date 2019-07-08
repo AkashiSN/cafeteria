@@ -35,9 +35,14 @@ Route::middleware('auth:api') -> get(
 );
 
 Route::post(
-    '/users/{user_id}/favorites',
+    '/favorites',
     'FavoriteController@store'
-) -> name('store_user_favorite');
+) -> name('favorites.store');
+
+Route::delete(
+    '/favorites/{menu_id}',
+    'FavoriteController@destroy'
+) -> name('favorites.destroy');
 
 Route::post(
     '/menus/{menu_id}/sold_out',

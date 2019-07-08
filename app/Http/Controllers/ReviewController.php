@@ -159,7 +159,7 @@ class ReviewController extends Controller
         }
 
         $menu = Menu::where('id', $menu_id) -> first();
-        if (!$menu -> exists) {
+        if ($menu === null) {
             return redirect() -> route('home');
         }
 
