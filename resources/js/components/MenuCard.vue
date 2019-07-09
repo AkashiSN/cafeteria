@@ -6,7 +6,7 @@
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
                 <div class="col-2">
-                    <favorite-button :menu-id="menu.id" :favorite="menu.favorites" />
+                    <favorite-button :menu-id="menu.id" :is-liked="isLiked" />
                 </div>
             </div>
 
@@ -53,6 +53,10 @@
         props: {
             menu: {
                 type: Object,
+                required: true
+            },
+            isLiked: {
+                type: Boolean,
                 required: true
             },
             validSoldButton: {

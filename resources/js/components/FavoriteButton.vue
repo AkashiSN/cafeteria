@@ -11,15 +11,15 @@
                 type: Number,
                 required: true
             },
-            favorite: {
-                type: Array,
+            isLiked: {
+                type: Boolean,
                 required: true
             }
         },
         data: function() {
             return {
                 favoriteRoute: '/api/favorites/',
-                isLiked: (this.favorite.length > 0)
+                isLiked: this.isLiked
             }
         },
         computed: {

@@ -27,7 +27,7 @@ use DateInterval;
 /**
  * MenuController class
  *
- * メニュー関連の継承用コントローラです。
+ * メニュー情報のコントローラです。
  *
  * @category Contoller
  * @package  Contoller
@@ -39,7 +39,7 @@ class MenuController extends Controller
 {
 
     /**
-     * 常設メニューを表示する。
+     * メニューリストを表示する。
      *
      * @return Renderable
      */
