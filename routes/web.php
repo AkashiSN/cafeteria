@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// menus
 Route::get(
     '/',
     'MenuController@index'
@@ -28,6 +29,7 @@ Route::get(
 ) -> name('menus.show');
 
 
+// reviews
 Route::get(
     '/menus/{menu_id}/reviews',
     'ReviewController@index'
@@ -43,18 +45,24 @@ Route::post(
     'ReviewController@store'
 ) -> name('menus.reviews.store');
 
+// my page
+Route::get(
+    '/my_page',
+    'UserController@show'
+) -> name('my_page');
 
 Route::get(
-    '/users/{user_id}/favorites',
-    'FavoriteController@index'
-) -> name('user_favorites');
+    '/my_page/favorites',
+    'UserController@favorite'
+) -> name('my_page.favorites');
 
 Route::get(
-    '/users/{user_id}/reviews',
-    'ReviewController@user_reviews'
-) -> name('user_reviews');
+    '/my_page/reviews',
+    'UserController@reviews'
+) -> name('my_page.reviews');
 
 
+// login
 Route::get(
     '/auth/google',
     'Auth\OAuthLoginController@getGoogleAuth'

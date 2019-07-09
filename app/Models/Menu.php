@@ -38,6 +38,14 @@ class Menu extends Model
         "item_name", "category", "price", "energy", "protein", "lipid", "salt"
     ];
 
+    static public $descriptions = [
+        'a_set_menu'     => 'Aセット（ライス・味噌汁付）',
+        'b_set_menu'     => 'Bセット（味噌汁付）',
+        'permanent_menu' => '常設メニュー',
+        'ramen'          => '常設メニュー（ラーメン）',
+        'summer_menu'    => '夏限定メニュー',
+    ];
+
     /**
      * リレーションを返す
      *
@@ -48,6 +56,11 @@ class Menu extends Model
         return $this -> hasOne('App\Models\SoldOut');
     }
 
+    Public function reviews()
+    {
+        return $this -> hasMany('App\Models\Review');
+    }
+
     Public function favorites()
     {
         return $this -> hasMany('App\Models\Favorite');
@@ -56,11 +69,6 @@ class Menu extends Model
     Public function users()
     {
         return $this -> belongsToMany('App\Models\User', 'favorites');
-    }
-
-    Public function reviews()
-    {
-        return $this -> hasMany('App\Models\Review');
     }
 
     /**

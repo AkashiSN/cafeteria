@@ -27,6 +27,7 @@ use App\Models\SoldOut;
 |
 */
 
+// auth
 Route::middleware('auth:api') -> get(
     '/user',
     function (Request $request) {
@@ -34,6 +35,8 @@ Route::middleware('auth:api') -> get(
     }
 );
 
+
+// favorites
 Route::post(
     '/favorites',
     'FavoriteController@store'
@@ -44,11 +47,15 @@ Route::delete(
     'FavoriteController@destroy'
 ) -> name('favorites.destroy');
 
+
+// sold_out
 Route::put(
     '/menus/{menu_id}/sold_out',
     'SoldOutController@update'
 ) -> name('menus.sold_out.update');
 
+
+// review images
 Route::get(
     '/menus/{menu_id}/images',
     'ReviewController@getImages'
