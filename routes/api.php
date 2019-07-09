@@ -44,10 +44,10 @@ Route::delete(
     'FavoriteController@destroy'
 ) -> name('favorites.destroy');
 
-Route::post(
+Route::put(
     '/menus/{menu_id}/sold_out',
-    'SoldOutController@store'
-) -> name('menus.sold_out.store');
+    'SoldOutController@update'
+) -> name('menus.sold_out.update');
 
 Route::get(
     '/menus/{menu_id}/images',

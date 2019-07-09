@@ -33,7 +33,7 @@ class User extends Model
     protected $table = 'users';
 
     /**
-     * Relations
+     * リレーションを返す
      *
      * @return void
      */

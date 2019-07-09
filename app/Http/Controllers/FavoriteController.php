@@ -61,19 +61,15 @@ class FavoriteController extends Controller
             );
         }
 
-        if (Favorite::where('user_id', $user_id) -> where('menu_id', $menu_id) -> exists()) {
-            $status = 200;
-            return response() -> json(
-                ['errors' => 'Already liked.'],
-                $status
-            );
-        }
-
-        $favorite = Favorite::create([
-            'id' => Favorite::max('id'),
+        $favorite = Favorite::firstOrNew([
             'user_id' => $user_id,
-            'menu_id' => $menu_id,
+            'menu_id' => $menu_id
         ]);
+
+        if (!$favorite -> exists) {
+            $favorite -> id = Favorite::max('id') + 1;
+            $favorite -> save();
+        }
 
         $status = 200;
         return response() -> json([], $status);
@@ -103,7 +99,7 @@ class FavoriteController extends Controller
         if (!$favorites -> exists()) {
             $status = 500;
             return response() -> json(
-                ['errors' => 'This favorite is not found'],
+                ['errors' => "You didn't like this."],
                 $status
             );
         }

@@ -35,7 +35,7 @@ class Review extends Model
     protected $table = "reviews";
 
     /**
-     * レビュー画像を登録する
+     * リレーションを返す
      *
      * @return void
      */

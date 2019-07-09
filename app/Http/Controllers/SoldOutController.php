@@ -70,7 +70,7 @@ class SoldOutController extends Controller
      *
      * @return string json形式のステータス
      */
-    public function store(Request $request, $menu_id)
+    public function update(Request $request, $menu_id)
     {
         $sold_out = SoldOut::where('menu_id', $menu_id) -> first();
         if ($sold_out === null) {

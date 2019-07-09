@@ -38,7 +38,7 @@ class Menu extends Model
     ];
 
     /**
-     * Relations
+     * リレーションを返す
      *
      * @return void
      */
@@ -63,14 +63,15 @@ class Menu extends Model
     }
 
     /**
-     * 売り切れ情報, お気に入り情報がjoinされたMenuのEloquentを返す
+     * 売り切れ情報, お気に入り情報が付与されたMenuのEloquentを返す
      *
      * @return Illuminate\Database\Eloquent\Builder
      */
     static public function getWithStatuses() {
-        return Menu::with(['favorites' => function ($query) {
-            $query->where('user_id', 1);
-        }]) -> leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id');
+        return Menu::leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id')
+            -> with(['favorites' => function ($query) {
+                $query->where('user_id', Auth::user() -> user_id);
+            }]);
     }
 
     static public $descriptions = array(

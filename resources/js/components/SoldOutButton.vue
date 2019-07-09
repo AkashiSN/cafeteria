@@ -32,7 +32,7 @@
                 var newStatus = !this.status
                 var req = { 'sold_out': newStatus }
 
-                axios.post(this.soldOutRoute, req).then(res => {
+                axios.put(this.soldOutRoute, req).then(res => {
                     if(res.status == 200) {
                         this.status = newStatus
                     }

@@ -12,7 +12,7 @@
                 required: true
             },
             favorite: {
-                type: Object,
+                type: Array,
                 required: true
             }
         },
