@@ -31,8 +31,24 @@ class DailyMenu extends Model
 {
     protected $table = "daily_menu";
     protected $primaryKey = "date";
+    protected $fillable = ['date'];
     protected $casts = [
         'date' => 'date'
     ];
     public $timestamps = false;
+
+    /**
+     * リレーションを返す
+     *
+     * @return void
+     */
+    Public function a_menu()
+    {
+        return $this -> hasOne('App\Models\Menu', 'menu_id_A');
+    }
+
+    Public function b_menu()
+    {
+        return $this -> hasOne('App\Models\Menu', 'menu_id_B');
+    }
 }

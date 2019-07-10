@@ -1,5 +1,5 @@
 @extends('layouts.default')
 
 @section('content')
-<p>hoge</p>
+<admin-page :menu-table="{{ json_encode($menu_table) }}" :options="{{ json_encode($options) }}" />
 @endsection

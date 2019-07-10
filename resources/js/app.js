@@ -26,6 +26,10 @@ Vue.component('menu-card', require('./components/MenuCard.vue').default);
 Vue.component('sold-out-button', require('./components/SoldOutButton.vue').default);
 Vue.component('favorite-button', require('./components/FavoriteButton.vue').default);
 
+Vue.component('admin-page', require('./components/AdminPage.vue').default);
+Vue.component('set-menu', require('./components/admin/SetMenu.vue').default);
+Vue.component('set-menu-modal', require('./components/admin/SetMenuModal.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

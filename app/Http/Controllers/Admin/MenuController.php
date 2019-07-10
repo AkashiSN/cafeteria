@@ -14,13 +14,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Log;
 use App\Models\Menu;
 use App\Models\Review;
 use App\Models\Favorite;
 use App\Models\DailyMenu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Usecases\MenuUsecase as Usecase;
+use App\Usecases\SetMenuUsecase as Usecase;
 
 /**
  * Admin\MenuController class
@@ -60,8 +61,12 @@ class MenuController extends Controller
      *
      * @return Renderable
      */
-    public function setMenu()
+    public function setMenu(Usecase $usecase)
     {
-        return view('admin.menus.set_menu');
+        list($menu_table, $options) = $usecase -> getMenuTable();
+
+        return view(
+            'admin.menus.set_menu', compact('menu_table', 'options')
+        );
     }
 }

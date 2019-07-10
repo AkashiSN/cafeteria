@@ -17,8 +17,6 @@ namespace App\Usecases;
 use App\Models\Menu;
 use App\Models\Favorite;
 use App\Models\DailyMenu;
-use DateTime;
-use DateInterval;
 
 /**
  * MenuUsecase class
@@ -31,12 +29,8 @@ use DateInterval;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class MenuUsecase
+class MenuUsecase extends DateUsecase
 {
-
-    private $_japanese_weekday = array(
-        '日', '月', '火', '水', '木', '金', '土'
-    );
 
     /**
      * 日替わりメニューの取得
@@ -45,7 +39,7 @@ class MenuUsecase
      */
     public function getDaily()
     {
-        foreach (self::_thisWeekdays() as $workdays) {
+        foreach (self::thisWeekdays() as $workdays) {
             $options[] = $workdays[0] -> format('n月j日') . '〜' . end($workdays) -> format('n月j日');
 
             $daily_menus = DailyMenu::whereBetween(
@@ -65,7 +59,7 @@ class MenuUsecase
                 );
 
                 $date = $daily_menu -> date;
-                $weekday = $this -> _japanese_weekday[$date -> format("w")];
+                $weekday = $this -> japanese_weekday[$date -> format("w")];
                 $weekly_list[] = array(
                     ($date -> format("n月j日") . '（' . $weekday . '）')
                         => array($a_menu, $b_menu)
@@ -113,38 +107,5 @@ class MenuUsecase
         );
 
         return $menu_list;
-    }
-
-    /**
-     * 今月の平日のリストを以下の形式で返す
-     *
-     * @return [[1st Mon, ..., 1st Fri], [2nd Mon, ..., 2nd Fri], ...]
-     */
-    private function _thisWeekdays()
-    {
-        $datetime = new DateTime();
-        $year  = (int)$datetime -> format('Y');
-        $month = (int)$datetime -> format('m');
-        $datetime -> setDate($year, $month, 1);
-
-        $target   = range(1, 5);  // Mon. to Fri.
-        $interval = new DateInterval('P1D');  // interval: 1day
-
-        $result  = array();
-        $workdays = array();
-
-        while ((int)$datetime -> format('m') == $month) {
-            $week = (int)$datetime -> format('w');
-            if (in_array($week, $target)) {
-                $workdays[] = clone $datetime;
-                if ($week == 5) {
-                    $result[] = $workdays;
-                    $workdays = array();
-                }
-            }
-            $datetime -> add($interval);
-        }
-
-        return $result;
     }
 }
