@@ -16,13 +16,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Review;
-use App\Models\Favorite;
-use App\Models\DailyMenu;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Usecases\MenuUsecase as Usecase;
-use DateTime;
-use DateInterval;
 
 /**
  * MenuController class
@@ -45,16 +40,6 @@ class MenuController extends Controller
      */
     public function index(Usecase $usecase)
     {
-        // if (Auth::check()) {
-        //     $user = Auth::user();
-        //     $user_id = $user -> user_id;
-        //     $favorite_menu_id = Favorite::where('user_id', $user_id)->all();
-        //     $favorite_menu_id_list = [];
-        //     foreach ($favorite_menu_id as $id) {
-        //         $favorite_menu_id_list[] = $id;
-        //     }
-        // }
-
         list($daily_schedule, $options) = $usecase -> getDaily();
         $permanent_list = $usecase -> getPermanent();
 

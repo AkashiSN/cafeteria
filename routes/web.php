@@ -17,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// admin
+Route::group(['namespace' => 'Admin'], function () {
+    Route::get('admin/create', 'MenuController@create');
+    Route::post('admin/store', 'MenuController@store');
+    Route::get('admin/set_menu', 'MenuController@setMenu');
+});
+
 // menus
 Route::get(
     '/',
