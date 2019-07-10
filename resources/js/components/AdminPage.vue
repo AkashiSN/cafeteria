@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <set-menu-modal v-if="modalAvailable" v-on:close="closeModal" />
+        <set-menu-modal v-if="modalAvailable" v-on:close="closeModal" v-model="selectedMenu"/>
     </div>
 </template>
 
@@ -38,11 +38,13 @@ export default {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             modalAvailable: false,
+            selectedMenu: {},
             activeContent: 0
         }
     },
     methods: {
         openModal(menu) {
+            this.selectedMenu = menu
             this.modalAvailable = true
         },
         closeModal() {

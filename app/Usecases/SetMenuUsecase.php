@@ -40,7 +40,8 @@ class SetMenuUsecase extends DateUsecase
     public function getMenuTable()
     {
         foreach (self::thisWeekdays() as $workdays) {
-            $options[] = $workdays[0] -> format('n月j日') . '〜' . end($workdays) -> format('n月j日');
+            $options[] = $workdays[0] -> format('n月j日')
+                . '〜' . end($workdays) -> format('n月j日');
 
             $weekly_list = [];
             foreach ($workdays as $workday) {
@@ -48,8 +49,11 @@ class SetMenuUsecase extends DateUsecase
                 if (!$daily_menu) {
                     continue;
                 }
-                $a_menu = Menu::find($daily_menu -> menu_id_A);
-                $b_menu = Menu::find($daily_menu -> menu_id_B);
+
+                $a_menu = Menu::select('id', 'item_name')
+                    -> find($daily_menu -> menu_id_A);
+                $b_menu = Menu::select('id', 'item_name')
+                    -> find($daily_menu -> menu_id_B);
 
                 $weekday = $this -> japanese_weekday[(int)$workday -> format('w')];
                 $date_label = $workday -> format("n月j日") . '（' . $weekday . '）';

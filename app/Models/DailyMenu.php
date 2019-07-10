@@ -36,19 +36,4 @@ class DailyMenu extends Model
         'date' => 'date'
     ];
     public $timestamps = false;
-
-    /**
-     * リレーションを返す
-     *
-     * @return void
-     */
-    Public function a_menu()
-    {
-        return $this -> hasOne('App\Models\Menu', 'menu_id_A');
-    }
-
-    Public function b_menu()
-    {
-        return $this -> hasOne('App\Models\Menu', 'menu_id_B');
-    }
 }
