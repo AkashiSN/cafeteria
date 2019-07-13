@@ -14,16 +14,20 @@
             isLiked: {
                 type: Boolean,
                 required: true
+            },
+            baseRoute: {
+                type: String,
+                required: true
             }
         },
         data: function() {
             return {
-                favoriteRoute: '/api/favorites/'
+                favoriteRoute: this.baseRoute + '/api/favorites/'
             }
         },
         computed: {
             imgSrc: function() {
-                return '/images/heart_' + (this.isLiked ? 'red' : 'white') + '.svg'
+                return this.baseRoute + '/images/heart_' + (this.isLiked ? 'red' : 'white') + '.svg'
             }
         },
         methods: {

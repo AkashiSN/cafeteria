@@ -3,14 +3,14 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-11">
-                    <h4 class="card-title">{{ item_name }}</h4>
+                    <h4 class="card-title">{{ itemName }}</h4>
                 </div>
                 <div class="col-1">
-                    <a :href="back_route">戻る</a>
+                    <a :href="route">戻る</a>
                 </div>
             </div>
             <div class="row">
-                <form method="POST" :action="store_route" accept-charset="UTF-8" enctype="multipart/form-data">
+                <form method="POST" :action="route" accept-charset="UTF-8" enctype="multipart/form-data">
                     <input name="_token" type="hidden" :value="csrf">
                     <div class="form-group">
                         <div class="evaluation-submit">
@@ -46,24 +46,23 @@
 <script>
     export default {
         props: {
-            item_name: {
+            itemName: {
                 type: String,
                 required: true
             },
-            back_route: {
+            menuId:{
                 type: String,
-                required: true,
-                default: ""
+                required: true
             },
-            store_route: {
+            baseRoute: {
                 type: String,
-                required: true,
-                default: ""
+                required: true
             }
         },
         data: function() {
             return {
                 // for now
+                route: this.baseRoute + "/menus/" + this.menuId + "/reviews",
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             }
         }

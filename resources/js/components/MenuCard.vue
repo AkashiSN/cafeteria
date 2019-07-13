@@ -6,7 +6,7 @@
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
                 <div class="col-2">
-                    <favorite-button :menu-id="menu.id" :is-liked="isLiked" />
+                    <favorite-button :menu-id="menu.id" :base-url="baseRoute" :is-liked="isLiked" />
                 </div>
             </div>
 
@@ -62,12 +62,16 @@
             validSoldButton: {
                 type: Boolean,
                 default: true
+            },
+            baseRoute: {
+                type: String,
+                required: true
             }
         },
         data: function() {
             return {
-                menuRoute: '/menus/' + this.menu.id,
-                imageRoute: '/api/menus/' + this.menu.id + '/images',
+                menuRoute: this.baseRoute + '/menus/' + this.menu.id,
+                imageRoute: this.baseRoute +  '/api/menus/' + this.menu.id + '/images',
                 urlList: []
             }
         },

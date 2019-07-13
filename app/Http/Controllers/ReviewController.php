@@ -47,11 +47,10 @@ class ReviewController extends Controller
     public function index($menu_id)
     {
         $reviews_list = Review::where('menu_id', $menu_id)
-            -> leftJoin('users', 'reviews.user_id', '=', 'users.user_id')
+            -> leftJoin('users', 'reviews.user_id', '=', 'users.id')
             -> get();
-        $menu = Menu::where('id', $menu_id) -> first();
 
-        return view('reviews.index', compact('reviews_list', 'menu'));
+        return view('reviews.index', compact('reviews_list', 'menu_id'));
     }
 
     /**
@@ -65,13 +64,12 @@ class ReviewController extends Controller
     {
         $images = ReviewImage::where('menu_id', $menu_id) -> get();
         if (count($images) === 0) {
-            $status = 204;
             return response() -> json(
                 [
-                    'status' => $status,
+                    'status' => 204,
                     'errors' => 'Image does not exist'
                 ],
-                204
+                200
             );
         }
         $url_list = array();
@@ -102,13 +100,12 @@ class ReviewController extends Controller
     {
         $review_images = ReviewImage::where('review_id', $review_id) -> get();
         if (count($review_images) === 0) {
-            $status = 204;
             return response() -> json(
                 [
-                    'status' => $status,
+                    'status' => 204,
                     'errors' => 'Review image does not exist'
                 ],
-                204
+                200
             );
         }
         $url_list = array();
@@ -172,7 +169,7 @@ class ReviewController extends Controller
         }
 
         $user = Auth::user();
-        $user_id = $user -> user_id;
+        $user_id = $user -> id;
 
         $review = Review::create(
             [

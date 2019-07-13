@@ -20,7 +20,7 @@
             </div>
 
             <div class="row flex-row flex-nowrap mt-2">
-                <div class="col-auto" v-for='(url, index) in url_list' :key='index'>
+                <div class="col-auto" v-for='(url, index) in urlList' :key='index'>
                     <img :src="url" height="140" >
                 </div>
             </div>
@@ -35,7 +35,15 @@
                 type: Object,
                 required: true,
             },
-            image_api_url: {
+            baseRoute: {
+                type: String,
+                required: true
+            },
+            menuId: {
+                type: String,
+                required: true
+            },
+            reviewId: {
                 type: String,
                 required: true
             }
@@ -44,12 +52,13 @@
             return {
                 // for now
                 evaluation: this.review.evaluation * 20 + "%",
-                url_list: []
+                imageRoute: this.baseRoute + "/api/menus/" + this.menuId + "/reviews/" + this.reviewId + "/images",
+                urlList: []
             }
         },
         mounted () {
-            axios.get(this.image_api_url).then(res => {
-                this.url_list = res.data.url_list
+            axios.get(this.imageRoute).then(res => {
+                this.urlList = res.data.url_list
             })
         }
     }

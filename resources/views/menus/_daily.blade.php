@@ -19,7 +19,7 @@
                 <div class="container mt-20 ph-65">
                     @foreach ($todays_menu as $menu)
                         <p class="text-justify text-muted">{{ $menu['description'] }}</p>
-                        <menu-card :menu="{{ $menu['menu'] }}" :is-liked="{{ $menu['menu'] -> isLiked() ? 'true' : 'false' }}" />
+                        <menu-card :menu="{{ $menu['menu'] }}" :base-route="'{{ url("") }}'" :is-liked="{{ $menu['menu'] -> isLiked() ? 'true' : 'false' }}" />
                     @endforeach
                 </div>
             @endforeach

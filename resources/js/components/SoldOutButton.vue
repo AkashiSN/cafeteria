@@ -14,11 +14,15 @@
             soldOut: {
                 type: Boolean,
                 required: true
+            },
+            baseRoute: {
+                type: String,
+                required: true
             }
         },
         data: function() {
             return {
-                soldOutRoute: '/api/menus/' + this.menuId + '/sold_out',
+                soldOutRoute: this.baseRoute + '/api/menus/' + this.menuId + '/sold_out',
                 status: this.soldOut
             }
         },

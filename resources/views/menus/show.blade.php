@@ -35,7 +35,7 @@
                     はぁと
                 </div>
                 <div class="col-auto">
-                    <sold-out-button :menu-id="{{ $menu -> id }}" :sold-out={{ $menu -> sold_out ? 'true' : 'false' }} />
+                    <sold-out-button :base-route="'{{ url("") }}'" :menu-id="{{ $menu -> id }}" :sold-out={{ $menu -> sold_out ? 'true' : 'false' }} />
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
     @if ($reviews_list)
         @foreach ($reviews_list as $review)
             <div class="container mt-20">
-                <review-card :review="{{ $review }}" :image_api_url="'{{ route("menus.reviews.images", ['menu_id' => $menu -> id, 'review_id' => $review->id]) }}'" />
+                <review-card :review="{{ $review }}" :base-route="'{{ url("") }}'" :menu-id="'{{ $menu -> id }}'" :review-id="'{{ $review -> id }}'" />
             </div>
         @endforeach
     @else
