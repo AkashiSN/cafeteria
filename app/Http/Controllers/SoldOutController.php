@@ -35,7 +35,7 @@ class SoldOutController extends Controller
     /**
      * 売り切れ情報をjson形式で返します。
      *
-     * @param int     $menu_id メニューID
+     * @param int $menu_id メニューID
      *
      * @return string json形式のステータス
      */

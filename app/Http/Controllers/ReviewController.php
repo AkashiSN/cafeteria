@@ -136,8 +136,10 @@ class ReviewController extends Controller
     public function create($menu_id)
     {
         if (!Auth::check()) {
-            return redirect() -> route('menus.reviews.index', ['menu_id' => $menu_id])
-                              -> with(['message' => 'authocation']);
+            return redirect() -> route(
+                'menus.reviews.index',
+                ['menu_id' => $menu_id]
+            ) -> with(['message' => 'authocation']);
         }
         $item_name = Menu::where('id', $menu_id) -> first() -> item_name;
         return view('reviews.create', compact('item_name', 'menu_id'));
@@ -154,8 +156,10 @@ class ReviewController extends Controller
     public function store(Request $request, $menu_id)
     {
         if (!Auth::check()) {
-            return redirect() -> route('menus.reviews.index', ['menu_id' => $menu_id])
-                              -> with(['message' => 'authocation']);
+            return redirect() -> route(
+                'menus.reviews.index',
+                ['menu_id' => $menu_id]
+            ) -> with(['message' => 'authocation']);
         }
 
         $menu = Menu::where('id', $menu_id) -> first();

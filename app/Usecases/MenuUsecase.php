@@ -40,7 +40,8 @@ class MenuUsecase extends DateUsecase
     public function getDaily()
     {
         foreach (self::thisWeekdays() as $workdays) {
-            $options[] = $workdays[0] -> format('n月j日') . '〜' . end($workdays) -> format('n月j日');
+            $options[] = $workdays[0]
+                -> format('n月j日') . '〜' . end($workdays) -> format('n月j日');
 
             $daily_menus = DailyMenu::whereBetween(
                 'date',
@@ -50,11 +51,13 @@ class MenuUsecase extends DateUsecase
             $weekly_list = array();
             foreach ($daily_menus as $daily_menu) {
                 $a_menu = array(
-                    'menu' => Menu::getWithStatuses() -> find($daily_menu -> menu_id_A),
+                    'menu' => Menu::getWithStatuses()
+                        -> find($daily_menu -> menu_id_A),
                     'description' => Menu::$descriptions['a_set_menu']
                 );
                 $b_menu = array(
-                    'menu' => Menu::getWithStatuses() -> find($daily_menu -> menu_id_B),
+                    'menu' => Menu::getWithStatuses()
+                        -> find($daily_menu -> menu_id_B),
                     'description' => Menu::$descriptions['b_set_menu']
                 );
 

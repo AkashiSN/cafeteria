@@ -37,7 +37,6 @@ class UsersTableSeeder extends Seeder
     {
         User::create(
             array(
-            'id' => 1,
             'name' => '名無しのVIPさん',
             'email' => 'noname@noname.tv'
             )

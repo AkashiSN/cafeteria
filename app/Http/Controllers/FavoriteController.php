@@ -61,10 +61,12 @@ class FavoriteController extends Controller
             );
         }
 
-        $favorite = Favorite::firstOrNew([
+        $favorite = Favorite::firstOrNew(
+            [
             'user_id' => $user_id,
             'menu_id' => $menu_id
-        ]);
+            ]
+        );
 
         if (!$favorite -> exists) {
             $favorite -> id = Favorite::max('id') + 1;
@@ -94,7 +96,10 @@ class FavoriteController extends Controller
         }
 
         $user_id = Auth::user() -> user_id;
-        $favorites = Favorite::where('menu_id', $menu_id) -> where('user_id', $user_id);
+        $favorites = Favorite::where(
+            'menu_id',
+            $menu_id
+        ) -> where('user_id', $user_id);
 
         if (!$favorites -> exists()) {
             $status = 500;

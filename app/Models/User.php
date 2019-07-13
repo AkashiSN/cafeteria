@@ -42,11 +42,21 @@ class User extends Model
         return $this -> hasMany('App\Models\Review');
     }
 
+    /**
+     * リレーションを返す
+     *
+     * @return void
+     */
     public function favorites()
     {
         return $this -> hasMany('App\Models\Favorite');
     }
 
+    /**
+     * リレーションを返す
+     *
+     * @return void
+     */
     Public function menus()
     {
         return $this -> belongsToMany('App\Models\Menu', 'favorites');
