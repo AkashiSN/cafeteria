@@ -18,8 +18,7 @@
         },
         data: function() {
             return {
-                favoriteRoute: '/api/favorites/',
-                isLiked: this.isLiked
+                favoriteRoute: '/api/favorites/'
             }
         },
         computed: {

@@ -66,7 +66,6 @@
         },
         data: function() {
             return {
-                isLiked: true,
                 menuRoute: '/menus/' + this.menu.id,
                 imageRoute: '/api/menus/' + this.menu.id + '/images',
                 urlList: []

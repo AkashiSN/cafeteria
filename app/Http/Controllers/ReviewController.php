@@ -190,8 +190,12 @@ class ReviewController extends Controller
 
                 $image_path = $e['image'] -> storeAs('images', $image_name); // public/data/images/以下に保存
 
-                $review -> images()
-                        -> create(['image_path' => $image_path, 'menu_id' => $menu_id]); // review_idに対応したものを登録する
+                $review -> images() -> create(
+                    [
+                        'image_path' => $image_path,
+                        'menu_id' => $menu_id
+                    ]
+                ); // review_idに対応したものを登録する
             }
         }
 
