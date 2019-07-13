@@ -37,7 +37,7 @@
                 var req = { 'sold_out': newStatus }
 
                 axios.put(this.soldOutRoute, req).then(res => {
-                    if(res.status == 200) {
+                    if(res.data.status == 200) {
                         this.status = newStatus
                     }
                 })

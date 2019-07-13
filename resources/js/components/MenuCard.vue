@@ -6,7 +6,7 @@
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
                 <div class="col-2">
-                    <favorite-button :menu-id="menu.id" :base-url="baseRoute" :is-liked="isLiked" />
+                    <favorite-button :menu-id="menu.id" :base-route="this.baseRoute" :is-liked="isLiked" />
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div v-if="validSoldButton" class="col-2">
-                    <sold-out-button :menu-id="menu.id" :sold-out="menu.sold_out" />
+                    <sold-out-button :menu-id="menu.id" :base-route="this.baseRoute" :sold-out="menu.sold_out" />
                 </div>
             </div>
         </div>
@@ -85,7 +85,9 @@
         },
         mounted () {
             axios.get(this.imageRoute).then(res => {
-                this.urlList = res.data.url_list
+                if(res.data.status == 200) {
+                    this.urlList = res.data.url_list
+                }
             })
         }
     }

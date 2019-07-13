@@ -43,10 +43,12 @@ class FavoriteController extends Controller
     public function store(Request $request)
     {
         if (!Auth::check()) {
-            $status = 500;
             return response() -> json(
-                ['errors' => 'Please login.'],
-                $status
+                [
+                    'status' => 500,
+                    'errors' => 'Please login.'
+                ],
+                200
             );
         }
 
@@ -54,10 +56,12 @@ class FavoriteController extends Controller
         $menu_id = $request -> menu_id;
 
         if (!Menu::where('id', $menu_id) -> exists()) {
-            $status = 500;
             return response() -> json(
-                ['errors' => 'This menu is not found.'],
-                $status
+                [
+                    'status' => 404,
+                    'errors' => 'This menu is not found.'
+                ],
+                200
             );
         }
 
@@ -88,10 +92,12 @@ class FavoriteController extends Controller
     public function destroy(Request $request, $menu_id)
     {
         if (!Auth::check()) {
-            $status = 500;
             return response() -> json(
-                ['errors' => 'Please login.'],
-                $status
+                [
+                    'status' => 500,
+                    'errors' => 'Please login.'
+                ],
+                200
             );
         }
 
@@ -102,10 +108,12 @@ class FavoriteController extends Controller
         ) -> where('user_id', $user_id);
 
         if (!$favorites -> exists()) {
-            $status = 500;
             return response() -> json(
-                ['errors' => "You didn't like this."],
-                $status
+                [
+                    'status' => 500,
+                    'errors' => "You didn't like this."
+                ],
+                200
             );
         }
 

@@ -58,7 +58,9 @@
         },
         mounted () {
             axios.get(this.imageRoute).then(res => {
-                this.urlList = res.data.url_list
+                if(res.data.status == 200) {
+                    this.urlList = res.data.url_list
+                }
             })
         }
     }
