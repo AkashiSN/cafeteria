@@ -88,7 +88,7 @@ class Menu extends Model
     public function isLiked() {
         return Auth::check() &&
             Favorite::where('menu_id', $this -> id)
-                -> where('user_id', Auth::user() -> user_id)
+                -> where('user_id', Auth::user() -> id)
                 -> exists();
     }
 }

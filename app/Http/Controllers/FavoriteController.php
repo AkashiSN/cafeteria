@@ -18,7 +18,6 @@ use App\Models\Favorite;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * FavoriteController class
@@ -37,29 +36,30 @@ class FavoriteController extends Controller
      * お気に入り情報を登録します。
      *
      * @param Request $request APIリクエスト
+     * @param int     $menu_id メニューID
      *
      * @return string json形式のステータス
      */
-    public function store(Request $request)
+    public function store(Request $request, $menu_id)
     {
-        if (!Auth::check()) {
+        $user = $request->user('api');
+        if (!$user) {
             return response() -> json(
                 [
                     'status' => 500,
-                    'errors' => 'Please login.'
+                    'message' => 'Please login.'
                 ],
                 200
             );
         }
 
-        $user_id = Auth::user() -> user_id;
-        $menu_id = $request -> menu_id;
+        $user_id = $user -> id;
 
         if (!Menu::where('id', $menu_id) -> exists()) {
             return response() -> json(
                 [
                     'status' => 404,
-                    'errors' => 'This menu is not found.'
+                    'message' => 'This menu is not found.'
                 ],
                 200
             );
@@ -75,10 +75,24 @@ class FavoriteController extends Controller
         if (!$favorite -> exists) {
             $favorite -> id = Favorite::max('id') + 1;
             $favorite -> save();
+            $status = 200;
+            return response() -> json(
+                [
+                    'status' => $status,
+                    'message' => 'Your favorite was registered.'
+                ],
+                $status
+            );
         }
 
         $status = 200;
-        return response() -> json([], $status);
+        return response() -> json(
+            [
+                'status' => 500,
+                'message' => 'You are already liked.'
+            ],
+            $status
+        );
     }
 
     /**
@@ -91,17 +105,18 @@ class FavoriteController extends Controller
      */
     public function destroy(Request $request, $menu_id)
     {
-        if (!Auth::check()) {
+        $user = $request->user('api');
+        if (!$user) {
             return response() -> json(
                 [
                     'status' => 500,
-                    'errors' => 'Please login.'
+                    'message' => 'Please login.'
                 ],
                 200
             );
         }
 
-        $user_id = Auth::user() -> user_id;
+        $user_id = $user -> id;
         $favorites = Favorite::where(
             'menu_id',
             $menu_id
@@ -111,7 +126,7 @@ class FavoriteController extends Controller
             return response() -> json(
                 [
                     'status' => 500,
-                    'errors' => "You didn't like this."
+                    'message' => "You didn't like this."
                 ],
                 200
             );
@@ -120,6 +135,12 @@ class FavoriteController extends Controller
         $favorites -> delete();
 
         $status = 200;
-        return response() -> json([], $status);
+        return response() -> json(
+            [
+                'status' => $status,
+                'message' => 'Your favorite was deleted.'
+            ],
+            $status
+        );
     }
 }
