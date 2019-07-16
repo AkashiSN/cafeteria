@@ -17,6 +17,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -60,6 +61,24 @@ class OAuthLoginController extends Controller
         $user -> save();
 
         Auth::login($user);
+
+        return redirect()->route('home');
+    }
+
+    /**
+     * Logout user
+     *
+     * @param Request $request userinfo
+     *
+     * @return void
+     */
+    public function getLogout(Request $request)
+    {
+        $user = $request->user();
+        $user['api_token'] = null;
+        $user -> save();
+
+        Auth::logout($user);
 
         return redirect()->route('home');
     }

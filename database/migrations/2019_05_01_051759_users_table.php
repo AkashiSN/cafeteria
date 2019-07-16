@@ -42,6 +42,7 @@ class UsersTable extends Migration
                 $table->bigIncrements('id');
                 $table->string('name');
                 $table->string('email')->unique();
+                $table->string('api_token', 60)->unique()->nullable();
                 $table->rememberToken();
                 $table->timestamps();
             }

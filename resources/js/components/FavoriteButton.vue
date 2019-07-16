@@ -13,7 +13,8 @@
             },
             isLiked: {
                 type: Boolean,
-                required: true
+                required: true,
+                default: false
             },
             baseRoute: {
                 type: String,
@@ -22,29 +23,29 @@
         },
         data: function() {
             return {
+                liked: this.isLiked,
                 favoriteRoute: this.baseRoute + '/api/favorites'
             }
         },
         computed: {
             imgSrc: function() {
-                return this.baseRoute + '/images/heart_' + (this.isLiked ? 'red' : 'white') + '.svg'
+                return this.baseRoute + '/images/heart_' + (this.liked ? 'red' : 'white') + '.svg'
             }
         },
         methods: {
             updateFavorite: function() {
-                if(this.isLiked) {
+                if(this.liked) {
                     axios.delete(this.favoriteRoute + "/" + this.menuId).then(res => {
                         console.log(res.data)
                         if(res.data.status == 200) {
-                            this.isLiked = !this.isLiked
+                            this.liked = !this.liked
                         }
                     })
                 } else {
-                    var req = { 'menu_id': this.menuId }
-                    axios.post(this.favoriteRoute, req).then(res => {
+                    axios.post(this.favoriteRoute + "/" + this.menuId).then(res => {
                         console.log(res.data)
                         if(res.data.status == 200) {
-                            this.isLiked = !this.isLiked
+                            this.liked = !this.liked
                         }
                     })
                 }
