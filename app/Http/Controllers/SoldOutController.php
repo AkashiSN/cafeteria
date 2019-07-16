@@ -14,7 +14,6 @@
 
 namespace App\Http\Controllers;
 
-use Log;
 use App\Models\SoldOut;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,6 +33,36 @@ use Illuminate\Support\Facades\Auth;
 class SoldOutController extends Controller
 {
     /**
+     * 売り切れ情報をjson形式で返します。
+     *
+     * @param int $menu_id メニューID
+     *
+     * @return string json形式のステータス
+     */
+    public function show($menu_id)
+    {
+        $sold_out = SoldOut::where('menu_id', $menu_id) -> first();
+        if ($sold_out === null) {
+            $status = 500;
+            return response() -> json(
+                [
+                    'status' => $status,
+                    'errors' => 'Menu does not exist'
+                ],
+                $status
+            );
+        }
+
+        $status = 200;
+        return response() -> json(
+            [
+            'sold_out' => $sold_out -> sold_out,
+            ],
+            $status
+        );
+    }
+
+    /**
      * 売り切れ情報を更新します。
      *
      * @param Request $request APIリクエスト
@@ -41,10 +70,10 @@ class SoldOutController extends Controller
      *
      * @return string json形式のステータス
      */
-    public function store(Request $request, $menu_id)
+    public function update(Request $request, $menu_id)
     {
         $sold_out = SoldOut::where('menu_id', $menu_id) -> first();
-        if (!$sold_out -> exists) {
+        if ($sold_out === null) {
             $status = 500;
             return response() -> json(
                 [

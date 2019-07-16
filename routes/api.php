@@ -12,9 +12,8 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use App\Models\Menu;
-use App\Models\SoldOut;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +26,7 @@ use App\Models\SoldOut;
 |
 */
 
+// auth
 Route::middleware('auth:api') -> get(
     '/user',
     function (Request $request) {
@@ -34,17 +34,42 @@ Route::middleware('auth:api') -> get(
     }
 );
 
-Route::post(
-    '/menus/{menu_id}/sold_out',
-    'SoldOutController@store'
-) -> name('menus.sold_out.store');
 
-Route::get(
-    '/menus/{menu_id}/images',
-    'ReviewController@getImages'
-) -> name('menus.images');
+// Favorites
+Route::prefix('favorites') -> group(
+    function () {
+        Route::post(
+            '{menu_id}',
+            'FavoriteController@store'
+        ) -> name('favorites.store');
 
-Route::get(
-    '/menus/{menu_id}/reviews/{review_id}/images',
-    'ReviewController@getReviewImages'
-) -> name('menus.reviews.images');
+        Route::delete(
+            '{menu_id}',
+            'FavoriteController@destroy'
+        ) -> name('favorites.destroy');
+    }
+);
+
+// Menus
+Route::prefix('menus') -> group(
+    function () {
+        // sold_out
+        Route::put(
+            '{menu_id}/sold_out',
+            'SoldOutController@update'
+        ) -> name('menus.sold_out.update');
+
+
+        // review images
+        Route::get(
+            '{menu_id}/images',
+            'ReviewController@getImages'
+        ) -> name('menus.images');
+
+        Route::get(
+            '{menu_id}/reviews/{review_id}/images',
+            'ReviewController@getReviewImages'
+        ) -> name('menus.reviews.images');
+    }
+);
+

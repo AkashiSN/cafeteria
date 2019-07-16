@@ -41,8 +41,9 @@ class FavoritesTable extends Migration
             function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('user_id')->unsigned();
-                $table->foreign('user_id')->references('user_id')->on('users');
-                $table->integer('favorite_menu_id');
+                $table->foreign('user_id')->references('id')->on('users');
+                $table->integer('menu_id')->unsigned();
+                $table->foreign('menu_id')->references('id')->on('menus');
                 $table->timestamps();
             }
         );

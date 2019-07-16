@@ -11,10 +11,10 @@
 </ul>
 
 <div class="container mt-10 ph-70">
-    <div v-if="tabContent === '1'">
+    <div class="tab-content" v-bind:class="{ active: tabContent === '1' }">
         @include('menus._daily')
     </div>
-    <div v-else-if="tabContent === '2'">
+    <div class="tab-content" v-bind:class="{ active: tabContent === '2' }">
         @include('menus._permanent')
     </div>
 </div>

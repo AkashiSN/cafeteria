@@ -12,42 +12,92 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
 
+// Admin
+Route::namespace('Admin') -> prefix('admin') -> group(
+    function () {
+        Route::get('create', 'MenuController@create');
+        Route::post('store', 'MenuController@store');
+        Route::get('set_menu', 'MenuController@setMenu');
+    }
+);
+
+
+// Index
 Route::get(
     '/',
-    'MenuController@home'
+    'MenuController@index'
 ) -> name('home');
 
-Route::get(
-    '/menus/{menu_id}',
-    'MenuDetailController@menuDetail'
-) -> name('menus.detail');
 
-Route::get(
-    '/menus/{menu_id}/reviews',
-    'ReviewController@index'
-) -> name('menus.reviews.index');
+// Menus
+Route::prefix('menus') -> group(
+    function () {
+        // menus
+        Route::get(
+            '{menu_id}',
+            'MenuController@show'
+        ) -> name('menus.show');
 
-Route::get(
-    '/menus/{menu_id}/reviews/create',
-    'ReviewController@create'
-) -> name('menus.reviews.create');
+        // reviews
+        Route::get(
+            '{menu_id}/reviews',
+            'ReviewController@index'
+        ) -> name('menus.reviews.index');
 
-Route::post(
-    '/menus/{menu_id}/reviews',
-    'ReviewController@store'
-) -> name('menus.reviews.store');
+        Route::get(
+            '{menu_id}/reviews/create',
+            'ReviewController@create'
+        ) -> name('menus.reviews.create');
 
-Route::get(
-    '/auth/google',
-    'Auth\OAuthLoginController@getGoogleAuth'
-) -> name('login');
+        Route::post(
+            '{menu_id}/reviews',
+            'ReviewController@store'
+        ) -> name('menus.reviews.store');
+    }
+);
 
-Route::get(
-    '/auth/callback/google',
-    'Auth\OAuthLoginController@authGoogleCallback'
+// my page
+Route::prefix('my_page') -> group(
+    function () {
+        Route::get(
+            '',
+            'UserController@show'
+        ) -> name('my_page');
+
+        Route::get(
+            'favorites',
+            'UserController@favorites'
+        ) -> name('my_page.favorites');
+
+        Route::get(
+            'reviews',
+            'UserController@reviews'
+        ) -> name('my_page.reviews');
+    }
+);
+
+
+// Auth
+Route::prefix('auth') -> group(
+    function () {
+        // login
+        Route::get(
+            'google',
+            'Auth\OAuthLoginController@getGoogleAuth'
+        ) -> name('login');
+
+        Route::get(
+            'callback/google',
+            'Auth\OAuthLoginController@authGoogleCallback'
+        );
+
+        // logout
+        Route::get(
+            'logout',
+            'Auth\OAuthLoginController@getLogout'
+        ) -> name('logout');
+    }
 );

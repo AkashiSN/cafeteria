@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-4">
         <select class="custom-select custom-select-sm mv-3" v-model="activeContent">
-            @foreach($select_options as $index => $option)
+            @foreach($options as $index => $option)
             <option value="{{ $index }}">
                 {{ $option }}
             </option>
@@ -12,14 +12,14 @@
 
 <div class="container ph-5">
 @foreach($daily_schedule as $index => $weekly_list)
-    <div v-if="activeContent === '{{ $index }}'">
+    <div class="select-content" v-bind:class="{ active: activeContent === '{{ $index }}' }">
         @foreach($weekly_list as $menus)
             @foreach($menus as $date => $todays_menu)
                 <p class="mt-3">{{ $date }}</p>
                 <div class="container mt-20 ph-65">
                     @foreach ($todays_menu as $menu)
                         <p class="text-justify text-muted">{{ $menu['description'] }}</p>
-                        <menu-card :menu="{{ $menu['menu'] }}" :valid_sold_button="true" :route="'{{ route('menus.detail', ['menu_id' => $menu['menu']->id]) }}'" :sold_out_api_url="'{{ route('menus.sold_out.store', ['menu_id' => $menu['menu']->id]) }}'" :image_api_url="'{{ route('menus.images', ['menu_id' => $menu['menu']->id]) }}'" />
+                        <menu-card :menu="{{ $menu['menu'] }}" :base-route="'{{ url("") }}'" :is-liked="{{ $menu['menu'] -> isLiked() ? 'true' : 'false' }}" />
                     @endforeach
                 </div>
             @endforeach

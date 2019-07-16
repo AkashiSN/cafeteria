@@ -6,9 +6,7 @@
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
                 <div class="col-2">
-                    <button type="button" v-on:click.stop="updateFavorite()" class="btn" v-bind:class="{ 'btn-danger': isLiked }">
-                        はぁと
-                    </button>
+                    <favorite-button :menu-id="menu.id" :base-route="this.baseRoute" :is-liked="isLiked" />
                 </div>
             </div>
 
@@ -22,7 +20,7 @@
             </div>
 
             <div class="row row-scrollable mt-2">
-                <div class="col-auto" v-for='(url, index) in url_list' :key='index'>
+                <div class="col-auto" v-for='(url, index) in urlList' :key='index'>
                     <img :src="url" height="140" >
                 </div>
             </div>
@@ -42,10 +40,8 @@
                         <div class="col-2 card-text">{{ menu.salt }} g</div>
                     </div>
                 </div>
-                <div v-if="valid_sold_button" class="col-2">
-                    <button type="button" v-on:click.stop="updateIsSold()" class="btn" v-bind:class="[soldOut ? 'btn-danger' : 'btn-success']">
-                        {{ soldOut ? '売り切れ' : '提供中' }}
-                    </button>
+                <div v-if="validSoldButton" class="col-2">
+                    <sold-out-button :menu-id="menu.id" :base-route="this.baseRoute" :sold-out="menu.sold_out" />
                 </div>
             </div>
         </div>
@@ -59,49 +55,39 @@
                 type: Object,
                 required: true
             },
-            valid_sold_button: {
+            isLiked: {
+                type: Boolean,
+                required: true
+            },
+            validSoldButton: {
                 type: Boolean,
                 default: true
             },
-            route: {
-                type: String,
-                required: true
-            },
-            sold_out_api_url: {
-                type: String,
-                required: true
-            },
-            image_api_url: {
+            baseRoute: {
                 type: String,
                 required: true
             }
         },
         data: function() {
             return {
-                // for now
-                soldOut: this.menu.sold_out,
-                isLiked: true,
-                url_list: []
+                menuRoute: this.baseRoute + '/menus/' + this.menu.id,
+                imageRoute: this.baseRoute +  '/api/menus/' + this.menu.id + '/images',
+                urlList: []
             }
         },
         methods: {
-            updateIsSold: function() {
-                this.soldOut = !this.soldOut
-                var req = { 'sold_out': this.soldOut }
-                axios.post(this.sold_out_api_url, req).then(res => {
-                    console.log(res)
-                })
-            },
             updateFavorite: function() {
                 this.isLiked = !this.isLiked
             },
             jump: function() {
-                location.href = this.route
+                location.href = this.menuRoute
             }
         },
         mounted () {
-            axios.get(this.image_api_url).then(res => {
-                this.url_list = res.data.url_list
+            axios.get(this.imageRoute).then(res => {
+                if(res.data.status == 200) {
+                    this.urlList = res.data.url_list
+                }
             })
         }
     }

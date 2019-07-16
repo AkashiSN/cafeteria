@@ -1,3 +1,5 @@
+## Vagrant
+
 .PHONY: init-vagrant
 init-vagrant:
 	vagrant ssh -- "rm -rf cafeteria/vendor"
@@ -37,6 +39,13 @@ repl-vagrant:
 cache-clear-vagrant:
 	vagrant ssh -- "cd /cafeteria && php artisan config:cache"
 
+.PHONY: dump-autoload-vagrant
+dump-autoload-vagrant:
+	vagrant ssh -- "cd /cafeteria && composer dump-autoload"
+
+
+## Local
+
 .PHONY: init
 init: yarn build-sass composer
 	cp .env.example .env
@@ -75,6 +84,13 @@ repl:
 cache-clear:
 	php artisan config:cache
 
+.PHONY: dump-autoload
+dump-autoload:
+	composer dump-autoload
+
+
+## Deploy
+
 .PHONY: deploy
 deploy:
 	ssh radish -- "rm -rf public_html"
@@ -83,8 +99,6 @@ deploy:
 	ssh radish -- "git clone git@github.com:AkashiSN/cafeteria.git"
 
 	ssh radish -- "ln -s cafeteria/public public_html"
-	ssh radish -- "sed -i -e '164,165d' cafeteria/config/app.php"
-	ssh radish -- "sed -i -e '206d' cafeteria/config/app.php"
 	ssh radish -- "cp cafeteria/.env.example cafeteria/.env"
 	ssh radish -- "chmod -R 777 cafeteria/public"
 	ssh radish -- "chmod -R 777 cafeteria/storage"
