@@ -69,7 +69,7 @@ Route::prefix('my_page') -> group(
 
         Route::get(
             'favorites',
-            'UserController@favorite'
+            'UserController@favorites'
         ) -> name('my_page.favorites');
 
         Route::get(

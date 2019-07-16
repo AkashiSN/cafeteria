@@ -14,7 +14,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * User class
@@ -27,9 +27,11 @@ use Illuminate\Database\Eloquent\Model;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class User extends Model
+class User extends Authenticatable
 {
-    protected $fillable = ['name'];
+    protected $fillable = [
+        "name", "email"
+    ];
     protected $table = 'users';
 
     /**
