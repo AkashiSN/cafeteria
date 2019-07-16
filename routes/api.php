@@ -12,9 +12,13 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\SoldOut;
+
+Auth::routes();
 
 /*
 |--------------------------------------------------------------------------
@@ -35,17 +39,21 @@ Route::middleware('auth:api') -> get(
     }
 );
 
+// auth
+Route::middleware('auth:api') -> group(
+    function () {
+        // favorites
+        Route::post(
+            '/favorites',
+            'FavoriteController@store'
+        ) -> name('favorites.store');
 
-// favorites
-Route::post(
-    '/favorites',
-    'FavoriteController@store'
-) -> name('favorites.store');
-
-Route::delete(
-    '/favorites/{menu_id}',
-    'FavoriteController@destroy'
-) -> name('favorites.destroy');
+        Route::delete(
+            '/favorites/{menu_id}',
+            'FavoriteController@destroy'
+        ) -> name('favorites.destroy');
+    }
+);
 
 
 // sold_out

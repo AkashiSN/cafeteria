@@ -56,6 +56,9 @@ class OAuthLoginController extends Controller
             $user['email'] = $googleUser -> email;
             $user -> save();
         }
+        $user['api_token'] = str_random(60);
+        $user -> save();
+
         Auth::login($user);
 
         return redirect()->route('home');

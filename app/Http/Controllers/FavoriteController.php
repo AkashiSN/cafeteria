@@ -52,7 +52,7 @@ class FavoriteController extends Controller
             );
         }
 
-        $user_id = Auth::user() -> user_id;
+        $user_id = Auth::user() -> id;
         $menu_id = $request -> menu_id;
 
         if (!Menu::where('id', $menu_id) -> exists()) {
@@ -101,7 +101,7 @@ class FavoriteController extends Controller
             );
         }
 
-        $user_id = Auth::user() -> user_id;
+        $user_id = Auth::user() -> id;
         $favorites = Favorite::where(
             'menu_id',
             $menu_id

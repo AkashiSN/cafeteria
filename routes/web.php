@@ -52,6 +52,7 @@ Route::post(
     'ReviewController@store'
 ) -> name('menus.reviews.store');
 
+
 // my page
 Route::get(
     '/my_page',
