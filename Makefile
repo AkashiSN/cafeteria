@@ -1,3 +1,5 @@
+## Vagrant
+
 .PHONY: init-vagrant
 init-vagrant:
 	vagrant ssh -- "rm -rf cafeteria/vendor"
@@ -37,6 +39,13 @@ repl-vagrant:
 cache-clear-vagrant:
 	vagrant ssh -- "cd /cafeteria && php artisan config:cache"
 
+.PHONY: dump-autoload-vagrant
+dump-autoload-vagrant:
+	vagrant ssh -- "cd /cafeteria && composer dump-autoload"
+
+
+## Local
+
 .PHONY: init
 init: yarn build-sass composer
 	cp .env.example .env
@@ -74,6 +83,13 @@ repl:
 .PHONY: cache-clear
 cache-clear:
 	php artisan config:cache
+
+.PHONY: dump-autoload
+dump-autoload:
+	composer dump-autoload
+
+
+## Deploy
 
 .PHONY: deploy
 deploy:
