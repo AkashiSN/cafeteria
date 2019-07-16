@@ -13,11 +13,9 @@
         "doctrine/dbal": "~2.5",
         "fideloper/proxy": "~4.1",
         "laravel/framework": "~5.5",
-        "laravel/passport": "4.0.*",
         "laravel/socialite": "~3.3",
         "laravel/tinker": "~1.0",
-        "laravelcollective/html": "^5.5",
-        "paragonie/random_compat": "2.*"
+        "laravelcollective/html": "^5.5"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
