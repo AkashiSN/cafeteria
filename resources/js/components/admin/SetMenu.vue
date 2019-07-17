@@ -9,7 +9,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(menus, date) in weeklyList">
+                <tr v-for="(menus, date) in weeklyList" :key="date">
                     <th scope="col">{{ date }}</th>
                     <td scope="col" @click="$emit('open', menus[0])">{{ menus[0] ? menus[0].item_name : emptyText }}</td>
                     <td scope="col" @click="$emit('open', menus[1])">{{ menus[1] ? menus[1].item_name : emptyText }}</td>

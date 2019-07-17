@@ -44,19 +44,28 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('admin.menus.create', ['menu' => new Menu(), 'descriptions' => Menu::$descriptions]);
+        return view(
+            'admin.menus.create',
+            [
+                'menu' => new Menu(),
+                'descriptions' => Menu::$descriptions
+            ]
+        );
     }
 
     /**
      * メニューを作成する。
+     *
+     * @param Request $request リクエスト
      *
      * @return Renderable
      */
     public function store(Request $request)
     {
         if (!Auth::check()) {
-            return redirect() -> route('home')
-                              -> with(['message' => 'authocation']);
+            return redirect()
+                -> route('home')
+                -> with(['message' => 'authocation']);
         }
 
         Menu::create(
@@ -78,6 +87,8 @@ class MenuController extends Controller
 
     /**
      * 日替わりメニューを設定する。
+     *
+     * @param Usecase $usecase ユースケース
      *
      * @return Renderable
      */

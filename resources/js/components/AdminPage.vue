@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-4">
                 <select class="custom-select custom-select-sm mv-3" v-model="activeContent">
-                    <option v-for="(option, index) in options" v-bind:value="index">
+                    <option v-for="(option, index) in options" :key="index" v-bind:value="index">
                     {{ option }}
                     </option>
                 </select>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="container ph-5">
-            <div v-for="(weeklyList, index) in menuTable">
+            <div v-for="(weeklyList, index) in menuTable" :key="index">
                 <div class="select-content" v-bind:class="{ active: activeContent === index }">
                     <set-menu :weekly-list="weeklyList" v-on:open="openModal" />
                 </div>
