@@ -58,6 +58,11 @@ Route::prefix('menus') -> group(
             'ReviewController@index'
         ) -> name('menus.reviews.index');
 
+        Route::post(
+            '{menu_id}/reviews',
+            'ReviewController@store'
+        ) -> name('menus.reviews.store');
+
         Route::get(
             '{menu_id}/reviews/create',
             'ReviewController@create'

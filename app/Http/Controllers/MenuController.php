@@ -36,6 +36,8 @@ class MenuController extends Controller
     /**
      * メニューリストを表示する。
      *
+     * @param Usecase $usecase ユースケース
+     *
      * @return Renderable
      */
     public function index(Usecase $usecase)
@@ -64,6 +66,14 @@ class MenuController extends Controller
             -> leftJoin('users', 'reviews.user_id', '=', 'users.id')
             -> get();
 
-        return view('menus.show', compact('menu', 'reviews_list'));
+        $evaluation = 0;
+        foreach ($reviews_list as $review) {
+            $evaluation += $review -> evaluation;
+        }
+        $average_evaluation = ($evaluation / count($reviews_list)) * 20;
+        return view(
+            'menus.show',
+            compact('menu', 'reviews_list', 'average_evaluation')
+        );
     }
 }

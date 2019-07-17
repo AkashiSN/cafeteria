@@ -24,6 +24,7 @@
                 <div class="col-auto">
                     <p class="text-justify text-mute font-weight-bold">¥{{ $menu -> price }}</p>
                 </div>
+                <span class="evaluation" style="--rate:{{ $average_evaluation }}%"></span><br/>
                 <div class="col-auto">
                     お星様
                 </div>
