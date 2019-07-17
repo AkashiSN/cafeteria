@@ -44,7 +44,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('admin.menus.create');
+        return view('admin.menus.create', ['menu' => new Menu(), 'descriptions' => Menu::descriptions]);
     }
 
     /**
@@ -54,6 +54,24 @@ class MenuController extends Controller
      */
     public function store()
     {
+        if (!Auth::check()) {
+            return redirect() -> route('home')
+                              -> with(['message' => 'authocation']);
+        }
+
+        Menu::create([
+            'id'        => Menu::max('id') + 1,
+            'item_name' => $request -> input('name'),
+            'category'  => $request -> input('select'),
+            'price'     => $request -> input('price'),
+            'energy'    => $request -> input('energy'),
+            'protein'   => $request -> input('protein'),
+            'lipid'     => $request -> input('lipid'),
+            'salt'      => $request -> input('salt'),
+            'alias'     => 0
+        ]);
+
+        return redirect() -> route('admin.menus.create');
     }
 
     /**

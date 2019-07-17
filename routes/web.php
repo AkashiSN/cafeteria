@@ -21,37 +21,17 @@ Route::namespace('Admin') -> prefix('admin') -> group(
         Route::get(
             'create',
             'MenuController@create'
-        );
+        ) -> name('admin.menus.create');
 
         Route::post(
             'store',
             'MenuController@store'
-        );
+        ) -> name('admin.menus.store');
 
         Route::get(
             'set_menu',
             'MenuController@setMenu'
-        );
-
-        Route::get(
-            'register',
-            'MenuRegisterController@menuregister'
-        ) -> name('menus.register');
-
-        Route::get(
-            'menus/menuregister',
-            'MenuEditController@menuregister'
-        ) -> name('menuregister');
-
-        Route::get(
-            'menus/menuset',
-            'MenuEditController@menuset'
-        ) -> name('menuset');
-
-        Route::post(
-            'menus/menuconfirm',
-            'MenuEditController@confirm'
-        ) -> name('confirm');
+        ) -> name('admin.menus.set_menu');
     }
 );
 

@@ -159,8 +159,7 @@ class ReviewController extends Controller
             ) -> with(['message' => 'authocation']);
         }
 
-        $menu = Menu::where('id', $menu_id) -> first();
-        if ($menu === null) {
+        if (!Menu::where('id', $menu_id) -> exists()) {
             return redirect() -> route('home');
         }
 

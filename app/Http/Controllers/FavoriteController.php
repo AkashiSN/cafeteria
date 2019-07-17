@@ -42,7 +42,7 @@ class FavoriteController extends Controller
      */
     public function store(Request $request, $menu_id)
     {
-        $user = $request->user('api');
+        $user = $request -> user('api');
         if (!$user) {
             return response() -> json(
                 [
