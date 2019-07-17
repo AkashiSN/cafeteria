@@ -18,9 +18,9 @@ use Illuminate\Database\Eloquent\Model;
 
 
 /**
- * Review class
+ *  Setting class
  *
- * レビュー画像のモデルです。
+ * 設定情報のモデルです。
  *
  * @category Model
  * @package  Model
