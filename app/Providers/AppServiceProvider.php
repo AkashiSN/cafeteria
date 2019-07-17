@@ -15,6 +15,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use App\Models\DailyMenu;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -49,5 +50,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $setting = Setting::pluck('value', 'key');
         config(['setting' => $setting]);
+
+        $date = date('Y-m-d');
+        $daily_menu = DailyMenu::where('date', '>=', $date) -> first();
+        if ($daily_menu !== null) {
+            $ramen = $daily_menu -> ramen;
+            config(['setting.ramen' => $ramen]);
+        }
     }
 }

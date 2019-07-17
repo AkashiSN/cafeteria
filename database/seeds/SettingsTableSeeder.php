@@ -38,13 +38,7 @@ class SettingsTableSeeder extends Seeder
         Setting::create(
             array(
                 'key' => 'summer_menu',
-                'value' => 'false'
-            )
-        );
-        Setting::create(
-            array(
-                'key' => 'ramen',
-                'value' => '4'
+                'value' => 'true'
             )
         );
     }
