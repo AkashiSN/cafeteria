@@ -40,7 +40,7 @@ class DateUsecase
      *
      * @return [[1st Mon, ..., 1st Fri], [2nd Mon, ..., 2nd Fri], ...]
      */
-    public function thisWeekdays()
+    public static function thisWeekdays()
     {
         $datetime = new DateTime();
         $year  = (int)$datetime -> format('Y');

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * DatabaseSeeder.php
+ * SettingsTableSeeder.php
  *
  * PHP Version = 7.0
  *
@@ -12,12 +12,13 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
+use App\Models\Setting;
 use Illuminate\Database\Seeder;
 
 /**
- * DatabaseSeeder class
+ * SettingsTableSeeder class
  *
- * データの初期挿入を行います。
+ * 設定情報の初期データを挿入します。
  *
  * @category Seeder
  * @package  Seeder
@@ -25,20 +26,20 @@ use Illuminate\Database\Seeder;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class DatabaseSeeder extends Seeder
+class SettingsTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(SettingsTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(MenuTableSeeder::class);
-        $this->call(DailyMenuTableSeeder::class);
-        $this->call(ReviewsTableSeeder::class);
-        $this->call(FavoritesTableSeeder::class);
+        Setting::create(
+            array(
+                'key' => 'summer_menu',
+                'value' => 'true'
+            )
+        );
     }
 }
