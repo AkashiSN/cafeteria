@@ -66,11 +66,16 @@ class MenuController extends Controller
             -> leftJoin('users', 'reviews.user_id', '=', 'users.id')
             -> get();
 
-        $evaluation = 0;
-        foreach ($reviews_list as $review) {
-            $evaluation += $review -> evaluation;
+        if (count($reviews_list) > 0) {
+            $evaluation = 0;
+            foreach ($reviews_list as $review) {
+                $evaluation += $review -> evaluation;
+            }
+            $average_evaluation = ($evaluation / count($reviews_list)) * 20;
+        } else {
+            $average_evaluation = 0;
         }
-        $average_evaluation = ($evaluation / count($reviews_list)) * 20;
+
         return view(
             'menus.show',
             compact('menu', 'reviews_list', 'average_evaluation')
