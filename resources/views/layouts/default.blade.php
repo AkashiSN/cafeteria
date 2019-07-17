@@ -39,8 +39,7 @@
                 <li class="dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::getUser()->name }}<span class="caret"></span></a>
                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
+                        <a class="dropdown-item" href="{{ route('logout') }}" >{{ __('Logout') }}</a>
                     </div>
                 </li>
                 @else
@@ -66,5 +65,10 @@
 </footer>
 
 </body>
+<script>
+    window.Laravel = {!! json_encode([
+        'apiToken' => \Auth::user()->api_token ?? null
+    ]) !!};
+</script>
 <script src="{{ asset('js/app.js') }}"></script>
 </html>

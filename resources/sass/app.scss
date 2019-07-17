@@ -12,6 +12,19 @@
     background-color: #F0AD4E;
 }
 
+.select-content {
+    display: none;
+}
+.select-content.active {
+    display: block;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+
 .menu {
     position: relative;
     a {
@@ -107,3 +120,11 @@ form {
     }
 }
 
+.heart {
+    width: 80%;
+    display: inline-block;
+}
+
+SVG {
+    background: none;
+}
