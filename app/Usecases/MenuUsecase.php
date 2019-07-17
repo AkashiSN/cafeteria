@@ -82,29 +82,39 @@ class MenuUsecase extends DateUsecase
      */
     public function getPermanent()
     {
-        $summer = true;
+        $summer_menu =config('setting.summer_menu');
 
-        $permanent_menus = Menu::getWithStatuses()
-            -> where('category', 'permanent_menu')
-            -> where('alias', 0)
-            -> get();
+        if ($summer_menu === 'true') {
+            $permanent_menus = Menu::getWithStatuses()
+                -> where('category', 'permanent_menu')
+                -> where('alias', 0)
+                -> get();
 
-        $menu_list[] = array(
-            'menus' => $permanent_menus,
-            'description' => Menu::$descriptions['permanent_menu']
-        );
+            $menu_list[] = array(
+                'menus' => $permanent_menus,
+                'description' => Menu::$descriptions['permanent_menu']
+            );
+
+            $menu_list[] = array(
+                'menus' => Menu::getWithStatuses()
+                    -> where('category', 'summer_menu')
+                    -> get(),
+                'description' => Menu::$descriptions['summer_menu']
+            );
+        } else {
+            $permanent_menus = Menu::getWithStatuses()
+                -> where('category', 'permanent_menu')
+                -> get();
+
+            $menu_list[] = array(
+                'menus' => $permanent_menus,
+                'description' => Menu::$descriptions['permanent_menu']
+            );
+        }
 
         $menu_list[] = array(
             'menus' => Menu::getWithStatuses()
-                -> where('category', 'summer_menu')
-                -> get(),
-            'description' => Menu::$descriptions['summer_menu']
-        );
-
-        $today_menu = DailyMenu::where('date', date('Y-m-d')) -> first();
-        $menu_list[] = array(
-            'menus' => Menu::getWithStatuses()
-                -> where('menus.id', $today_menu -> ramen)
+                -> where('menus.id', (int)config('setting.ramen'))
                 -> get(),
             'description' => Menu::$descriptions['ramen']
         );
