@@ -35,7 +35,7 @@ class Menu extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        "item_name", "category", "price", "energy", "protein", "lipid", "salt", "alias"
+        "id", "item_name", "category", "price", "energy", "protein", "lipid", "salt", "alias"
     ];
 
     static public $descriptions = [

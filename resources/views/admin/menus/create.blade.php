@@ -1,72 +1,85 @@
 @extends('layouts.default')
 
 @section('content')
-    <a href="{{ route('menuset') }}">メニューセット</a>
+<a href="{{ route('admin.menus.set_menu') }}">メニューセット</a>
 
+<div class="container mt-10">
     {{ Form::model($menu, ['route' => 'admin.menus.store', 'class' => 'form-horizontal']) }}
 
     <div class="form-group">
-        <label for="ItemName">メニュー名</label>
+        {{ Form::label('item_name', 'メニュー名') }}
         {{ Form::text('item_name', '', ['class' => 'form-control',  'placeholder' => 'メニュー名を入力してください']) }}
     </div>
 
-    <label for="Price">価格</label>
-    <div class="row">
-        <div class="col-11">
-            {{ Form::text('price', '', ['class' => 'form-control',  'placeholder' => '100']) }}
-        </div>
-        <div class="col-1">
-            円
-        </div>
-    </div>
-
-    <div class="form-group mt-1">
-        <label for="Category">メニューの種類</label>
-        {{Form::select('select', $categories, null, ['class' => 'form-control'])}}
-    </div>
-
-    <label for="Ingredients mb-8">栄養素表示</label>
-    <div class="row mt-2">
-        <label for="Energy" class="mt-2">エネルギー</label>
-        <div class="col-9">
-            {{ Form::text('energy', '', ['class' => 'form-control',  'placeholder' => '100']) }}
-        </div>
-        <div class="col-1">
-            kcal
+    <div class="form-group">
+        {{ Form::label('price', '価格') }}
+        <div class="row">
+            <div class="col-11">
+                {{ Form::text('price', '', ['class' => 'form-control',  'placeholder' => '100']) }}
+            </div>
+            <div class="col-1">
+                円
+            </div>
         </div>
     </div>
 
-    <div class="row mt-2">
-        <label for="Protein" class="mt-2">たんぱく質</label>
-        <div class="col-9">
-            {{ Form::text('protein', '', ['class' => 'form-control',  'placeholder' => '100.0']) }}
-        </div>
-        <div class="col-1">
-            g
+    <div class="form-group">
+        {{ Form::label('category', 'メニューの種類') }}
+        {{ Form::select('category', $descriptions, null, ['class' => 'form-control']) }}
+    </div>
+
+    <h3>栄養素表示</h3>
+
+    <div class="form-group">
+        <div class="row mt-2">
+            {{ Form::label('energy', 'エネルギー', ['class' => 'col-2']) }}
+            <div class="col-9">
+                {{ Form::text('energy', '', ['class' => 'form-control',  'placeholder' => '100']) }}
+            </div>
+            <div class="col-1">
+                kcal
+            </div>
         </div>
     </div>
 
-    <div class="row mt-2">
-        <label for="Lipid" class="mt-2">脂質</label>
-        <div class="col-9">
-            {{ Form::text('lipid', '', ['class' => 'form-control',  'placeholder' => '100.0']) }}
-        </div>
-        <div class="col-1">
-            g
-        </div>
-    </div>
-
-    <div class="row mt-2">
-        <label for="Salt" class="mt-2">塩分</label>
-        <div class="col-9">
-            {{ Form::text('salt', '', ['class' => 'form-control',  'placeholder' => '100.0']) }}
-        </div>
-        <div class="col-1">
-            g
+    <div class="form-group">
+        <div class="row mt-2">
+            {{ Form::label('protein', 'たんぱく質', ['class' => 'col-2']) }}
+            <div class="col-9">
+                {{ Form::text('protein', '', ['class' => 'form-control',  'placeholder' => '100.0']) }}
+            </div>
+            <div class="col-1">
+                g
+            </div>
         </div>
     </div>
 
-    {{Form::submit('', ['class' => 'btn btn-primary btn-lg btn-block mt-5'])}}
+    <div class="form-group">
+        <div class="row mt-2">
+            {{ Form::label('lipid', '脂質', ['class' => 'col-2']) }}
+            <div class="col-9">
+                {{ Form::text('lipid', '', ['class' => 'form-control',  'placeholder' => '100.0']) }}
+            </div>
+            <div class="col-1">
+                g
+            </div>
+        </div>
+    </div>
 
-    {{Form::close()}}
+    <div class="form-group">
+        <div class="row mt-2">
+            {{ Form::label('salt', '塩分', ['class' => 'col-2']) }}
+            <div class="col-9">
+                {{ Form::text('salt', '', ['class' => 'form-control',  'placeholder' => '100.0']) }}
+            </div>
+            <div class="col-1">
+                g
+            </div>
+        </div>
+    </div>
+
+    {{ Form::submit('登録', ['class' => 'btn btn-primary btn-lg btn-block mt-5']) }}
+
+    {{ Form::close() }}
+</div>
 @endsection
