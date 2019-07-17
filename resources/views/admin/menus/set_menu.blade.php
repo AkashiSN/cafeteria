@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<a href="{{ route('admin.menus.set_menu') }}">メニューセット</a>
+<a href="{{ route('admin.menus.create') }}">メニュー登録</a>
 
-<admin-page :menu-table="{{ json_encode($menu_table) }}" :options="{{ json_encode($options) }}" />
+<admin-page :menu-tables="{{ json_encode($menu_table) }}" :options="{{ json_encode($options) }}" />
 @endsection

@@ -73,3 +73,7 @@ Route::prefix('menus') -> group(
     }
 );
 
+Route::get(
+    '/search',
+    'SearchController@search'
+);

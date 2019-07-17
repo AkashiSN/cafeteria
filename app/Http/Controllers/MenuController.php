@@ -81,4 +81,8 @@ class MenuController extends Controller
             compact('menu', 'reviews_list', 'average_evaluation')
         );
     }
+
+    public function search(Request $request) {
+
+    }
 }

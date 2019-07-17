@@ -11,21 +11,21 @@
         </div>
 
         <div class="container ph-5">
-            <div v-for="(weeklyList, index) in menuTable">
+            <div v-for="(weeklyList, index) in tables">
                 <div class="select-content" v-bind:class="{ active: activeContent === index }">
-                    <set-menu :weekly-list="weeklyList" v-on:open="openModal" />
+                    <set-menu :weekly-list="weeklyList" :table-index="index" v-on:open="openModal" />
                 </div>
             </div>
         </div>
 
-        <set-menu-modal v-if="modalAvailable" v-on:close="closeModal" v-model="selectedMenu"/>
+        <set-menu-modal v-if="modalAvailable" :menu="selectedMenu" :title="selectedDate" v-on:update="updateMenu" v-on:delete="deleteMenu" v-on:close="closeModal" />
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        menuTable: {
+        menuTables: {
             type: Array,
             required: true
         },
@@ -37,27 +37,29 @@ export default {
     data() {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            tables: this.menuTables,
             modalAvailable: false,
-            selectedMenu: {},
             activeContent: 0
         }
     },
     methods: {
-        openModal(menu) {
+        openModal(menu, date, Index) {
             this.selectedMenu = menu
+            this.selectedDate = date
+            this.selectedIndex = Index
+
             this.modalAvailable = true
         },
         closeModal() {
             this.modalAvailable = false
         },
-        doSend() {
-            if (this.message.length > 0) {
-                alert(this.message)
-                this.message = ''
-                this.closeModal()
-            } else {
-                alert('メッセージを入力してください')
-            }
+        deleteMenu() {
+            this.closeModal()
+        },
+        updateMenu(newMenu) {
+            var table = this.tables[this.selectedIndex]
+            table[this.selectedDate][this.selectedMenu.category] = newMenu
+            this.closeModal()
         }
     }
 }

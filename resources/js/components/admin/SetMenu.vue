@@ -11,8 +11,9 @@
             <tbody>
                 <tr v-for="(menus, date) in weeklyList">
                     <th scope="col">{{ date }}</th>
-                    <td scope="col" @click="$emit('open', menus[0])">{{ menus[0] ? menus[0].item_name : emptyText }}</td>
-                    <td scope="col" @click="$emit('open', menus[1])">{{ menus[1] ? menus[1].item_name : emptyText }}</td>
+                    <td v-for="(menu, category) in menus" scope="col" @click="$emit('open', menu, date, tableIndex)">
+                        {{ itemText(menu) }}
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -25,11 +26,15 @@ export default {
         weeklyList: {
             type: Object,
             required: true
+        },
+        tableIndex: {
+            type: Number,
+            required: true
         }
     },
-    data() {
-        return {
-            emptyText: '選択してください',
+    methods: {
+        itemText: function(menu) {
+            return menu ? menu.item_name : '選択してください'
         }
     }
 }

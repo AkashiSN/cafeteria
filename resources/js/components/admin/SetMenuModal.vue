@@ -4,14 +4,22 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ menu.item_name }}</h5>
+                    <h5 class="modal-title">{{ title }}</h5>
                 </div>
                 <div class="modal-body">
-                    <p>Modal body text goes hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control" v-model="searchWord">
+                    </div>
+                    <ul>
+                        <li v-for="result in results">
+                            {{ result.item_name }}
+                        </li>
+                    </ul>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="$emit('close')">Close</button>
-                    <button type="button" class="btn btn-primary" @click="update">Save changes</button>
+                    <button type="button" class="btn btn-danger" @click="$emit('delete')">Delete</button>
+                    <button type="button" class="btn btn-primary" @click="$emit('update', newMenu)">{{ saveButtonText }}</button>
                 </div>
             </div>
         </div>
@@ -21,20 +29,29 @@
 
 <script>
 export default {
-    model: {
-        prop: 'menu',
-        event: 'change'
-    },
     props: {
         menu: {
             type: Object,
             required: true
+        },
+        title: {
+            type: String,
+            required: true
+        }
+    },
+    data() {
+        return {
+            searchWord: this.menu ? this.menu.item_name : '',
+            results: [],
+            newMenu: {'item_name': 'hoge', 'id': 12, 'category': 'unti'}
+        }
+    },
+    computed: {
+        saveButtonText() {
+            return 'Change save'
         }
     },
     methods: {
-        update() {
-            console.log(this.menu)
-        }
     }
 }
 </script>
