@@ -19,7 +19,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="$emit('close')">Close</button>
                     <button type="button" class="btn btn-danger" @click="$emit('delete')">Delete</button>
-                    <button type="button" class="btn btn-primary" @click="$emit('update', newMenu)">{{ saveButtonText }}</button>
+                    <button type="button" class="btn btn-primary" @click="$emit('update', newMenu)">Save change</button>
                 </div>
             </div>
         </div>
@@ -51,9 +51,6 @@ export default {
         }
     },
     computed: {
-        saveButtonText() {
-            return 'Change save'
-        },
         title() {
             var category = this.menu.category === 'a_set_menu' ? 'Aセット' : 'Bセット'
             return this.date + ' ' + category

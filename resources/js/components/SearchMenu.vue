@@ -1,11 +1,13 @@
 <template>
     <div class="container">
-        <h2 class="text-justify text-muted mb-10">メニュー検索</h2>
+        <h2 class="text-justify mb-10">メニューを検索する</h2>
         <div class="input-group">
             <input v-on:input="searchMenu" type="text" id="input-area" class="form-control" placeholder="メニュー名を入力してください">
         </div>
-        <div v-for="menu in menus">
-            <menu-card :is-liked="false" :menu="menu" :base-route="baseRoute" :valid-sold-button="false" :valid-favorite="false" />
+        <div class="container">
+            <div v-for="menu in menus">
+                <menu-card :is-liked="false" :menu="menu" :base-route="baseRoute" :valid-sold-button="false" :valid-favorite="false" />
+            </div>
         </div>
     </div>
 </template>

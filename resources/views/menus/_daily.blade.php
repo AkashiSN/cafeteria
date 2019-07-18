@@ -16,12 +16,12 @@
         @foreach($weekly_list as $menus)
             @foreach($menus as $date => $todays_menu)
                 <p class="mt-3">{{ $date }}</p>
-                <div class="container mt-20 ph-65">
-                    @foreach ($todays_menu as $menu)
+                @foreach ($todays_menu as $menu)
+                    <div class="container mt-20 ph-65">
                         <p class="text-justify text-muted">{{ $menu['description'] }}</p>
-                        <menu-card :menu="{{ $menu['menu'] }}" :base-route="'{{ url("") }}'" :is-liked="{{ $menu['menu'] -> isLiked() ? 'true' : 'false' }}" />
-                    @endforeach
-                </div>
+                        <menu-card :menu="{{ $menu['menu'] }}" :base-route="'{{ url("") }}'" :is-liked="{{ var_export($menu['menu'] -> isLiked(), true) }}" :valid-favorite="{{ var_export(Auth::check(), true) }}" />
+                    </div>
+                @endforeach
             @endforeach
         @endforeach
     </div>
