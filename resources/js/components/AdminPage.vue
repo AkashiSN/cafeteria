@@ -65,14 +65,13 @@ export default {
                 return
             }
 
-            var route = this.baseRoute + '/api/admin/set_menu'
             var req = {
                 'menu_id': newMenu.id,
                 'category': newMenu.category,
                 'date': this.selectedDate
             }
 
-            axios.put(route, req).then(res => {
+            axios.put(this.baseRoute + '/api/admin/set_menu', req).then(res => {
                 if(res.data.status == 200) {
                     var table = this.tables[this.selectedIndex]
                     table[this.selectedDate][this.selectedMenu.category] = newMenu

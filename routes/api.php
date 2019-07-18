@@ -83,6 +83,6 @@ Route::namespace('Admin') -> prefix('admin') -> group(
 );
 
 Route::get(
-    '/menus/search',
-    'MenuController@search'
+    '/menus/filter',
+    'MenuController@filter'
 );

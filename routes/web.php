@@ -48,6 +48,11 @@ Route::prefix('menus') -> group(
     function () {
         // menus
         Route::get(
+            'search',
+            'MenuController@search'
+        ) -> name('menus.search');
+
+        Route::get(
             '{menu_id}',
             'MenuController@show'
         ) -> name('menus.show');

@@ -83,12 +83,17 @@ class MenuController extends Controller
         );
     }
 
-    public function search(Request $request) {
+    public function search() {
+        return view('menus.search');
+    }
+
+    public function filter(Request $request) {
         $item_name = $request -> item_name;
         $category = $request -> category;
 
-        $result = Menu::where('category', $category)
-            -> when(!is_null($item_name), function ($query) use ($item_name) {
+        $result = Menu::when(!is_null($category), function ($query) use ($category) {
+                return $query -> where('category', $category);
+            }) -> when(!is_null($item_name), function ($query) use ($item_name) {
                 return $query -> where('item_name', 'like', "%{$item_name}%");
             }) -> get();
 
