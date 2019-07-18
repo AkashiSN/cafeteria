@@ -24,7 +24,7 @@
                 <div class="col-auto">
                     <p class="text-justify font-weight-bold">¥{{ $menu -> price }}</p>
                 </div>
-                @if (sizeof($reviews_list) > 0)
+                @if (count($reviews_list))
                     <span class="evaluation" style="--rate:{{ $average_evaluation }}%"></span><br/>
                 @else
                     <p class="text-justify text-muted">レビューはありません</p>
@@ -62,7 +62,7 @@
         <a class="col-2" href="{{ route('menus.reviews.index', ['menu_id' => $menu -> id]) }}">もっとみる</a>
     </div>
 
-    @if (sizeof($reviews_list) > 0)
+    @if (count($reviews_list))
         @foreach ($reviews_list as $review)
             <div class="container mt-20">
                 <review-card :review="{{ json_encode($review) }}" :base-route="'{{ url("") }}'" :menu-id="'{{ $menu -> id }}'"/>

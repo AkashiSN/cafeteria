@@ -48,7 +48,8 @@ class DailyMenuController extends Controller
         $datetime = DateTime::createFromFormat('n月j日*', $request -> date);
         $daily_menu = DailyMenu::firstOrNew(['date' => $datetime]);
 
-        $daily_menu[$usecase -> categoryToColumn($request -> category)] = $request -> menu_id;
+        $daily_menu[$usecase -> categoryToColumn($request -> category)]
+            = $request -> menu_id;
         $daily_menu -> save();
 
         $status = 200;
