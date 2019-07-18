@@ -15,9 +15,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Menu;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreAdminMenu;
 use App\Usecases\SetMenuUsecase as Usecase;
 
@@ -54,7 +52,7 @@ class MenuController extends Controller
     /**
      * メニューを作成する。
      *
-     * @param Request $request リクエスト
+     * @param StoreAdminMenu $request バリデータを通過したリクエスト
      *
      * @return Renderable
      */

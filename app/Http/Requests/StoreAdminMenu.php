@@ -56,16 +56,4 @@ class StoreAdminMenu extends FormRequest
             'salt'      => 'required|integer',
         ];
     }
-
-    /**
-     * エラーメッセージを定義します。
-     *
-     * @return void
-     */
-    public function messages()
-    {
-        return [
-            'item_name.required' => 'メニュー名を入力してください。',
-        ];
-    }
 }
