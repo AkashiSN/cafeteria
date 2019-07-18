@@ -109,10 +109,10 @@ deploy:
 	ssh radish -- "source ~/.bash_profile; cd cafeteria; yarn run prod"
 	ssh radish -- "source ~/.bash_profile; cd cafeteria; composer install --no-dev"
 
-	ssh radish -- "cd cafeteria; php artisan key:generate"
 
 .PHONY: deploy-migrate
 deploy-migrate:
+	ssh radish -- "cd cafeteria; php artisan key:generate"
 	ssh radish -- "cd cafeteria; php artisan migrate:fresh --force"
 	ssh radish -- "cd cafeteria; php artisan db:seed --force"
 
