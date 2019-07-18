@@ -15,13 +15,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Menu;
-use App\Models\Review;
-use App\Models\Favorite;
-use App\Models\DailyMenu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Usecases\SetMenuUsecase as Usecase;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreAdminMenu;
+use App\Usecases\SetMenuUsecase as Usecase;
 
 /**
  * Admin\MenuController class
@@ -60,17 +58,11 @@ class MenuController extends Controller
      *
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(StoreAdminMenu $request)
     {
-        if (!Auth::check()) {
-            return redirect()
-                -> route('home')
-                -> with(['message' => 'authocation']);
-        }
-
         Menu::create(
             [
-            'id' => Menu::max('id') + 1,
+            'id'        => Menu::max('id') + 1,
             'item_name' => $request -> input('item_name'),
             'category'  => $request -> input('category'),
             'price'     => $request -> input('price'),
