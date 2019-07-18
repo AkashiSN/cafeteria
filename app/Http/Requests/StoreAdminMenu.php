@@ -31,13 +31,13 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreAdminMenu extends FormRequest
 {
     /**
-     * 管理者かどうかを判定する。
+     * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**

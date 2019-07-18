@@ -141,6 +141,10 @@ class ReviewController extends Controller
      */
     public function store(StoreReview $request, $menu_id)
     {
+        if (!Menu::where('id', $menu_id) -> exists()) {
+            return redirect() -> route('home');
+        }
+
         $user = Auth::user();
         $user_id = $user -> id;
 

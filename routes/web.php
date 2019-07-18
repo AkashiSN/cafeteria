@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Admin
-Route::namespace('Admin') -> prefix('admin') -> group(
+Route::namespace('Admin') -> middleware('auth.admin') -> prefix('admin') -> group(
     function () {
         Route::get(
             'menus/create',

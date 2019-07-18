@@ -1,10 +1,34 @@
 <?php
 
+/**
+ * Handler.php
+ *
+ * PHP Version = 7.0
+ *
+ * @category Handler
+ * @package  Handler
+ * @author   AkashiSN <btorntireinvynriy@gmail.com>
+ * @license  MIT https://opensource.org/licenses/mit-license.php
+ * @link     https://github.com/AkashiSN/cafeteria
+ */
+
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+/**
+ * Handler class
+ *
+ * 例外処理をするクラスです。
+ *
+ * @category Handler
+ * @package  Handler
+ * @author   AkashiSN <btorntireinvynriy@gmail.com>
+ * @license  MIT https://opensource.org/licenses/mit-license.php
+ * @link     https://github.com/AkashiSN/cafeteria
+ */
 class Handler extends ExceptionHandler
 {
     /**
@@ -29,7 +53,8 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param \Exception $exception
+     * @param \Exception $exception exception
+     *
      * @return void
      * @throws Exception
      */
@@ -41,12 +66,28 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param Request   $request   request
+     * @param Exception $exception exception
+     *
+     * @return Response
      */
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+    }
+
+    /**
+     * ミドルウェアauthで認証失敗した際の例外処理
+     *
+     * @param Request                 $request   request
+     * @param AuthenticationException $exception exception
+     *
+     * @return Response
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->expectsJson()
+                    ? response()->json(['message' => $exception->getMessage()], 401)
+                    : redirect()->guest(route('home'));
     }
 }
