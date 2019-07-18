@@ -18,6 +18,7 @@ use App\Models\Menu;
 use App\Models\Review;
 use App\Http\Controllers\Controller;
 use App\Usecases\MenuUsecase as Usecase;
+use Illuminate\Http\Request;
 
 /**
  * MenuController class
@@ -83,6 +84,21 @@ class MenuController extends Controller
     }
 
     public function search(Request $request) {
+        $item_name = $request -> item_name;
+        $category = $request -> category;
 
+        $result = Menu::where('category', $category)
+            -> when(!is_null($item_name), function ($query) use ($item_name) {
+                return $query -> where('item_name', 'like', "%{$item_name}%");
+            }) -> get();
+
+        $status = 200;
+        return response() -> json(
+            [
+                'status' => $status,
+                'menus' => $result
+            ],
+            $status
+        );
     }
 }

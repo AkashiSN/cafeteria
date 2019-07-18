@@ -11,7 +11,7 @@
             <tbody>
                 <tr v-for="(menus, date) in weeklyList">
                     <th scope="col">{{ date }}</th>
-                    <td v-for="(menu, category) in menus" scope="col" @click="$emit('open', menu, date, tableIndex)">
+                    <td v-for="(menu, category) in menus" scope="col" @click="$emit('open', menu, date)">
                         {{ itemText(menu) }}
                     </td>
                 </tr>
@@ -25,10 +25,6 @@ export default {
     props: {
         weeklyList: {
             type: Object,
-            required: true
-        },
-        tableIndex: {
-            type: Number,
             required: true
         }
     },

@@ -30,7 +30,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api') -> get(
     '/user',
     function (Request $request) {
-        return $request->user();
+        return $request -> user();
     }
 );
 
@@ -73,7 +73,16 @@ Route::prefix('menus') -> group(
     }
 );
 
+Route::namespace('Admin') -> prefix('admin') -> group(
+    function () {
+        Route::put(
+            'set_menu',
+            'DailyMenuController@update'
+        ) -> name('admin.daily_menus.update');
+    }
+);
+
 Route::get(
-    '/search',
-    'SearchController@search'
+    '/menus/search',
+    'MenuController@search'
 );

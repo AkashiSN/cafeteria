@@ -31,7 +31,9 @@ class DailyMenu extends Model
 {
     protected $table = "daily_menu";
     protected $primaryKey = "date";
-    protected $fillable = ['date'];
+    protected $fillable = [
+        'date', 'menu_id_A', 'menu_id_B', 'ramen'
+    ];
     protected $casts = [
         'date' => 'date'
     ];

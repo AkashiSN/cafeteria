@@ -8,13 +8,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" v-model="searchWord">
+                        <input v-model="searchWord" v-on:input="searchMenu" type="text" id="input-area" class="form-control">
                     </div>
-                    <ul>
-                        <li v-for="result in results">
-                            {{ result.item_name }}
-                        </li>
-                    </ul>
+                    <div class="list-group">
+                        <button v-for="menu in menus" type="button" @click="selectMenu(menu)" class="list-group-item list-group-item-action" tabindex="0" >
+                            {{ menu.item_name }}
+                        </button>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" @click="$emit('close')">Close</button>
@@ -34,7 +34,11 @@ export default {
             type: Object,
             required: true
         },
-        title: {
+        date: {
+            type: String,
+            required: true
+        },
+        baseRoute: {
             type: String,
             required: true
         }
@@ -42,16 +46,39 @@ export default {
     data() {
         return {
             searchWord: this.menu ? this.menu.item_name : '',
-            results: [],
-            newMenu: {'item_name': 'hoge', 'id': 12, 'category': 'unti'}
+            menus: [],
+            newMenu: {}
         }
     },
     computed: {
         saveButtonText() {
             return 'Change save'
+        },
+        title() {
+            var category = this.menu.category === 'a_set_menu' ? 'Aセット' : 'Bセット'
+            return this.date + ' ' + category
         }
     },
     methods: {
+        searchMenu(e) {
+            var params = {
+                params: {
+                    'item_name': this.searchWord,
+                    'category': this.menu.category
+                }
+            }
+
+            axios.get(this.baseRoute + '/api/menus/search', params).then(res => {
+                if(res.data.status == 200) {
+                    this.menus = res.data.menus.slice(0, 9)
+                }
+            })
+        },
+        selectMenu(menu) {
+            this.newMenu = menu
+            this.searchWord = menu.item_name
+            this.menus = []
+        }
     }
 }
 </script>

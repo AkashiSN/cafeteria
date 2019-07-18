@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<a href="{{ route('admin.menus.set_menu') }}">メニューセット</a>
+<a href="{{ route('admin.daily_menus.set_menu') }}">メニューセット</a>
 
 <div class="container mt-10">
     {{ Form::model($menu, ['route' => 'admin.menus.store', 'class' => 'form-horizontal']) }}

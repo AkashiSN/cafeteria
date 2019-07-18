@@ -19,19 +19,19 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Admin') -> prefix('admin') -> group(
     function () {
         Route::get(
-            'create',
+            'menus/create',
             'MenuController@create'
         ) -> name('admin.menus.create');
 
         Route::post(
-            'store',
+            'menus/store',
             'MenuController@store'
         ) -> name('admin.menus.store');
 
         Route::get(
-            'set_menu',
-            'MenuController@setMenu'
-        ) -> name('admin.menus.set_menu');
+            'daily_menus/set_menu',
+            'DailyMenuController@edit'
+        ) -> name('admin.daily_menus.set_menu');
     }
 );
 

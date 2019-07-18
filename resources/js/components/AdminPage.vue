@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <set-menu-modal v-if="modalAvailable" :menu="selectedMenu" :title="selectedDate" v-on:update="updateMenu" v-on:delete="deleteMenu" v-on:close="closeModal" />
+        <set-menu-modal v-if="modalAvailable" :menu="selectedMenu" :date="selectedDate" :base-route="baseRoute" v-on:update="updateMenu" v-on:delete="deleteMenu" v-on:close="closeModal" />
     </div>
 </template>
 
@@ -32,6 +32,10 @@ export default {
         options: {
             type: Array,
             required: true
+        },
+        baseRoute: {
+            type: String,
+            required: true
         }
     },
     data() {
@@ -43,10 +47,10 @@ export default {
         }
     },
     methods: {
-        openModal(menu, date, Index) {
+        openModal(menu, date) {
             this.selectedMenu = menu
             this.selectedDate = date
-            this.selectedIndex = Index
+            this.selectedIndex = this.activeContent
 
             this.modalAvailable = true
         },
@@ -57,8 +61,23 @@ export default {
             this.closeModal()
         },
         updateMenu(newMenu) {
-            var table = this.tables[this.selectedIndex]
-            table[this.selectedDate][this.selectedMenu.category] = newMenu
+            if(Object.keys(newMenu).length === 0) {
+                return
+            }
+
+            var route = this.baseRoute + '/api/admin/set_menu'
+            var req = {
+                'menu_id': newMenu.id,
+                'category': newMenu.category,
+                'date': this.selectedDate
+            }
+
+            axios.put(route, req).then(res => {
+                if(res.data.status == 200) {
+                    var table = this.tables[this.selectedIndex]
+                    table[this.selectedDate][this.selectedMenu.category] = newMenu
+                }
+            })
             this.closeModal()
         }
     }

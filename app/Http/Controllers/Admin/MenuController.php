@@ -14,13 +14,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DateTime;
 use App\Models\Menu;
 use App\Models\Review;
 use App\Models\Favorite;
 use App\Models\DailyMenu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Usecases\SetMenuUsecase as Usecase;
+use App\Usecases\SetMenuUsecase;
+use App\Usecases\DailyMenuUsecase;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -74,19 +76,5 @@ class MenuController extends Controller
         );
 
         return redirect() -> route('admin.menus.create');
-    }
-
-    /**
-     * 日替わりメニューを設定する。
-     *
-     * @return Renderable
-     */
-    public function setMenu(Usecase $usecase)
-    {
-        list($menu_table, $options) = $usecase -> getMenuTable();
-
-        return view(
-            'admin.menus.set_menu', compact('menu_table', 'options')
-        );
     }
 }
