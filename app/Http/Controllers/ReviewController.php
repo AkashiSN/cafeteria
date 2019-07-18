@@ -14,15 +14,13 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Models\Menu;
 use App\Models\Review;
+use App\Models\Evaluation;
 use App\Models\ReviewImage;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreReview;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Auth;
-
 
 /**
  * ReviewController class
@@ -46,10 +44,7 @@ class ReviewController extends Controller
      */
     public function index($menu_id)
     {
-        $reviews_list = Review::where('menu_id', $menu_id)
-            -> leftJoin('users', 'reviews.user_id', '=', 'users.id')
-            -> get();
-
+        $reviews_list = Review::getReviewsWithUserName($menu_id);
         return view('reviews.index', compact('reviews_list', 'menu_id'));
     }
 
@@ -132,12 +127,6 @@ class ReviewController extends Controller
      */
     public function create($menu_id)
     {
-        if (!Auth::check()) {
-            return redirect() -> route(
-                'menus.reviews.index',
-                ['menu_id' => $menu_id]
-            ) -> with(['message' => 'authocation']);
-        }
         $item_name = Menu::where('id', $menu_id) -> first() -> item_name;
         return view('reviews.create', compact('item_name', 'menu_id'));
     }
@@ -145,37 +134,22 @@ class ReviewController extends Controller
     /**
      * レビューを投稿する
      *
-     * @param Request $request リクエスト
-     * @param int     $menu_id メニューID
+     * @param StoreReview $request バリデータを通過したリクエスト
+     * @param int         $menu_id メニューID
      *
      * @return Renderable
      */
-    public function store(Request $request, $menu_id)
+    public function store(StoreReview $request, $menu_id)
     {
-        if (!Auth::check()) {
-            return redirect() -> route(
-                'menus.reviews.index',
-                ['menu_id' => $menu_id]
-            ) -> with(['message' => 'authocation']);
-        }
-
-        if (!Menu::where('id', $menu_id) -> exists()) {
-            return redirect() -> route('home');
-        }
-
-        if ($request -> input('evaluation') === null) {
-            return view('reviews.create', ['message' => 'Evaluation']);
-        }
-
         $user = Auth::user();
         $user_id = $user -> id;
 
         $review = Review::create(
             [
-            "user_id" => $user_id,
-            "menu_id" => $menu_id,
+            "user_id"    => $user_id,
+            "menu_id"    => $menu_id,
             "evaluation" => $request -> input('evaluation'),
-            "comment" => $request -> input('comment') ?? "",
+            "comment"    => $request -> input('comment') ?? "",
             ]
         );
 
@@ -194,6 +168,13 @@ class ReviewController extends Controller
                 ); // review_idに対応したものを登録する
             }
         }
+
+        $average_evaluation = Review::where('menu_id', $menu_id) -> get()
+            -> average('evaluation');
+
+        $evaluation = Evaluation::firstOrNew(['menu_id' => $menu_id]);
+        $evaluation['evaluation'] = $average_evaluation;
+        $evaluation -> save();
 
         return redirect() -> route('menus.reviews.index', ['menu_id' => $menu_id]);
     }

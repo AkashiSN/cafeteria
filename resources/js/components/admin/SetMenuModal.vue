@@ -85,7 +85,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .modal {
     display: flex;
     align-items: center;

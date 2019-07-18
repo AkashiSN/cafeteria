@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ReviewRequest.php
+ * StoreReview.php
  *
  * PHP Version = 7.0
  *
@@ -14,10 +14,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Menu;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * ReviewRequest class
+ * StoreReview class
  *
  * レビューリクエストのバリデーターです
  *
@@ -27,32 +28,42 @@ use Illuminate\Foundation\Http\FormRequest;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class ReviewRequest extends FormRequest
+class StoreReview extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * このリクエストにレビューを投稿する権限があるかどうか。
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return Menu::where('id', $this -> menu_id) -> exists();
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * レビュー投稿のリクエストに適応するルール。
      *
      * @return array
      */
     public function rules()
     {
-        if ($this->isMethod('get')) {
-            return [];
-        }
-
         return [
             'evaluation' => 'required',
-            'files.*.image' => 'image|mimes:jpeg,jpg,bmp,png',
+            'files.*.image' => 'image|max:10000',
+        ];
+    }
+
+    /**
+     * ルールに適合しなかった場合に出力するメッセージの定義。
+     *
+     * @return void
+     */
+    public function messages()
+    {
+        return [
+            'evaluation.required' => '評価を選んでください',
+            'files.*.image.image' => '画像をアップロードしてください',
+            'files.*.image.max'   => '画像は１MB以下でお願いします',
         ];
     }
 }

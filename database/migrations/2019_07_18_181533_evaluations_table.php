@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Favorites_table.php
+ * Evaluations_table.php
  *
  * PHP Version = 7.0
  *
@@ -17,9 +17,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 /**
- * FavoritesTable class
+ * EvaluationsTable class
  *
- * ユーザーのお気に入りメニューのテーブルのマイグレーションを行います。
+ * 平均評価のマイグレーションを行います。
  *
  * @category Migration
  * @package  Migration
@@ -27,7 +27,7 @@ use Illuminate\Database\Migrations\Migration;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class FavoritesTable extends Migration
+class EvaluationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -37,14 +37,11 @@ class FavoritesTable extends Migration
     public function up()
     {
         Schema::create(
-            'favorites',
+            'evaluations',
             function (Blueprint $table) {
-                $table->increments('id');
-                $table->integer('user_id')->unsigned();
-                $table->foreign('user_id')->references('id')->on('users');
-                $table->integer('menu_id')->unsigned();
+                $table->integer('menu_id')->primary()->unsigned()->default(0);
                 $table->foreign('menu_id')->references('id')->on('menus');
-                $table->timestamps();
+                $table->float('evaluation');
             }
         );
     }
@@ -56,6 +53,6 @@ class FavoritesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favorites');
+        Schema::dropIfExists('evaluations');
     }
 }

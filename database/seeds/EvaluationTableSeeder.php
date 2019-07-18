@@ -1,7 +1,7 @@
 <?php
 
 /**
- * DatabaseSeeder.php
+ * EvaluationTableSeeder.php
  *
  * PHP Version = 7.0
  *
@@ -12,12 +12,13 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
+use App\Models\Evaluation;
 use Illuminate\Database\Seeder;
 
 /**
- * DatabaseSeeder class
+ * EvaluationTableSeeder class
  *
- * データの初期挿入を行います。
+ * 評価データの初期挿入を行います。
  *
  * @category Seeder
  * @package  Seeder
@@ -25,21 +26,20 @@ use Illuminate\Database\Seeder;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class DatabaseSeeder extends Seeder
+class EvaluationTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(SettingsTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(MenuTableSeeder::class);
-        $this->call(DailyMenuTableSeeder::class);
-        $this->call(ReviewsTableSeeder::class);
-        $this->call(FavoritesTableSeeder::class);
-        $this->call(EvaluationTableSeeder::class);
+        Evaluation::create(
+            array(
+            'menu_id' => 1,
+            'evaluation' => 1,
+            )
+        );
     }
 }

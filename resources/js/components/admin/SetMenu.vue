@@ -9,7 +9,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(menus, date) in weeklyList">
+                <tr v-for="(menus, date) in weeklyList" :key="date">
                     <th scope="col">{{ date }}</th>
                     <td v-for="(menu, category) in menus" scope="col" @click="$emit('open', menu, date)">
                         {{ itemText(menu) }}

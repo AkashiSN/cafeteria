@@ -71,6 +71,7 @@ composer:
 migrate:
 	php artisan migrate:fresh
 	php artisan db:seed
+	rm -rf public/data
 
 .PHONY: serve
 serve:

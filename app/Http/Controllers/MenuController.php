@@ -16,6 +16,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Review;
+use App\Models\Evaluation;
 use App\Http\Controllers\Controller;
 use App\Usecases\MenuUsecase as Usecase;
 use Illuminate\Http\Request;
@@ -61,22 +62,13 @@ class MenuController extends Controller
      */
     public function show($menu_id)
     {
-        $menu = Menu::getWithStatuses() -> find($menu_id);
+        $menu = Menu::getWithStatusesAndEvaluation() -> find($menu_id);
         $menu -> description = Menu::$descriptions[$menu -> category];
 
-        $reviews_list = Review::where('menu_id', $menu_id)
-            -> leftJoin('users', 'reviews.user_id', '=', 'users.id')
-            -> get();
+        $reviews_list = Review::getReviewsWithUserName($menu_id);
 
-        if (count($reviews_list) > 0) {
-            $evaluation = 0;
-            foreach ($reviews_list as $review) {
-                $evaluation += $review -> evaluation;
-            }
-            $average_evaluation = ($evaluation / count($reviews_list)) * 20;
-        } else {
-            $average_evaluation = 0;
-        }
+        $evaluation = Evaluation::where('menu_id', $menu_id)->first();
+        $average_evaluation = ($evaluation ? $evaluation -> evaluation : 0) * 20;
 
         return view(
             'menus.show',
