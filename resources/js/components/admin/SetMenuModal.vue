@@ -61,6 +61,8 @@ export default {
     },
     methods: {
         searchMenu(e) {
+            this.searchWord = document.getElementById("input-area").value
+
             var params = {
                 params: {
                     'item_name': this.searchWord,
@@ -68,7 +70,7 @@ export default {
                 }
             }
 
-            axios.get(this.baseRoute + '/api/menus/search', params).then(res => {
+            axios.get(this.baseRoute + '/api/menus/filter', params).then(res => {
                 if(res.data.status == 200) {
                     this.menus = res.data.menus.slice(0, 9)
                 }
