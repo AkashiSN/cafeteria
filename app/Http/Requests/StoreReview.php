@@ -31,16 +31,12 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreReview extends FormRequest
 {
     /**
-     * レビューを投稿するメニューがあるかどうか。
+     * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        if (!Menu::where('id', $this -> menu_id) -> exists()) {
-            return redirect() -> route('home');
-        }
-
         return true;
     }
 
