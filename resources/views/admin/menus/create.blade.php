@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<a href="{{ route('admin.daily_menus.set_menu') }}">メニューセット</a>
+<a href="{{ route('admin.menus.set_menu') }}">メニューをセットする</a>
 
 @include('errors._alert')
 

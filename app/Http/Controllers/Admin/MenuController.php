@@ -85,12 +85,12 @@ class MenuController extends Controller
      *
      * @return Renderable
      */
-    public function setMenu(Usecase $usecase)
+    public function setMenu(SetMenuUsecase $usecase)
     {
-        list($menu_table, $options) = $usecase -> getMenuTable();
+        list($menu_tables, $options) = $usecase -> getMenuTable();
 
         return view(
-            'admin.menus.set_menu', compact('menu_table', 'options')
+            'admin.menus.set_menu', compact('menu_tables', 'options')
         );
     }
 }

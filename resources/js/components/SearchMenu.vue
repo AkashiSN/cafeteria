@@ -6,7 +6,7 @@
         </div>
         <div class="container">
             <div v-for="menu in menus">
-                <menu-card :is-liked="false" :menu="menu" :base-route="baseRoute" :valid-sold-button="false" :valid-favorite="false" />
+                <menu-card :is-liked="false" :menu="menu" :base-route="baseRoute" :valid-sold-button="false" :valid-favorite-button="false" />
             </div>
         </div>
     </div>

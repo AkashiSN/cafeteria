@@ -29,9 +29,9 @@ Route::namespace('Admin') -> middleware('auth.admin') -> prefix('admin') -> grou
         ) -> name('admin.menus.store');
 
         Route::get(
-            'daily_menus/set_menu',
-            'DailyMenuController@edit'
-        ) -> name('admin.daily_menus.set_menu');
+            'menus/set_menu',
+            'MenuController@setMenu'
+        ) -> name('admin.menus.set_menu');
     }
 );
 

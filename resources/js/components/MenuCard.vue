@@ -67,7 +67,7 @@
                 type: Boolean,
                 default: true
             },
-            validFavorite: {
+            validFavoriteButton: {
                 type: Boolean,
                 default: true
             }

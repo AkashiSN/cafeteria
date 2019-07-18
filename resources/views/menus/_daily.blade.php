@@ -19,7 +19,7 @@
                 @foreach ($todays_menu as $menu)
                     <div class="container mt-20 ph-65">
                         <p class="text-justify text-muted">{{ $menu['description'] }}</p>
-                        <menu-card :menu="{{ $menu['menu'] }}" :base-route="'{{ url("") }}'" :is-liked="{{ var_export($menu['menu'] -> isLiked(), true) }}" :valid-favorite="{{ var_export(Auth::check(), true) }}" />
+                        <menu-card :menu="{{ $menu['menu'] }}" :base-route="'{{ url("") }}'" :is-liked="{{ var_export($menu['menu'] -> isLiked(), true) }}" :valid-favorite-button="{{ var_export(Auth::check(), true) }}" />
                     </div>
                 @endforeach
             @endforeach
