@@ -12,10 +12,10 @@
             </div>
         @endif
     </div>
-    @if ($reviews_list)
+    @if (count($reviews_list) !== 0)
         @foreach ($reviews_list as $review)
         <div class="container mt-20">
-        <review-card :review="{{ $review }}" :base-route="'{{ url("") }}'" :menu-id="'{{ $menu_id }}'" :review-id="'{{ $review->id }}'" />
+        <review-card :review="{{ json_encode($review) }}" :base-route="'{{ url("") }}'" :menu-id="'{{ $menu_id }}'" />
         </div>
         @endforeach
     @else

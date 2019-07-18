@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="files[][image]">写真:</label>
-                        <input name="files[][image]" type="file" id="files[][image]" multiple>
+                        <input name="files[][image]" type="file" id="files[][image]" multiple data-filesize="5000">
                         </div>
                     <div class="form-group">
                         <input class="btn btn-primary form-control" type="submit" value="送信">

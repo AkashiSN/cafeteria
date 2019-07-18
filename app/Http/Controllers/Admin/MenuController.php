@@ -15,13 +15,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Menu;
-use App\Models\Review;
-use App\Models\Favorite;
-use App\Models\DailyMenu;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAdminMenu;
 use App\Usecases\SetMenuUsecase as Usecase;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Admin\MenuController class
@@ -44,24 +40,27 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('admin.menus.create', ['menu' => new Menu(), 'descriptions' => Menu::$descriptions]);
+        return view(
+            'admin.menus.create',
+            [
+                'menu' => new Menu(),
+                'descriptions' => Menu::$descriptions
+            ]
+        );
     }
 
     /**
      * メニューを作成する。
      *
+     * @param StoreAdminMenu $request バリデータを通過したリクエスト
+     *
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(StoreAdminMenu $request)
     {
-        if (!Auth::check()) {
-            return redirect() -> route('home')
-                              -> with(['message' => 'authocation']);
-        }
-
         Menu::create(
             [
-            'id' => Menu::max('id') + 1,
+            'id'        => Menu::max('id') + 1,
             'item_name' => $request -> input('item_name'),
             'category'  => $request -> input('category'),
             'price'     => $request -> input('price'),
@@ -78,6 +77,8 @@ class MenuController extends Controller
 
     /**
      * 日替わりメニューを設定する。
+     *
+     * @param Usecase $usecase ユースケース
      *
      * @return Renderable
      */

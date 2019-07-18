@@ -35,7 +35,8 @@ class Menu extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        "id", "item_name", "category", "price", "energy", "protein", "lipid", "salt", "alias"
+        "id", "item_name", "category", "price",
+        "energy", "protein", "lipid", "salt", "alias"
     ];
 
     static public $descriptions = [
@@ -51,21 +52,46 @@ class Menu extends Model
      *
      * @return void
      */
-    Public function sold_out()
+    Public function soldOut()
     {
         return $this -> hasOne('App\Models\SoldOut');
     }
 
+    /**
+     * リレーションを返す
+     *
+     * @return void
+     */
+    Public function evaluation()
+    {
+        return $this -> hasOne('App\Models\Evaluation');
+    }
+
+    /**
+     * リレーションを返す
+     *
+     * @return void
+     */
     Public function reviews()
     {
         return $this -> hasMany('App\Models\Review');
     }
 
+    /**
+     * リレーションを返す
+     *
+     * @return void
+     */
     Public function favorites()
     {
         return $this -> hasMany('App\Models\Favorite');
     }
 
+    /**
+     * リレーションを返す
+     *
+     * @return void
+     */
     Public function users()
     {
         return $this -> belongsToMany('App\Models\User', 'favorites');
@@ -76,8 +102,10 @@ class Menu extends Model
      *
      * @return Illuminate\Database\Eloquent\Builder
      */
-    static public function getWithStatuses() {
-        return Menu::leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id');
+    public static function getWithStatusesAndEvaluation()
+    {
+        return Menu::leftJoin('sold_out', 'menus.id', '=', 'sold_out.menu_id')
+            -> leftJoin('evaluations', 'menus.id', '=', 'evaluations.menu_id');
     }
 
     /**
@@ -85,7 +113,8 @@ class Menu extends Model
      *
      * @return Boolean
      */
-    public function isLiked() {
+    public function isLiked()
+    {
         return Auth::check() &&
             Favorite::where('menu_id', $this -> id)
                 -> where('user_id', Auth::user() -> id)

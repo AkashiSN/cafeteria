@@ -58,15 +58,20 @@ Route::prefix('menus') -> group(
             'ReviewController@index'
         ) -> name('menus.reviews.index');
 
-        Route::post(
-            '{menu_id}/reviews',
-            'ReviewController@store'
-        ) -> name('menus.reviews.store');
+        // 投稿は認証必要
+        Route::middleware('auth') -> group(
+            function () {
+                Route::get(
+                    '{menu_id}/reviews/create',
+                    'ReviewController@create'
+                ) -> name('menus.reviews.create');
 
-        Route::get(
-            '{menu_id}/reviews/create',
-            'ReviewController@create'
-        ) -> name('menus.reviews.create');
+                Route::post(
+                    '{menu_id}/reviews',
+                    'ReviewController@store'
+                ) -> name('menus.reviews.store');
+            }
+        );
     }
 );
 

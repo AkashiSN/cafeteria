@@ -38,7 +38,6 @@ class MenuTableSeeder extends Seeder
     {
         $json = File::get("database/data/menu.json");
         $data = json_decode($json);
-        $count = 0;
         foreach ($data as $obj) {
             Menu::create(
                 array(

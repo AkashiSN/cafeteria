@@ -51,12 +51,12 @@ class MenuUsecase extends DateUsecase
             $weekly_list = array();
             foreach ($daily_menus as $daily_menu) {
                 $a_menu = array(
-                    'menu' => Menu::getWithStatuses()
+                    'menu' => Menu::getWithStatusesAndEvaluation()
                         -> find($daily_menu -> menu_id_A),
                     'description' => Menu::$descriptions['a_set_menu']
                 );
                 $b_menu = array(
-                    'menu' => Menu::getWithStatuses()
+                    'menu' => Menu::getWithStatusesAndEvaluation()
                         -> find($daily_menu -> menu_id_B),
                     'description' => Menu::$descriptions['b_set_menu']
                 );
@@ -85,7 +85,7 @@ class MenuUsecase extends DateUsecase
         $summer_menu =config('setting.summer_menu');
 
         if ($summer_menu === 'true') {
-            $permanent_menus = Menu::getWithStatuses()
+            $permanent_menus = Menu::getWithStatusesAndEvaluation()
                 -> where('category', 'permanent_menu')
                 -> where('alias', 0)
                 -> get();
@@ -96,13 +96,13 @@ class MenuUsecase extends DateUsecase
             );
 
             $menu_list[] = array(
-                'menus' => Menu::getWithStatuses()
+                'menus' => Menu::getWithStatusesAndEvaluation()
                     -> where('category', 'summer_menu')
                     -> get(),
                 'description' => Menu::$descriptions['summer_menu']
             );
         } else {
-            $permanent_menus = Menu::getWithStatuses()
+            $permanent_menus = Menu::getWithStatusesAndEvaluation()
                 -> where('category', 'permanent_menu')
                 -> get();
 
@@ -113,7 +113,7 @@ class MenuUsecase extends DateUsecase
         }
 
         $menu_list[] = array(
-            'menus' => Menu::getWithStatuses()
+            'menus' => Menu::getWithStatusesAndEvaluation()
                 -> where('menus.id', (int)config('setting.ramen'))
                 -> get(),
             'description' => Menu::$descriptions['ramen']
