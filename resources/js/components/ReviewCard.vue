@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-2">
-                    <h5 class="card-text">{{ review.name }}</h5>
+                    <h5 class="card-text">{{ review.user_name }}</h5>
                 </div>
                 <div class="col-4">
                     <span class="evaluation" v-bind:style="{ '--rate': evaluation }"></span><br/>
@@ -42,17 +42,13 @@
             menuId: {
                 type: String,
                 required: true
-            },
-            reviewId: {
-                type: String,
-                required: true
             }
         },
         data: function() {
             return {
                 // for now
                 evaluation: this.review.evaluation * 20 + "%",
-                imageRoute: this.baseRoute + "/api/menus/" + this.menuId + "/reviews/" + this.reviewId + "/images",
+                imageRoute: this.baseRoute + "/api/menus/" + this.menuId + "/reviews/" + this.review.review_id + "/images",
                 urlList: []
             }
         },

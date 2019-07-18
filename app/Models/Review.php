@@ -43,4 +43,30 @@ class Review extends Model
     {
         return $this->hasMany('App\Models\ReviewImage');
     }
+
+    /**
+     * ユーザー名を付け加えたレビューのリストを返す。
+     *
+     * @param int $menu_id メニューID
+     *
+     * @return array レビューのリスト
+     */
+    public static function getReviewsWithUserName($menu_id)
+    {
+        $reviews = Review::where('menu_id', $menu_id) -> get();
+        $reviews_list = array();
+
+        foreach ($reviews as $review) {
+            $user = User::where('id', $review -> user_id) -> first();
+            $reviews_list[] = array(
+                'user_name'  => $user -> name,
+                'review_id'  => $review -> id,
+                'evaluation' => $review -> evaluation,
+                'created_at' => $review -> created_at ->format('Y-m-d H:i:s'),
+                'comment'    => $review -> comment
+            );
+        }
+
+        return $reviews_list;
+    }
 }

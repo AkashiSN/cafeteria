@@ -15,7 +15,7 @@
                     <p class="card-text">¥{{ menu.price }}</p>
                 </div>
                 <div class="col-2">
-                    お星様
+                    <span class="evaluation" v-bind:style="{ '--rate': (menu.evaluation ? menu.evaluation : 0) * 20 + '%'}"></span><br/>
                 </div>
             </div>
 
