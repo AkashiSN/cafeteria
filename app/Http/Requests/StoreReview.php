@@ -31,13 +31,17 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreReview extends FormRequest
 {
     /**
-     * このリクエストにレビューを投稿する権限があるかどうか。
+     * レビューを投稿するメニューがあるかどうか。
      *
      * @return bool
      */
     public function authorize()
     {
-        return Menu::where('id', $this -> menu_id) -> exists();
+        if (!Menu::where('id', $this -> menu_id) -> exists()) {
+            return redirect() -> route('home');
+        }
+
+        return true;
     }
 
     /**
@@ -48,7 +52,7 @@ class StoreReview extends FormRequest
     public function rules()
     {
         return [
-            'evaluation' => 'required',
+            'evaluation'    => 'required|min:1|max:5',
             'files.*.image' => 'image|max:10000',
         ];
     }
