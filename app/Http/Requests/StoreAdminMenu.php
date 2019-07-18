@@ -51,9 +51,9 @@ class StoreAdminMenu extends FormRequest
             'item_name' => 'required|max:30',
             'price'     => 'required|integer',
             'energy'    => 'required|integer',
-            'protein'   => 'required|integer',
-            'lipid'     => 'required|integer',
-            'salt'      => 'required|integer',
+            'protein'   => 'required|numeric',
+            'lipid'     => 'required|numeric',
+            'salt'      => 'required|numeric',
         ];
     }
 }
