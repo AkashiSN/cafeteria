@@ -12,14 +12,18 @@
             </div>
         @endif
     </div>
-    @if ($reviews_list)
+    @if (sizeof($reviews_list))
         @foreach ($reviews_list as $review)
         <div class="container mt-20">
         <review-card :review="{{ $review }}" :base-route="'{{ url("") }}'" :menu-id="'{{ $menu_id }}'" :review-id="'{{ $review->id }}'" />
         </div>
         @endforeach
     @else
-    <p>レビューはありません</p>
+        <div class="card">
+            <div class="card-body">
+                <p>レビューはありません</p>
+            </div>
+        </div>
     @endif
 </div>
 @endsection

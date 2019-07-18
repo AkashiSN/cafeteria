@@ -9,7 +9,7 @@
                     <span class="evaluation" v-bind:style="{ '--rate': evaluation }"></span><br/>
                 </div>
                 <div class="col-6">
-                    <p class="card-text text-muted">{{ review.created_at }}</p>
+                    <p class="card-text text-muted">{{ formatDate(new Date(review.created_at), 'yyyy/MM/dd') }}</p>
                 </div>
             </div>
 
@@ -54,6 +54,18 @@
                 evaluation: this.review.evaluation * 20 + "%",
                 imageRoute: this.baseRoute + "/api/menus/" + this.menuId + "/reviews/" + this.reviewId + "/images",
                 urlList: []
+            }
+        },
+        methods: {
+            formatDate: function (date, format) {
+                format = format.replace(/yyyy/g, date.getFullYear());
+                format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+                format = format.replace(/dd/g, ('0' + date.getDate()).slice(-2));
+                format = format.replace(/HH/g, ('0' + date.getHours()).slice(-2));
+                format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+                format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+                format = format.replace(/SSS/g, ('00' + date.getMilliseconds()).slice(-3));
+                return format;
             }
         },
         mounted () {

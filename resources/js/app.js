@@ -44,7 +44,7 @@ const app = new Vue({
         tabContent: '1'
     },
     methods: {
-        change: function(num){
+        change: function (num){
             this.tabContent = num
         }
     }

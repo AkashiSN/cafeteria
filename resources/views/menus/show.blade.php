@@ -16,29 +16,26 @@
 </div>
 
 <div class="container mt-10 ph-20">
-    <p class="text-justify text-muted">ディスクリプション</p>
+    <p class="text-justify text-muted">{{ $menu -> description }}</p>
     <h2>{{ $menu -> item_name }}</h2>
     <div class="row">
-        <div class="col-10">
+        <div class="col-9">
             <div class="row">
                 <div class="col-auto">
-                    <p class="text-justify text-mute font-weight-bold">¥{{ $menu -> price }}</p>
+                    <p class="text-justify font-weight-bold">¥{{ $menu -> price }}</p>
                 </div>
-                <span class="evaluation" style="--rate:{{ $average_evaluation }}%"></span><br/>
-                <div class="col-auto">
-                    お星様
-                </div>
+                @if (sizeof($reviews_list) > 0)
+                    <span class="evaluation" style="--rate:{{ $average_evaluation }}%"></span><br/>
+                @else
+                    <p class="text-justify text-muted">レビューはありません</p>
+                @endif
             </div>
         </div>
+        <div class="col-1">
+            <favorite-button :menu-id="{{ $menu -> id }}" :base-route="'{{ url("") }}'" :is-liked="{{ $menu -> isLiked() ? 'true' : 'false' }}" />
+        </div>
         <div class="col-2">
-            <div class="row">
-                <div class="col-auto">
-                    はぁと
-                </div>
-                <div class="col-auto">
-                    <sold-out-button :base-route="'{{ url("") }}'" :menu-id="{{ $menu -> id }}" :sold-out={{ $menu -> sold_out ? 'true' : 'false' }} />
-                </div>
-            </div>
+            <sold-out-button :base-route="'{{ url("") }}'" :menu-id="{{ $menu -> id }}" :sold-out={{ $menu -> sold_out ? 'true' : 'false' }} />
         </div>
     </div>
 
@@ -65,14 +62,18 @@
         <a class="col-2" href="{{ route('menus.reviews.index', ['menu_id' => $menu -> id]) }}">もっとみる</a>
     </div>
 
-    @if ($reviews_list)
+    @if (sizeof($reviews_list) > 0)
         @foreach ($reviews_list as $review)
             <div class="container mt-20">
                 <review-card :review="{{ $review }}" :base-route="'{{ url("") }}'" :menu-id="'{{ $menu -> id }}'" :review-id="'{{ $review -> id }}'" />
             </div>
         @endforeach
     @else
-        <p>レビューはありません</p>
+        <div class="card">
+            <div class="card-body">
+                <p>レビューはありません</p>
+            </div>
+        </div>
     @endif
 </div>
 @endsection

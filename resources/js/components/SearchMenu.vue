@@ -5,7 +5,7 @@
             <input v-on:input="searchMenu" type="text" id="input-area" class="form-control" placeholder="メニュー名を入力してください">
         </div>
         <div v-for="menu in menus">
-            <menu-card :is-liked="false" :menu="menu" :valid-sold-button="false" :base-route="baseRoute" />
+            <menu-card :is-liked="false" :menu="menu" :base-route="baseRoute" :valid-sold-button="false" :valid-favorite="false" />
         </div>
     </div>
 </template>

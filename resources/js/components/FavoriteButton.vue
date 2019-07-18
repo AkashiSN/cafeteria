@@ -13,8 +13,7 @@
             },
             isLiked: {
                 type: Boolean,
-                required: true,
-                default: false
+                required: true
             },
             baseRoute: {
                 type: String,
