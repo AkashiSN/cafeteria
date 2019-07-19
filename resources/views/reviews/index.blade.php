@@ -4,7 +4,7 @@
 <div class="container mt-20 ph-70">
     <div class="row">
         <div class="col-10">
-            <h2 class="text-justify text-muted">レビュー一覧</h2>
+            <h2 class="text-justify">レビュー一覧</h2>
         </div>
         @if (Auth::check())
             <div class="col-2">
@@ -19,9 +19,11 @@
         </div>
         @endforeach
     @else
-        <div class="card">
-            <div class="card-body">
-                <p>レビューはありません</p>
+        <div class="container mt-20">
+            <div class="card">
+                <div class="card-body">
+                    <p>レビューはありません</p>
+                </div>
             </div>
         </div>
     @endif

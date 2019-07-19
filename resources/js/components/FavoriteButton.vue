@@ -1,5 +1,5 @@
 <template>
-    <div class="heart" v-on:click.stop="updateFavorite()">
+    <div class="heart" v-on:click.stop="updateFavorite">
         <img :src="imgSrc" />
     </div>
 </template>

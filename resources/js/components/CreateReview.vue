@@ -26,14 +26,14 @@
                             <label for="star5"><span class="text">最悪</span>★</label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="comment">コメント:</label>
-                        <input class="form-control" name="comment" type="text" id="comment">
+                    <div class="form-group row">
+                        <label for="comment" class="col-3">コメント</label>
+                        <input class="form-control col-9" name="comment" type="text" id="comment">
                     </div>
-                    <div class="form-group">
-                        <label for="files[][image]">写真:</label>
-                        <input name="files[][image]" type="file" id="files[][image]" multiple data-filesize="5000">
-                        </div>
+                    <div class="form-group row">
+                        <label for="files[][image]" class="col-3">写真</label>
+                        <input name="files[][image]" type="file" id="files[][image]" class="col-9" multiple data-filesize="5000">
+                    </div>
                     <div class="form-group">
                         <input class="btn btn-primary form-control" type="submit" value="送信">
                     </div>

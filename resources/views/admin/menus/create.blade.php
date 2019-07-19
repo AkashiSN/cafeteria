@@ -1,16 +1,16 @@
 @extends('layouts.default')
 
 @section('content')
-<a href="{{ route('admin.menus.set_menu') }}">メニューをセットする</a>
+<a class="btn btn-link" href="{{ route('admin.menus.set_menu') }}">日替わりメニューを設定する</a>
 
 @include('errors._alert')
 
-<div class="container mt-10">
+<div class="container mt-10 ph-0">
     {{ Form::model($menu, ['route' => 'admin.menus.store', 'class' => 'form-horizontal']) }}
 
     <div class="form-group">
         {{ Form::label('item_name', 'メニュー名') }}
-        {{ Form::text('item_name', old('item_name'), ['class' => 'form-control',  'placeholder' => 'メニュー名を入力してください', 'required']) }}
+        {{ Form::text('item_name', old('item_name'), ['class' => 'form-control',  'placeholder' => 'メニュー名', 'required']) }}
     </div>
 
     <div class="form-group">
@@ -30,7 +30,7 @@
         {{ Form::select('category', $descriptions, old('category'), ['class' => 'form-control', 'placeholder' => '選択してください', 'required']) }}
     </div>
 
-    <h3>栄養素表示</h3>
+    <h3 class="mb-10">栄養素表示</h3>
 
     <div class="form-group">
         <div class="row mt-2">

@@ -1,8 +1,8 @@
 <template>
-    <div class="container">
-        <div class="row">
+    <div class="container ph-0">
+        <div class="row mt-10 mb-15">
             <div class="col-4">
-                <select class="custom-select custom-select-sm mv-3" v-model="activeContent">
+                <select class="custom-select custom-select-sm" v-model="activeContent">
                     <option v-for="(option, index) in options" :key="index" v-bind:value="index">
                     {{ option }}
                     </option>
@@ -10,11 +10,9 @@
             </div>
         </div>
 
-        <div class="container ph-5">
-            <div v-for="(weeklyList, index) in tables" :key="index">
-                <div class="select-content" v-bind:class="{ active: activeContent === index }">
-                    <set-menu :weekly-list="weeklyList" :table-index="index" v-on:open="openModal" />
-                </div>
+        <div v-for="(weeklyList, index) in tables" :key="index">
+            <div class="select-content" v-bind:class="{ active: activeContent === index }">
+                <set-menu :weekly-list="weeklyList" :table-index="index" v-on:open="openModal" />
             </div>
         </div>
 
@@ -50,8 +48,6 @@ export default {
         openModal(menu, date) {
             this.selectedMenu = menu
             this.selectedDate = date
-            this.selectedIndex = this.activeContent
-
             this.modalAvailable = true
         },
         closeModal() {
@@ -73,7 +69,7 @@ export default {
 
             axios.put(this.baseRoute + '/api/admin/set_menu', req).then(res => {
                 if(res.data.status == 200) {
-                    var table = this.tables[this.selectedIndex]
+                    var table = this.tables[this.activeContent]
                     table[this.selectedDate][this.selectedMenu.category] = newMenu
                 }
             })

@@ -5,7 +5,7 @@
                 <div class="col-10">
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
-                <div v-if="validFavorite" class="col-2">
+                <div v-if="validFavoriteButton" class="col-2">
                     <favorite-button :menu-id="menu.id" :base-route="baseRoute" :is-liked="isLiked" />
                 </div>
             </div>
