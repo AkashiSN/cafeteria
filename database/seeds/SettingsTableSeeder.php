@@ -41,5 +41,11 @@ class SettingsTableSeeder extends Seeder
                 'value' => 'true'
             )
         );
+        Setting::create(
+            array(
+                'key' => 'ramen',
+                'value' => 4
+            )
+        );
     }
 }

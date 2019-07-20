@@ -48,14 +48,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//         $setting = Setting::pluck('value', 'key');
-//         config(['setting' => $setting]);
-
-        $date = date('Y-m-d');
-        $daily_menu = DailyMenu::where('date', '>=', $date) -> first();
-        if ($daily_menu !== null) {
-            $ramen = $daily_menu -> ramen;
-            config(['setting.ramen' => $ramen]);
-        }
+        $setting = Setting::pluck('value', 'key');
+        config(['setting' => $setting]);
     }
 }

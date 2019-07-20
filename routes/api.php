@@ -12,6 +12,7 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
+use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -79,10 +80,20 @@ Route::namespace('Admin') -> prefix('admin') -> group(
             'set_menu',
             'DailyMenuController@update'
         ) -> name('admin.daily_menus.update');
+
+        Route::get(
+            'ramens',
+            'MenuController@ramens'
+        ) -> name('admin.menus.ramens');
+
+        Route::put(
+            'update_ramen',
+            'MenuController@update_ramen'
+        ) -> name('admin.menus.update_ramen');
     }
 );
 
 Route::get(
     '/menus/filter',
     'MenuController@filter'
-);
+) -> name('menus.filter');
