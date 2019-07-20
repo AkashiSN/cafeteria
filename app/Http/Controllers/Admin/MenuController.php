@@ -102,19 +102,12 @@ class MenuController extends Controller
      *
      * @return string json形式のラーメン情報
      */
-    public function ramens() {
-        $ramens = Menu::where('category', 'ramen') -> get();
-        $now_id = (int) Setting::where('key', 'ramen') -> first() -> value;
+    public function settings() {
+        $settings = Setting::pluck('value', 'key');
+        $settings['ramens'] = Menu::where('category', 'ramen') -> get();
+        $settings['status'] = 200;
 
-        $status = 200;
-        return response() -> json(
-            [
-                'status' => $status,
-                'ramens' => $ramens,
-                'now_ramen_id' => $now_id
-            ],
-            $status
-        );
+        return response() -> json($settings, $settings['status']);
     }
 
     /**
@@ -124,10 +117,8 @@ class MenuController extends Controller
      *
      * @return int status
      */
-    public function update_ramen(Request $request) {
-        $id = $request -> id;
-
-        $ramen = Menu::find($id);
+    public function update_setting(Request $request) {
+        $ramen = Menu::find($request -> ramen);
         if ($ramen === null || $ramen -> category !== 'ramen') {
             $status = 500;
             return response() -> json(
@@ -139,9 +130,11 @@ class MenuController extends Controller
             );
         }
 
-        $setting = Setting::where('key', 'ramen') -> first();
-        $setting -> value = (string) $id;
-        $setting -> save();
+        foreach ($request -> all() as $key => $value) {
+            $setting = Setting::where('key', $key) -> first();
+            $setting -> value = $value;
+            $setting -> save();
+        }
 
         $status = 200;
         return response() -> json(

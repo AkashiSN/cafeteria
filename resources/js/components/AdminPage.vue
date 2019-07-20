@@ -21,12 +21,12 @@
         </div>
 
         <label for="ramen">提供ラーメン</label>
-        <select v-model="selectedRamenId" class="custom-select" id="ramen" v-on:change="updateRamen">
+        <select v-model="selectedRamenId" class="custom-select" id="ramen" v-on:change="updateSetting">
             <option v-for="ramen in ramens" v-bind:value="ramen.id">{{ ramen.item_name }}</option>
         </select>
 
         <div class="form-check mt-10">
-            <input type="checkbox" class="form-check-input" id="summer">
+            <input v-model="summerMenu" v-on:change="updateSetting" type="checkbox" class="form-check-input" id="summer">
             <label for="summer" class="form-check-label">夏メニューにする</label>
         </div>
 
@@ -56,8 +56,9 @@ export default {
             tables: this.menuTables,
             modalAvailable: false,
             activeContent: 0,
-            ramens: [],
-            selectedRamenId: 0
+            summerMenu: false,
+            selectedRamenId: 0,
+            ramens: []
         }
     },
     methods: {
@@ -91,9 +92,13 @@ export default {
             })
             this.closeModal()
         },
-        updateRamen() {
-            var req = { 'id': this.selectedRamenId }
-            axios.put(this.baseRoute + '/api/admin/update_ramen', req).then(res => {
+        updateSetting() {
+            var req = {
+                'ramen': this.selectedRamenId,
+                'summer_menu': this.summerMenu.toString(),
+            }
+
+            axios.put(this.baseRoute + '/api/admin/update_setting', req).then(res => {
                 if(res.data.status == 200) {
                     console.log('Changed!')
                 }
@@ -101,10 +106,11 @@ export default {
         }
     },
     mounted () {
-        axios.get(this.baseRoute + '/api/admin/ramens').then(res => {
+        axios.get(this.baseRoute + '/api/admin/settings').then(res => {
             if(res.data.status == 200) {
+                this.summerMenu = res.data.summer_menu === 'true'
+                this.selectedRamenId = res.data.ramen
                 this.ramens = res.data.ramens
-                this.selectedRamenId = res.data.now_ramen_id
             }
         })
     }

@@ -82,14 +82,14 @@ Route::namespace('Admin') -> prefix('admin') -> group(
         ) -> name('admin.daily_menus.update');
 
         Route::get(
-            'ramens',
-            'MenuController@ramens'
-        ) -> name('admin.menus.ramens');
+            'settings',
+            'MenuController@settings'
+        ) -> name('admin.menus.settings');
 
         Route::put(
-            'update_ramen',
-            'MenuController@update_ramen'
-        ) -> name('admin.menus.update_ramen');
+            'update_setting',
+            'MenuController@update_setting'
+        ) -> name('admin.menus.update_setting');
     }
 );
 
