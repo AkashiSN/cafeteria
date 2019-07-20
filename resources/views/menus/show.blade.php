@@ -11,10 +11,11 @@
                     <p class="text-justify font-weight-bold">¥{{ $menu -> price }}</p>
                 </div>
                 @if (count($reviews_list))
-                    <span class="evaluation" style="--rate:{{ $average_evaluation }}%"></span><br/>
+                    <span class="evaluation" style="--rate:{{ $average_evaluation }}%"></span>
                 @else
-                    <p class="text-justify text-muted">レビューはありません</p>
+                    <span class="text-justify text-muted">レビューはまだありません</span>
                 @endif
+                <br/>
             </div>
         </div>
         <div class="col-1">
@@ -26,7 +27,7 @@
     </div>
 
     <h4>栄養表示</h4>
-    <div class="container">
+    <div class="container mt-20">
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -60,7 +61,7 @@
         <div class="container mt-20">
             <div class="card">
                 <div class="card-body">
-                    <p>レビューはありません</p>
+                    <p>レビューはまだありません</p>
                 </div>
             </div>
         </div>

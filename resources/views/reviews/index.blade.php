@@ -12,6 +12,9 @@
             </div>
         @endif
     </div>
+
+    <p class="text-justify font-weight-bold">{{ $menu_name }}</p>
+
     @if (count($reviews_list))
         @foreach ($reviews_list as $review)
         <div class="container mt-20">
@@ -22,7 +25,7 @@
         <div class="container mt-20">
             <div class="card">
                 <div class="card-body">
-                    <p>レビューはありません</p>
+                    <p>レビューはまだありません</p>
                 </div>
             </div>
         </div>

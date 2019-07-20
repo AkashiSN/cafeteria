@@ -14,8 +14,10 @@
                 <div class="col-2">
                     <p class="card-text">¥{{ menu.price }}</p>
                 </div>
-                <div class="col-2">
-                    <span class="evaluation" v-bind:style="{ '--rate': (menu.evaluation ? menu.evaluation : 0) * 20 + '%'}"></span><br/>
+                <div class="col">
+                    <span v-if="menu.evaluation" class="evaluation" v-bind:style="{ '--rate': menu.evaluation * 20 + '%'}"></span>
+                    <span v-else class="text-justify text-muted">レビューはまだありません</span>
+                    <br/>
                 </div>
             </div>
 

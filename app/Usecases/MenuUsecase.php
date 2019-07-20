@@ -82,16 +82,14 @@ class MenuUsecase extends DateUsecase
      */
     public function getPermanent()
     {
-        $summer_menu =config('setting.summer_menu');
+        $summer_menu = config('setting.summer_menu');
 
         if ($summer_menu === 'true') {
-            $permanent_menus = Menu::getWithStatusesAndEvaluation()
-                -> where('category', 'permanent_menu')
-                -> where('alias', 0)
-                -> get();
-
             $menu_list[] = array(
-                'menus' => $permanent_menus,
+                'menus' => Menu::getWithStatusesAndEvaluation()
+                    -> where('category', 'permanent_menu')
+                    -> where('alias', 0)
+                    -> get(),
                 'description' => Menu::$descriptions['permanent_menu']
             );
 
@@ -102,12 +100,10 @@ class MenuUsecase extends DateUsecase
                 'description' => Menu::$descriptions['summer_menu']
             );
         } else {
-            $permanent_menus = Menu::getWithStatusesAndEvaluation()
-                -> where('category', 'permanent_menu')
-                -> get();
-
             $menu_list[] = array(
-                'menus' => $permanent_menus,
+                'menus' => Menu::getWithStatusesAndEvaluation()
+                    -> where('category', 'permanent_menu')
+                    -> get(),
                 'description' => Menu::$descriptions['permanent_menu']
             );
         }
