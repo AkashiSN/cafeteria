@@ -1,7 +1,5 @@
 <template>
     <div class="container ph-0">
-        <h2>提供メニューを設定する</h2>
-
         <label for="daily-menu" class="mt-10">日替わりメニュー</label>
 
         <div class="row mt-10 mb-15">
@@ -75,6 +73,7 @@ export default {
         },
         updateMenu(newMenu) {
             if(Object.keys(newMenu).length === 0) {
+                alert('このメニューは存在しません!');
                 return
             }
 

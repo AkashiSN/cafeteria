@@ -5,6 +5,8 @@
 
 @include('errors._alert')
 
+<h2>メニューを登録する</h2>
+
 <div class="container mt-10 ph-0">
     {{ Form::model($menu, ['route' => 'admin.menus.store', 'class' => 'form-horizontal']) }}
 
