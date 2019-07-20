@@ -19,6 +19,7 @@ use App\Models\Review;
 use App\Models\Evaluation;
 use App\Http\Controllers\Controller;
 use App\Usecases\MenuUsecase as Usecase;
+use Illuminate\Http\Request;
 
 /**
  * MenuController class
@@ -62,6 +63,7 @@ class MenuController extends Controller
     public function show($menu_id)
     {
         $menu = Menu::getWithStatusesAndEvaluation() -> find($menu_id);
+        $menu -> description = Menu::$descriptions[$menu -> category];
 
         $reviews_list = Review::getReviewsWithUserName($menu_id);
 
@@ -71,6 +73,30 @@ class MenuController extends Controller
         return view(
             'menus.show',
             compact('menu', 'reviews_list', 'average_evaluation')
+        );
+    }
+
+    public function search() {
+        return view('menus.search');
+    }
+
+    public function filter(Request $request) {
+        $item_name = $request -> item_name;
+        $category = $request -> category;
+
+        $result = Menu::when(!is_null($category), function ($query) use ($category) {
+                return $query -> where('category', $category);
+            }) -> when(!is_null($item_name), function ($query) use ($item_name) {
+                return $query -> where('item_name', 'like', "%{$item_name}%");
+            }) -> get();
+
+        $status = 200;
+        return response() -> json(
+            [
+                'status' => $status,
+                'menus' => $result
+            ],
+            $status
         );
     }
 }

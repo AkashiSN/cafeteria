@@ -25,6 +25,7 @@ Vue.component('review-card', require('./components/ReviewCard.vue').default);
 Vue.component('menu-card', require('./components/MenuCard.vue').default);
 Vue.component('sold-out-button', require('./components/SoldOutButton.vue').default);
 Vue.component('favorite-button', require('./components/FavoriteButton.vue').default);
+Vue.component('search-menu', require('./components/SearchMenu.vue').default);
 
 Vue.component('admin-page', require('./components/AdminPage.vue').default);
 Vue.component('set-menu', require('./components/admin/SetMenu.vue').default);
@@ -43,7 +44,7 @@ const app = new Vue({
         tabContent: '1'
     },
     methods: {
-        change: function(num){
+        change: function (num){
             this.tabContent = num
         }
     }

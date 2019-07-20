@@ -14,10 +14,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DateTime;
 use App\Models\Menu;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdminMenu;
-use App\Usecases\SetMenuUsecase as Usecase;
+use App\Usecases\SetMenuUsecase;
+use App\Usecases\DailyMenuUsecase;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Admin\MenuController class
@@ -82,12 +85,12 @@ class MenuController extends Controller
      *
      * @return Renderable
      */
-    public function setMenu(Usecase $usecase)
+    public function setMenu(SetMenuUsecase $usecase)
     {
-        list($menu_table, $options) = $usecase -> getMenuTable();
+        list($menu_tables, $options) = $usecase -> getMenuTable();
 
         return view(
-            'admin.menus.set_menu', compact('menu_table', 'options')
+            'admin.menus.set_menu', compact('menu_tables', 'options')
         );
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <button type="button" v-on:click.stop="updateIsSold()" class="btn" v-bind:class="[status ? 'btn-danger' : 'btn-success']">
+    <button type="button" v-on:click.stop="updateIsSold" class="btn" v-bind:class="[status ? 'btn-danger' : 'btn-success']">
         {{ buttonText }}
     </button>
 </template>

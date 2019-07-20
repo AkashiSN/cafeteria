@@ -40,9 +40,9 @@ class DailyMenuTable extends Migration
             'daily_menu',
             function (Blueprint $table) {
                 $table->date('date')->primary()->unique();
-                $table->integer('menu_id_A');
-                $table->integer('menu_id_B');
-                $table->integer('ramen');
+                $table->integer('menu_id_A')->nullable();
+                $table->integer('menu_id_B')->nullable();
+                $table->integer('ramen')->nullable();
             }
         );
     }

@@ -8,8 +8,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.theme-color {
+.theme-color-student {
     background-color: #F0AD4E;
+}
+.theme-color-admin {
+    background-color: #56C0E0;
 }
 
 .select-content {
@@ -121,7 +124,7 @@ form {
 }
 
 .heart {
-    width: 80%;
+    width: 50%;
     display: inline-block;
 }
 

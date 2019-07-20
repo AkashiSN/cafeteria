@@ -16,7 +16,7 @@
 <body>
 
 <!-- Navigation -->
-<nav class="theme-color navbar navbar-expand-lg fixed-top navbar-dark">
+<nav class="theme-color-{{ (Auth::check() && Auth::user() -> is_admin) ? 'admin' : 'student' }} navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">Nitac Cafeteria</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,28 +24,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
                 @if (Auth::check())
-                <li class="dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::getUser()->name }}<span class="caret"></span></a>
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" >{{ __('Logout') }}</a>
-                    </div>
-                </li>
+                    <li class="dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::getUser()->name }}<span class="caret"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('menus.search') }}" >メニュー検索</a>
+                            @if (Auth::user() -> is_admin)
+                                <a class="dropdown-item" href="{{ route('admin.menus.create') }}" >管理者ページ</a>
+                            @else
+                                <a class="dropdown-item" href="{{ route('my_page') }}" >マイページ</a>
+                            @endif
+                            <a class="dropdown-item" href="{{ route('logout') }}" >ログアウト</a>
+                        </div>
+                    </li>
                 @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Sign in with Google</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Sign in with Google</a>
+                    </li>
                 @endif
             </ul>
         </div>

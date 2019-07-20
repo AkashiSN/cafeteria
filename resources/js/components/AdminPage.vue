@@ -1,8 +1,8 @@
 <template>
-    <div class="container">
-        <div class="row">
+    <div class="container ph-0">
+        <div class="row mt-10 mb-15">
             <div class="col-4">
-                <select class="custom-select custom-select-sm mv-3" v-model="activeContent">
+                <select class="custom-select custom-select-sm" v-model="activeContent">
                     <option v-for="(option, index) in options" :key="index" v-bind:value="index">
                     {{ option }}
                     </option>
@@ -10,54 +10,70 @@
             </div>
         </div>
 
-        <div class="container ph-5">
-            <div v-for="(weeklyList, index) in menuTable" :key="index">
-                <div class="select-content" v-bind:class="{ active: activeContent === index }">
-                    <set-menu :weekly-list="weeklyList" v-on:open="openModal" />
-                </div>
+        <div v-for="(weeklyList, index) in tables" :key="index">
+            <div class="select-content" v-bind:class="{ active: activeContent === index }">
+                <set-menu :weekly-list="weeklyList" :table-index="index" v-on:open="openModal" />
             </div>
         </div>
 
-        <set-menu-modal v-if="modalAvailable" v-on:close="closeModal" v-model="selectedMenu"/>
+        <set-menu-modal v-if="modalAvailable" :menu="selectedMenu" :date="selectedDate" :base-route="baseRoute" v-on:update="updateMenu" v-on:delete="deleteMenu" v-on:close="closeModal" />
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        menuTable: {
+        menuTables: {
             type: Array,
             required: true
         },
         options: {
             type: Array,
             required: true
+        },
+        baseRoute: {
+            type: String,
+            required: true
         }
     },
     data() {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            tables: this.menuTables,
             modalAvailable: false,
-            selectedMenu: {},
             activeContent: 0
         }
     },
     methods: {
-        openModal(menu) {
+        openModal(menu, date) {
             this.selectedMenu = menu
+            this.selectedDate = date
             this.modalAvailable = true
         },
         closeModal() {
             this.modalAvailable = false
         },
-        doSend() {
-            if (this.message.length > 0) {
-                alert(this.message)
-                this.message = ''
-                this.closeModal()
-            } else {
-                alert('メッセージを入力してください')
+        deleteMenu() {
+            this.closeModal()
+        },
+        updateMenu(newMenu) {
+            if(Object.keys(newMenu).length === 0) {
+                return
             }
+
+            var req = {
+                'menu_id': newMenu.id,
+                'category': newMenu.category,
+                'date': this.selectedDate
+            }
+
+            axios.put(this.baseRoute + '/api/admin/set_menu', req).then(res => {
+                if(res.data.status == 200) {
+                    var table = this.tables[this.activeContent]
+                    table[this.selectedDate][this.selectedMenu.category] = newMenu
+                }
+            })
+            this.closeModal()
         }
     }
 }

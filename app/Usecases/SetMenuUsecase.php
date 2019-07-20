@@ -50,14 +50,16 @@ class SetMenuUsecase extends DateUsecase
                     continue;
                 }
 
-                $a_menu = Menu::select('id', 'item_name')
+                $a_menu = Menu::select('id', 'item_name', 'category')
                     -> find($daily_menu -> menu_id_A);
-                $b_menu = Menu::select('id', 'item_name')
+                $b_menu = Menu::select('id', 'item_name', 'category')
                     -> find($daily_menu -> menu_id_B);
 
                 $weekday = $this -> japanese_weekday[(int)$workday -> format('w')];
                 $date_label = $workday -> format("n月j日") . '（' . $weekday . '）';
-                $weekly_list[$date_label] = [$a_menu, $b_menu];
+
+                $weekly_list[$date_label][$a_menu -> category] = $a_menu;
+                $weekly_list[$date_label][$b_menu -> category] = $b_menu;
             }
 
             $menu_table[] = $weekly_list;

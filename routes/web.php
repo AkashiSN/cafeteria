@@ -19,17 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Admin') -> middleware('auth.admin') -> prefix('admin') -> group(
     function () {
         Route::get(
-            'create',
+            'menus/create',
             'MenuController@create'
         ) -> name('admin.menus.create');
 
         Route::post(
-            'store',
+            'menus/store',
             'MenuController@store'
         ) -> name('admin.menus.store');
 
         Route::get(
-            'set_menu',
+            'menus/set_menu',
             'MenuController@setMenu'
         ) -> name('admin.menus.set_menu');
     }
@@ -47,6 +47,11 @@ Route::get(
 Route::prefix('menus') -> group(
     function () {
         // menus
+        Route::get(
+            'search',
+            'MenuController@search'
+        ) -> name('menus.search');
+
         Route::get(
             '{menu_id}',
             'MenuController@show'
