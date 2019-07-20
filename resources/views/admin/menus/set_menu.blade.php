@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<a class="btn btn-link" href="{{ route('admin.menus.create') }}">メニューを登録する</a>
+<a class="btn btn-link" href="{{ route('admin.menus.create') }}">メニュー登録へ</a>
 
 @include('errors._alert')
 

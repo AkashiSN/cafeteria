@@ -5,6 +5,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">{{ title }}</h5>
+                    <button type="button" class="btn btn-light" @click="$emit('close')">閉じる</button>
                 </div>
                 <div class="modal-body">
                     <div class="input-group">
@@ -17,7 +18,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="$emit('close')">閉じる</button>
+                    <button type="button" class="btn btn-secondary" @click="createMenu(searchWord)">この名前のメニューを作成</button>
                     <button type="button" class="btn btn-primary" @click="$emit('update', newMenu)">変更する</button>
                 </div>
             </div>
@@ -82,6 +83,9 @@ export default {
             this.newMenu = menu
             this.searchWord = menu.item_name
             this.menus = []
+        },
+        createMenu(word) {
+            location.href = this.baseRoute + '/admin/menus/create?item_name=' + word
         }
     }
 }

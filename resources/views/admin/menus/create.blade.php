@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<a class="btn btn-link" href="{{ route('admin.menus.set_menu') }}">日替わりメニューを設定する</a>
+<a class="btn btn-link" href="{{ route('admin.menus.set_menu') }}">メニュー設定へ</a>
 
 @include('errors._alert')
 

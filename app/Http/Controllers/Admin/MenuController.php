@@ -44,12 +44,17 @@ class MenuController extends Controller
      *
      * @return Renderable
      */
-    public function create()
+    public function create(Request $request)
     {
+        $menu = new Menu();
+        if($request -> item_name !== null) {
+            $menu -> item_name = $request -> item_name;
+        }
+
         return view(
             'admin.menus.create',
             [
-                'menu' => new Menu(),
+                'menu' => $menu,
                 'descriptions' => Menu::$descriptions
             ]
         );
