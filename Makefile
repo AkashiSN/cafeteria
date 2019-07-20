@@ -8,12 +8,14 @@ init-vagrant:
 	vagrant ssh -- "cd /cafeteria && yarn run dev"
 	vagrant ssh -- "cd /cafeteria && composer install"
 	vagrant ssh -- "cp /cafeteria/.env.example /cafeteria/.env"
+	vagrant ssh -- "cd /cafeteria && sed -i '51,59 s|^ |//|' app/Providers/AppServiceProvider.php"
 	vagrant ssh -- "cd /cafeteria && php artisan key:generate"
 
 .PHONY: migrate-vagrant
 migrate-vagrant:
 	vagrant ssh -- "cd /cafeteria && php artisan migrate:fresh"
 	vagrant ssh -- "cd /cafeteria && php artisan db:seed"
+	vagrant ssh -- "cd /cafeteria && sed -i '51,59 s|^//| |' app/Providers/AppServiceProvider.php"
 
 .PHONY: build-sass-vagrant
 build-sass-vagrant:
@@ -49,6 +51,7 @@ dump-autoload-vagrant:
 .PHONY: init
 init: yarn build-sass composer
 	cp .env.example .env
+	sed -i '51,59 s|^ |//|' app/Providers/AppServiceProvider.php
 	php artisan key:generate
 
 .PHONY: yarn
@@ -71,6 +74,7 @@ composer:
 migrate:
 	php artisan migrate:fresh
 	php artisan db:seed
+	sed -i '51,59 s|^//| |' app/Providers/AppServiceProvider.php
 	rm -rf public/data
 
 .PHONY: serve
@@ -109,10 +113,12 @@ deploy:
 	ssh radish -- "source ~/.bash_profile; cd cafeteria; yarn run prod"
 	ssh radish -- "source ~/.bash_profile; cd cafeteria; composer install --no-dev"
 
+	ssh radish -- "cd cafeteria; sed -i '51,59 s|^ |//|' app/Providers/AppServiceProvider.php"
+	ssh radish -- "cd cafeteria; php artisan key:generate"
 
 .PHONY: deploy-migrate
 deploy-migrate:
-	ssh radish -- "cd cafeteria; php artisan key:generate"
 	ssh radish -- "cd cafeteria; php artisan migrate:fresh --force"
 	ssh radish -- "cd cafeteria; php artisan db:seed --force"
+	ssh radish -- "cd cafeteria; sed -i '51,59 s|^//| |' app/Providers/AppServiceProvider.php"
 
