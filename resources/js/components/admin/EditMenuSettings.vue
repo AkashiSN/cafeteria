@@ -1,5 +1,7 @@
 <template>
     <div class="container ph-0">
+        <label for="daily-menu" class="mt-10">日替わりメニュー</label>
+
         <div class="row mt-10 mb-15">
             <div class="col-4">
                 <select class="custom-select custom-select-sm" v-model="activeContent">
@@ -10,10 +12,20 @@
             </div>
         </div>
 
-        <div v-for="(weeklyList, index) in tables" :key="index">
-            <div class="select-content" v-bind:class="{ active: activeContent === index }">
+        <div v-for="(weeklyList, index) in tables" :key="index" id="daily-menu">
+            <div class="select-content ph-10" v-bind:class="{ active: activeContent === index }">
                 <set-menu :weekly-list="weeklyList" :table-index="index" v-on:open="openModal" />
             </div>
+        </div>
+
+        <label for="ramen">提供ラーメン</label>
+        <select v-model="selectedRamenId" class="custom-select" id="ramen" v-on:change="updateSetting">
+            <option v-for="ramen in ramens" v-bind:value="ramen.id">{{ ramen.item_name }}</option>
+        </select>
+
+        <div class="form-check mt-10">
+            <input v-model="summerMenu" v-on:change="updateSetting" type="checkbox" class="form-check-input" id="summer">
+            <label for="summer" class="form-check-label">夏メニューにする</label>
         </div>
 
         <set-menu-modal v-if="modalAvailable" :menu="selectedMenu" :date="selectedDate" :base-route="baseRoute" v-on:update="updateMenu" v-on:delete="deleteMenu" v-on:close="closeModal" />
@@ -41,7 +53,10 @@ export default {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             tables: this.menuTables,
             modalAvailable: false,
-            activeContent: 0
+            activeContent: 0,
+            summerMenu: false,
+            selectedRamenId: 0,
+            ramens: []
         }
     },
     methods: {
@@ -58,6 +73,7 @@ export default {
         },
         updateMenu(newMenu) {
             if(Object.keys(newMenu).length === 0) {
+                alert('このメニューは存在しません!');
                 return
             }
 
@@ -74,7 +90,28 @@ export default {
                 }
             })
             this.closeModal()
+        },
+        updateSetting() {
+            var req = {
+                'ramen': this.selectedRamenId,
+                'summer_menu': this.summerMenu.toString(),
+            }
+
+            axios.put(this.baseRoute + '/api/admin/update_setting', req).then(res => {
+                if(res.data.status == 200) {
+                    console.log('Changed!')
+                }
+            })
         }
+    },
+    mounted () {
+        axios.get(this.baseRoute + '/api/admin/settings').then(res => {
+            if(res.data.status == 200) {
+                this.summerMenu = res.data.summer_menu === 'true'
+                this.selectedRamenId = res.data.ramen
+                this.ramens = res.data.ramens
+            }
+        })
     }
 }
 </script>

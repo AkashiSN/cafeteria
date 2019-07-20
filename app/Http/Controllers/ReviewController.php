@@ -45,7 +45,8 @@ class ReviewController extends Controller
     public function index($menu_id)
     {
         $reviews_list = Review::getReviewsWithUserName($menu_id);
-        return view('reviews.index', compact('reviews_list', 'menu_id'));
+        $menu_name = Menu::find($menu_id) -> item_name;
+        return view('reviews.index', compact('reviews_list', 'menu_id', 'menu_name'));
     }
 
     /**

@@ -76,10 +76,22 @@ class MenuController extends Controller
         );
     }
 
+    /**
+     * メニュー検索画面を表示する。
+     *
+     * @return Renderable
+     */
     public function search() {
         return view('menus.search');
     }
 
+    /**
+     * メニューの絞り込み結果を返す。
+     *
+     * Request $request リクエスト
+     *
+     * @return string json形式のメニューのリスト
+     */
     public function filter(Request $request) {
         $item_name = $request -> item_name;
         $category = $request -> category;

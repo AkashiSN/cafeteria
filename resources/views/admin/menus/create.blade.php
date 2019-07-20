@@ -1,9 +1,11 @@
 @extends('layouts.default')
 
 @section('content')
-<a class="btn btn-link" href="{{ route('admin.menus.set_menu') }}">日替わりメニューを設定する</a>
+<a class="btn btn-link" href="{{ route('admin.menus.set_menu') }}">メニュー設定へ</a>
 
 @include('errors._alert')
+
+<h2>メニューを登録する</h2>
 
 <div class="container mt-10 ph-0">
     {{ Form::model($menu, ['route' => 'admin.menus.store', 'class' => 'form-horizontal']) }}

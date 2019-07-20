@@ -5,10 +5,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">{{ title }}</h5>
+                    <button type="button" class="btn btn-light" @click="$emit('close')">閉じる</button>
                 </div>
                 <div class="modal-body">
                     <div class="input-group">
-                        <input v-model="searchWord" v-on:input="searchMenu" type="text" id="input-area" class="form-control">
+                        <input v-model="searchWord" v-on:input="searchInterval" type="text" id="input-area" class="form-control">
                     </div>
                     <div class="list-group">
                         <button v-for="menu in menus" type="button" @click="selectMenu(menu)" class="list-group-item list-group-item-action" tabindex="0" >
@@ -17,9 +18,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" @click="$emit('close')">Close</button>
-                    <button type="button" class="btn btn-danger" @click="$emit('delete')">Delete</button>
-                    <button type="button" class="btn btn-primary" @click="$emit('update', newMenu)">Save change</button>
+                    <button type="button" class="btn btn-secondary" @click="createMenu(searchWord)">この名前のメニューを作成</button>
+                    <button type="button" class="btn btn-primary" @click="$emit('update', newMenu)">変更する</button>
                 </div>
             </div>
         </div>
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { debounce } from 'lodash'
+
 export default {
     props: {
         menu: {
@@ -56,8 +58,12 @@ export default {
             return this.date + ' ' + category
         }
     },
+    created () {
+        this.searchInterval = debounce(this.searchMenu, 250)
+    },
     methods: {
-        searchMenu(e) {
+        searchMenu() {
+            this.newMenu = {}
             this.searchWord = document.getElementById("input-area").value
 
             var params = {
@@ -77,6 +83,9 @@ export default {
             this.newMenu = menu
             this.searchWord = menu.item_name
             this.menus = []
+        },
+        createMenu(word) {
+            location.href = this.baseRoute + '/admin/menus/create?item_name=' + word
         }
     }
 }

@@ -14,13 +14,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Log;
 use DateTime;
 use App\Models\Menu;
+use App\Models\Setting;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdminMenu;
 use App\Usecases\SetMenuUsecase;
 use App\Usecases\DailyMenuUsecase;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 /**
  * Admin\MenuController class
@@ -41,12 +44,17 @@ class MenuController extends Controller
      *
      * @return Renderable
      */
-    public function create()
+    public function create(Request $request)
     {
+        $menu = new Menu();
+        if($request -> item_name !== null) {
+            $menu -> item_name = $request -> item_name;
+        }
+
         return view(
             'admin.menus.create',
             [
-                'menu' => new Menu(),
+                'menu' => $menu,
                 'descriptions' => Menu::$descriptions
             ]
         );
@@ -91,6 +99,54 @@ class MenuController extends Controller
 
         return view(
             'admin.menus.set_menu', compact('menu_tables', 'options')
+        );
+    }
+
+    /**
+     * ラーメン情報を返す
+     *
+     * @return string json形式のラーメン情報
+     */
+    public function settings() {
+        $settings = Setting::pluck('value', 'key');
+        $settings['ramens'] = Menu::where('category', 'ramen') -> get();
+        $settings['status'] = 200;
+
+        return response() -> json($settings, $settings['status']);
+    }
+
+    /**
+     * ラーメン情報を更新する
+     *
+     * Request $request リクエスト
+     *
+     * @return int status
+     */
+    public function update_setting(Request $request) {
+        $ramen = Menu::find($request -> ramen);
+        if ($ramen === null || $ramen -> category !== 'ramen') {
+            $status = 500;
+            return response() -> json(
+                [
+                    'status' => $status,
+                    'errors' => 'This ramen does not exist'
+                ],
+                $status
+            );
+        }
+
+        foreach ($request -> all() as $key => $value) {
+            $setting = Setting::where('key', $key) -> first();
+            $setting -> value = $value;
+            $setting -> save();
+        }
+
+        $status = 200;
+        return response() -> json(
+            [
+                'status' => $status,
+            ],
+            $status
         );
     }
 }

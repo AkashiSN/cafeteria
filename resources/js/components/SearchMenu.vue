@@ -2,7 +2,7 @@
     <div class="container">
         <h2 class="text-justify">メニューを検索する</h2>
         <div class="input-group mt-15 col-6">
-            <input v-on:input="searchMenu" type="text" id="input-area" class="form-control" placeholder="メニュー名を入力してください">
+            <input v-on:input="searchInterval" type="text" id="input-area" class="form-control" placeholder="メニュー名を入力してください">
         </div>
         <div class="container mt-20 ph-0">
             <div v-for="menu in menus">
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import { debounce } from 'lodash'
 export default {
     props: {
         baseRoute: {
@@ -25,6 +26,9 @@ export default {
             searchWord: '',
             menus: []
         }
+    },
+    created () {
+        this.searchInterval = debounce(this.searchMenu, 250)
     },
     methods: {
         searchMenu(e) {
