@@ -27,7 +27,7 @@ Vue.component('sold-out-button', require('./components/SoldOutButton.vue').defau
 Vue.component('favorite-button', require('./components/FavoriteButton.vue').default);
 Vue.component('search-menu', require('./components/SearchMenu.vue').default);
 
-Vue.component('admin-page', require('./components/AdminPage.vue').default);
+Vue.component('edit-menu-settings', require('./components/admin/EditMenuSettings.vue').default);
 Vue.component('set-menu', require('./components/admin/SetMenu.vue').default);
 Vue.component('set-menu-modal', require('./components/admin/SetMenuModal.vue').default);
 
