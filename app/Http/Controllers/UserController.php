@@ -17,12 +17,8 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Review;
 use App\Models\Favorite;
-use App\Models\DailyMenu;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Usecases\MenuUsecase as Usecase;
-use DateTime;
-use DateInterval;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * UserController class
@@ -55,8 +51,10 @@ class UserController extends Controller
      */
     public function favorites()
     {
-
-        return view('users.favorites');
+        $menu_ids = Favorite::where('user_id', Auth::user() -> id)
+                            -> pluck('menu_id');
+        $menus = Menu::find($menu_ids);
+        return view('users.favorites', compact('menus'));
     }
 
     /**
@@ -66,7 +64,21 @@ class UserController extends Controller
      */
     public function reviews()
     {
+        $user = Auth::user();
+        $reviews = Review::where('user_id', $user -> id) -> get();
+        $reviews_list = [];
 
-        return view('users.reviews');
+        foreach ($reviews as $review) {
+            $menu = Menu::find($review -> menu_id);
+            $reviews_list[] = array(
+                'menu'       => $menu,
+                'review_id'  => $review -> id,
+                'evaluation' => $review -> evaluation,
+                'created_at' => $review -> created_at -> format('Y-m-d'),
+                'comment'    => $review -> comment
+            );
+        }
+
+        return view('users.reviews', compact('reviews_list', 'user'));
     }
 }

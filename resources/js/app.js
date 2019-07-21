@@ -22,6 +22,7 @@ window.Vue = require('vue');
 
 Vue.component('create-review', require('./components/CreateReview.vue').default);
 Vue.component('review-card', require('./components/ReviewCard.vue').default);
+Vue.component('review-card-my-page', require('./components/ReviewCardMyPage.vue').default);
 Vue.component('menu-card', require('./components/MenuCard.vue').default);
 Vue.component('sold-out-button', require('./components/SoldOutButton.vue').default);
 Vue.component('favorite-button', require('./components/FavoriteButton.vue').default);
