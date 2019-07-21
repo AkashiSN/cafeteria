@@ -53,7 +53,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="theme-color py-3">
+<footer class="theme-color-{{ (Auth::check() && Auth::user() -> is_admin) ? 'admin' : 'student' }} py-3">
     <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Team3 2019</p>
     </div>

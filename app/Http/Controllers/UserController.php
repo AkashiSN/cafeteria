@@ -40,8 +40,7 @@ class UserController extends Controller
      */
     public function show()
     {
-
-        return view('users.show');
+        return view('users.show', ['user' => Auth::user()]);
     }
 
     /**
