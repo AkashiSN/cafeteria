@@ -7,8 +7,10 @@
 
     <h2 class="text-center" style="margin-bottom: 1em;">{{ $user['name'] }}</h2>
 
-    <a class="btn btn-primary" href="{{ route('my_page.reviews') }}" role="button">レビューをみる</a>
-    <a class="btn btn-primary" href="{{ route('my_page.favorites') }}" role="button">お気に入りをみる</a>
+    @if (! $user['is_admin'])
+        <a class="btn btn-primary" href="{{ route('my_page.reviews') }}" role="button">レビューをみる</a>
+        <a class="btn btn-primary" href="{{ route('my_page.favorites') }}" role="button">お気に入りをみる</a>
+    @endif
     <a class="btn btn-primary" href="{{ route('my_page.edit') }}" role="button">ユーザー情報を変更する</a>
 </div>
 @endsection

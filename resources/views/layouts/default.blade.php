@@ -28,12 +28,11 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><img src="{{ Auth::getUser()->avatar }}" style="border-radius: 50%;" width="40"></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('my_page') }}" >{{ Auth::getUser()->name }}</a>
+                            <div class="dropdown-divider"></div>
                             @if (Auth::user() -> is_admin)
                                 <a class="dropdown-item" href="{{ route('admin.menus.create') }}" >管理者ページ</a>
-                            @else
-                                <a class="dropdown-item" href="{{ route('my_page') }}" >{{ Auth::getUser()->name }}</a>
                             @endif
-                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('menus.search') }}" >メニュー検索</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" >ログアウト</a>
                         </div>

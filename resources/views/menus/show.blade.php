@@ -19,7 +19,9 @@
             </div>
         </div>
         <div class="col-1">
+            @if (Auth::check())
             <favorite-button :menu-id="{{ $menu -> id }}" :base-route="'{{ url("") }}'" :is-liked="{{ var_export($menu -> isLiked(), true) }}" />
+            @endif
         </div>
         <div class="col-2">
             <sold-out-button :base-route="'{{ url("") }}'" :menu-id="{{ $menu -> id }}" :sold-out={{ var_export($menu -> sold_out, true) }} />
