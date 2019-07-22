@@ -129,7 +129,7 @@ class UserController extends Controller
             $ext = $file -> guessExtension();
             $image_name = uniqid("image_").".".$ext;
 
-            $image_path = $file -> storeAs('icons', $image_name); // public/data/images/以下に保存
+            $image_path = $file -> storeAs('icons', $image_name); // public/data/icons/以下に保存
 
             $user -> avatar = url("data/".$image_path);
         }
