@@ -12,10 +12,7 @@
  * @link     https://github.com/AkashiSN/cafeteria
  */
 
-use App\Models\Setting;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,29 +24,47 @@ use Illuminate\Http\Request;
 |
 */
 
-// auth
-Route::middleware('auth:api') -> get(
-    '/user',
-    function (Request $request) {
-        return $request -> user();
-    }
-);
+// Admin
+Route::middleware('auth.admin.api')
+    -> namespace('Admin')
+    -> prefix('admin')
+    -> group(
+        function () {
+            Route::put(
+                'set_menu',
+                'DailyMenuController@update'
+            ) -> name('admin.daily_menus.update');
+
+            Route::get(
+                'settings',
+                'MenuController@settings'
+            ) -> name('admin.menus.settings');
+
+            Route::put(
+                'update_setting',
+                'MenuController@updateSetting'
+            ) -> name('admin.menus.update_setting');
+        }
+    );
 
 
 // Favorites
-Route::prefix('favorites') -> group(
-    function () {
-        Route::post(
-            '{menu_id}',
-            'FavoriteController@store'
-        ) -> name('favorites.store');
+Route::middleware('auth.api')
+    -> prefix('favorites')
+    -> group(
+        function () {
+            Route::post(
+                '{menu_id}',
+                'FavoriteController@store'
+            ) -> name('favorites.store');
 
-        Route::delete(
-            '{menu_id}',
-            'FavoriteController@destroy'
-        ) -> name('favorites.destroy');
-    }
-);
+            Route::delete(
+                '{menu_id}',
+                'FavoriteController@destroy'
+            ) -> name('favorites.destroy');
+        }
+    );
+
 
 // Menus
 Route::prefix('menus') -> group(
@@ -74,25 +89,8 @@ Route::prefix('menus') -> group(
     }
 );
 
-Route::namespace('Admin') -> prefix('admin') -> group(
-    function () {
-        Route::put(
-            'set_menu',
-            'DailyMenuController@update'
-        ) -> name('admin.daily_menus.update');
 
-        Route::get(
-            'settings',
-            'MenuController@settings'
-        ) -> name('admin.menus.settings');
-
-        Route::put(
-            'update_setting',
-            'MenuController@update_setting'
-        ) -> name('admin.menus.update_setting');
-    }
-);
-
+// Filter
 Route::get(
     '/menus/filter',
     'MenuController@filter'

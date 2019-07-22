@@ -38,8 +38,8 @@ class DailyMenuController extends Controller
     /**
      * 日替わりメニュー情報を更新します。
      *
-     * @param Request $request APIリクエスト
-     * @param int     $menu_id メニューID
+     * @param Request          $request APIリクエスト
+     * @param DailyMenuUsecase $usecase メニューID
      *
      * @return string json形式のステータス
      */
