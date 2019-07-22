@@ -1,7 +1,7 @@
 <?php
 
 /**
- * StoreReview.php
+ * StoreUserInfo.php
  *
  * PHP Version = 7.0
  *
@@ -17,9 +17,9 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * StoreReview class
+ * StoreUserInfo class
  *
- * レビューリクエストのバリデーターです
+ * メニュー追加の際のバリデーターです
  *
  * @category Request
  * @package  Request
@@ -27,7 +27,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * @license  MIT https://opensource.org/licenses/mit-license.php
  * @link     https://github.com/AkashiSN/cafeteria
  */
-class StoreReview extends FormRequest
+class StoreUserInfo extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -40,14 +40,14 @@ class StoreReview extends FormRequest
     }
 
     /**
-     * レビュー投稿のリクエストに適応するルール。
+     * ユーザー情報のリクエストに適応するルール。
      *
      * @return array
      */
     public function rules()
     {
         return [
-            'evaluation'    => 'required|min:1|max:5',
+            'user_name'     => 'max:20',
             'files.*.image' => 'image|max:10000',
         ];
     }
@@ -60,7 +60,6 @@ class StoreReview extends FormRequest
     public function messages()
     {
         return [
-            'evaluation.required' => '評価を選んでください',
             'files.*.image.image' => '画像をアップロードしてください',
             'files.*.image.max'   => '画像は１MB以下でお願いします',
         ];

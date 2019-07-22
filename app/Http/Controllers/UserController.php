@@ -15,8 +15,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\User;
 use App\Models\Review;
 use App\Models\Favorite;
+use Illuminate\Http\Request;
+use App\Http\Requests\StoreUserInfo;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +43,13 @@ class UserController extends Controller
      */
     public function show()
     {
-        return view('users.show', ['user' => Auth::user()]);
+        $user_info = Auth::user();
+        $user = array(
+            'name' => $user_info -> name,
+            'avatar' => $user_info -> avatar
+        );
+
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -80,5 +89,54 @@ class UserController extends Controller
         }
 
         return view('users.reviews', compact('reviews_list', 'user'));
+    }
+
+    /**
+     * ユーザー情報を変更画面を表示する。
+     *
+     * @return Renderable
+     */
+    public function modify()
+    {
+        $user_info = Auth::user();
+        $user = array(
+            'name'   => $user_info -> name,
+            'avatar' => $user_info -> avatar
+        );
+
+        return view('users.modify', compact('user'));
+    }
+
+    /**
+     * ユーザー情報を変更する。
+     *
+     * @param StoreUserInfo $request バリデータを通過したリクエスト
+     *
+     * @return Renderable
+     */
+    public function store(StoreUserInfo $request)
+    {
+        $user_info = Auth::user();
+
+        $user = User::where('email', $user_info -> email) -> first();
+
+        if ($request -> input('user_name') !== null) {
+            $user -> name = $request -> input('user_name');
+        }
+
+        if ($request -> file("files") !== null) {
+            foreach ($request -> file("files") as $index => $e) {
+                $ext = $e['image'] -> guessExtension();
+                $image_name = uniqid("image_").".".$ext;
+
+                $image_path = $e['image'] -> storeAs('icons', $image_name); // public/data/images/以下に保存
+
+                $user -> avatar = $image_path;
+            }
+        }
+
+        $user -> save();
+
+        return redirect() -> route('home');
     }
 }

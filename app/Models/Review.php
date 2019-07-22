@@ -59,11 +59,12 @@ class Review extends Model
         foreach ($reviews as $review) {
             $user = User::where('id', $review -> user_id) -> first();
             $reviews_list[] = array(
-                'user_name'  => $user -> name,
-                'review_id'  => $review -> id,
-                'evaluation' => $review -> evaluation,
-                'created_at' => $review -> created_at ->format('Y-m-d H:i:s'),
-                'comment'    => $review -> comment
+                'user_name'   => $user -> name,
+                'user_avatar' => $user -> avatar,
+                'review_id'   => $review -> id,
+                'evaluation'  => $review -> evaluation,
+                'created_at'  => $review -> created_at ->format('Y-m-d H:i:s'),
+                'comment'     => $review -> comment
             );
         }
 

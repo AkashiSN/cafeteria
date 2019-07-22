@@ -5,6 +5,9 @@
                 <div class="col-9">
                     <div class="row">
                         <div class="col-auto">
+                            <img :src="user.avatar" style="border-radius: 50%;" width="40">
+                        </div>
+                        <div class="col-auto">
                             <h5 class="card-text" style="display: flex;">{{ review.menu.item_name }}</h5>
                         </div>
                         <div class="col-auto">
@@ -44,7 +47,7 @@
                 required: true
             },
             user: {
-                type: String,
+                type: Object,
                 required: true
             }
         },

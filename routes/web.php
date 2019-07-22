@@ -84,24 +84,36 @@ Route::prefix('menus') -> group(
 
 
 // my page
-Route::prefix('my_page') -> group(
-    function () {
-        Route::get(
-            '',
-            'UserController@show'
-        ) -> name('my_page');
+Route::middleware('auth')
+    -> prefix('my_page')
+    -> group(
+        function () {
+            Route::get(
+                '',
+                'UserController@show'
+            ) -> name('my_page');
 
-        Route::get(
-            'favorites',
-            'UserController@favorites'
-        ) -> name('my_page.favorites');
+            Route::get(
+                'favorites',
+                'UserController@favorites'
+            ) -> name('my_page.favorites');
 
-        Route::get(
-            'reviews',
-            'UserController@reviews'
-        ) -> name('my_page.reviews');
-    }
-);
+            Route::get(
+                'reviews',
+                'UserController@reviews'
+            ) -> name('my_page.reviews');
+
+            Route::get(
+                'modify',
+                'UserController@modify'
+            ) -> name('my_page.modify');
+
+            Route::put(
+                'store',
+                'UserController@store'
+            ) -> name('my_page.store');
+        }
+    );
 
 
 // Auth
