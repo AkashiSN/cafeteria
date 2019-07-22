@@ -14,8 +14,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Log;
-use DateTime;
 use App\Models\Menu;
 use App\Models\Setting;
 use App\Http\Controllers\Controller;
@@ -42,12 +40,14 @@ class MenuController extends Controller
     /**
      * メニュー作成画面を表示する。
      *
+     * @param Request $request リクエスト
+     *
      * @return Renderable
      */
     public function create(Request $request)
     {
         $menu = new Menu();
-        if($request -> item_name !== null) {
+        if ($request -> item_name !== null) {
             $menu -> item_name = $request -> item_name;
         }
 
@@ -107,7 +107,8 @@ class MenuController extends Controller
      *
      * @return string json形式のラーメン情報
      */
-    public function settings() {
+    public function settings()
+    {
         $settings = Setting::pluck('value', 'key');
         $settings['ramens'] = Menu::where('category', 'ramen') -> get();
         $settings['status'] = 200;
@@ -118,20 +119,20 @@ class MenuController extends Controller
     /**
      * ラーメン情報を更新する
      *
-     * Request $request リクエスト
+     * @param Request $request リクエスト
      *
      * @return int status
      */
-    public function update_setting(Request $request) {
+    public function updateSetting(Request $request)
+    {
         $ramen = Menu::find($request -> ramen);
         if ($ramen === null || $ramen -> category !== 'ramen') {
-            $status = 500;
             return response() -> json(
                 [
-                    'status' => $status,
+                    'status' => 500,
                     'errors' => 'This ramen does not exist'
                 ],
-                $status
+                200
             );
         }
 

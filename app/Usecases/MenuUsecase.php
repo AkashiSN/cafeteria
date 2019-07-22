@@ -15,7 +15,6 @@
 namespace App\Usecases;
 
 use App\Models\Menu;
-use App\Models\Favorite;
 use App\Models\DailyMenu;
 
 /**
@@ -31,7 +30,6 @@ use App\Models\DailyMenu;
  */
 class MenuUsecase extends DateUsecase
 {
-
     /**
      * 日替わりメニューの取得
      *

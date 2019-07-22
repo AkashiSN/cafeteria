@@ -53,6 +53,7 @@ class UserController extends Controller
         $menu_ids = Favorite::where('user_id', Auth::user() -> id)
                             -> pluck('menu_id');
         $menus = Menu::find($menu_ids);
+
         return view('users.favorites', compact('menus'));
     }
 

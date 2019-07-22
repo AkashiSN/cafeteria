@@ -43,16 +43,6 @@ class FavoriteController extends Controller
     public function store(Request $request, $menu_id)
     {
         $user = $request -> user('api');
-        if (!$user) {
-            return response() -> json(
-                [
-                    'status' => 500,
-                    'message' => 'Please login.'
-                ],
-                200
-            );
-        }
-
         $user_id = $user -> id;
 
         if (!Menu::where('id', $menu_id) -> exists()) {
@@ -106,15 +96,6 @@ class FavoriteController extends Controller
     public function destroy(Request $request, $menu_id)
     {
         $user = $request->user('api');
-        if (!$user) {
-            return response() -> json(
-                [
-                    'status' => 500,
-                    'message' => 'Please login.'
-                ],
-                200
-            );
-        }
 
         $user_id = $user -> id;
         $favorites = Favorite::where(
