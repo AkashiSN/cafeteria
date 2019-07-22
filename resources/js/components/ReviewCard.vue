@@ -5,6 +5,9 @@
                 <div class="col-9">
                     <div class="row">
                         <div class="col-auto">
+                            <img :src="review.user_avatar" style="border-radius: 50%;" width="40">
+                        </div>
+                        <div class="col-auto">
                             <h5 class="card-text" style="display: flex;">{{ review.user_name }}</h5>
                         </div>
                         <div class="col-auto">

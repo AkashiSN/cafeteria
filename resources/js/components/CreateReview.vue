@@ -3,14 +3,14 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-11">
-                    <h4 class="card-title">{{ itemName }}</h4>
+                    <h4 class="card-title">{{ itemName }}のレビュー</h4>
                 </div>
                 <div class="col-1">
                     <a :href="route">戻る</a>
                 </div>
             </div>
-            <div class="row">
-                <form method="POST" :action="route" accept-charset="UTF-8" enctype="multipart/form-data">
+            <div class="row justify-content-center">
+                <form method="POST" :action="route" accept-charset="UTF-8" enctype="multipart/form-data" class="form">
                     <input name="_token" type="hidden" :value="csrf">
                     <div class="form-group">
                         <div class="evaluation-submit">

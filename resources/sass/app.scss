@@ -8,6 +8,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body { padding-top: 40px; }
+
 .theme-color-student {
     background-color: #F0AD4E;
 }
@@ -120,6 +122,12 @@ form {
     label:hover ~ label,
     input[type='radio']:checked ~ label {
         color: #ffcc00;
+    }
+}
+
+.card {
+    .button-component {
+        text-align: center;
     }
 }
 
