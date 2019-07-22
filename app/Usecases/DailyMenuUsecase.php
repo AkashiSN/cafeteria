@@ -14,10 +14,6 @@
 
 namespace App\Usecases;
 
-use App\Models\Menu;
-use App\Models\Favorite;
-use App\Models\DailyMenu;
-
 /**
  * DailyMenuUsecase class
  *
@@ -31,7 +27,15 @@ use App\Models\DailyMenu;
  */
 class DailyMenuUsecase
 {
-    public function categoryToColumn($category) {
+    /**
+     * カテゴリを返す
+     *
+     * @param Array $category カテゴリ
+     *
+     * @return $category カテゴリ
+     */
+    public function categoryToColumn($category)
+    {
         $columns = [
             'a_set_menu' => 'menu_id_A',
             'b_set_menu' => 'menu_id_B'

@@ -46,7 +46,11 @@ class ReviewController extends Controller
     {
         $reviews_list = Review::getReviewsWithUserName($menu_id);
         $menu_name = Menu::find($menu_id) -> item_name;
-        return view('reviews.index', compact('reviews_list', 'menu_id', 'menu_name'));
+
+        return view(
+            'reviews.index',
+            compact('reviews_list', 'menu_id', 'menu_name')
+        );
     }
 
     /**
@@ -129,6 +133,7 @@ class ReviewController extends Controller
     public function create($menu_id)
     {
         $item_name = Menu::where('id', $menu_id) -> first() -> item_name;
+
         return view('reviews.create', compact('item_name', 'menu_id'));
     }
 

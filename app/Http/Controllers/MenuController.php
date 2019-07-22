@@ -81,26 +81,34 @@ class MenuController extends Controller
      *
      * @return Renderable
      */
-    public function search() {
+    public function search()
+    {
         return view('menus.search');
     }
 
     /**
      * メニューの絞り込み結果を返す。
      *
-     * Request $request リクエスト
+     * @param Request $request リクエスト
      *
      * @return string json形式のメニューのリスト
      */
-    public function filter(Request $request) {
+    public function filter(Request $request)
+    {
         $item_name = $request -> item_name;
         $category = $request -> category;
 
-        $result = Menu::when(!is_null($category), function ($query) use ($category) {
+        $result = Menu::when(
+            !is_null($category),
+            function ($query) use ($category) {
                 return $query -> where('category', $category);
-            }) -> when(!is_null($item_name), function ($query) use ($item_name) {
+            }
+        ) -> when(
+            !is_null($item_name),
+            function ($query) use ($item_name) {
                 return $query -> where('item_name', 'like', "%{$item_name}%");
-            }) -> get();
+            }
+        ) -> get();
 
         $status = 200;
         return response() -> json(

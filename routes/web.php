@@ -14,33 +14,35 @@
 
 use Illuminate\Support\Facades\Route;
 
-
-// Admin
-Route::namespace('Admin') -> middleware('auth.admin') -> prefix('admin') -> group(
-    function () {
-        Route::get(
-            'menus/create',
-            'MenuController@create'
-        ) -> name('admin.menus.create');
-
-        Route::post(
-            'menus/store',
-            'MenuController@store'
-        ) -> name('admin.menus.store');
-
-        Route::get(
-            'menus/set_menu',
-            'MenuController@setMenu'
-        ) -> name('admin.menus.set_menu');
-    }
-);
-
-
 // Index
 Route::get(
     '/',
     'MenuController@index'
 ) -> name('home');
+
+
+// Admin
+Route::middleware('auth.admin')
+    -> namespace('Admin')
+    -> prefix('admin/menus')
+    -> group(
+        function () {
+            Route::get(
+                'create',
+                'MenuController@create'
+            ) -> name('admin.menus.create');
+
+            Route::post(
+                'store',
+                'MenuController@store'
+            ) -> name('admin.menus.store');
+
+            Route::get(
+                'set_menu',
+                'MenuController@setMenu'
+            ) -> name('admin.menus.set_menu');
+        }
+    );
 
 
 // Menus

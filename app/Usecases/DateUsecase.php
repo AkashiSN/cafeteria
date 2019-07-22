@@ -30,7 +30,6 @@ use DateInterval;
  */
 class DateUsecase
 {
-
     protected $japanese_weekday = array(
         '日', '月', '火', '水', '木', '金', '土'
     );

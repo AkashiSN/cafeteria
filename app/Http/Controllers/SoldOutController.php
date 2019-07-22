@@ -17,7 +17,6 @@ namespace App\Http\Controllers;
 use App\Models\SoldOut;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * SoldOutController class
@@ -43,20 +42,20 @@ class SoldOutController extends Controller
     {
         $sold_out = SoldOut::where('menu_id', $menu_id) -> first();
         if ($sold_out === null) {
-            $status = 500;
             return response() -> json(
                 [
-                    'status' => $status,
+                    'status' => 500,
                     'errors' => 'Menu does not exist'
                 ],
-                $status
+                200
             );
         }
 
         $status = 200;
         return response() -> json(
             [
-            'sold_out' => $sold_out -> sold_out,
+                'status' => $status,
+                'sold_out' => $sold_out -> sold_out,
             ],
             $status
         );
@@ -74,13 +73,12 @@ class SoldOutController extends Controller
     {
         $sold_out = SoldOut::where('menu_id', $menu_id) -> first();
         if ($sold_out === null) {
-            $status = 500;
             return response() -> json(
                 [
-                    'status' => $status,
+                    'status' => 500,
                     'errors' => 'Menu does not exist'
                 ],
-                $status
+                200
             );
         }
 
