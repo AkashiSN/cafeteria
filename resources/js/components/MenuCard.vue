@@ -61,6 +61,10 @@
                 type: Boolean,
                 required: true
             },
+            haveImage: {
+                type: Boolean,
+                required: true
+            },
             baseRoute: {
                 type: String,
                 required: true
@@ -90,11 +94,13 @@
             }
         },
         mounted () {
-            axios.get(this.imageRoute).then(res => {
-                if(res.data.status == 200) {
-                    this.urlList = res.data.url_list
-                }
-            })
+            if (this.haveImage){
+                axios.get(this.imageRoute).then(res => {
+                    if(res.data.status == 200) {
+                        this.urlList = res.data.url_list
+                    }
+                })
+            }
         }
     }
 </script>

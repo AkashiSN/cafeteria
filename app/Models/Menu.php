@@ -15,7 +15,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -119,5 +118,15 @@ class Menu extends Model
             Favorite::where('menu_id', $this -> id)
                 -> where('user_id', Auth::user() -> id)
                 -> exists();
+    }
+
+    /**
+     * メニューに画像があるかどうかを返す
+     *
+     * @return Boolean
+     */
+    public function haveImage()
+    {
+        return ReviewImage::where('menu_id', $this -> id) -> exists();
     }
 }

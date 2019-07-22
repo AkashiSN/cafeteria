@@ -6,7 +6,7 @@
         </div>
         <div class="container mt-20 ph-0">
             <div v-for="menu in menus">
-                <menu-card :is-liked="false" :menu="menu" :base-route="baseRoute" :valid-sold-button="false" :valid-favorite-button="false" />
+                <menu-card :is-liked="false" :menu="menu" :base-route="baseRoute" :have-image="true" :valid-sold-button="false" :valid-favorite-button="false" />
             </div>
         </div>
     </div>
@@ -29,14 +29,18 @@ export default {
     },
     created () {
         this.searchInterval = debounce(this.searchMenu, 250)
+        this.searchWord = ' '
+        this.fetchFilter('')
     },
     methods: {
         searchMenu(e) {
             this.searchWord = document.getElementById("input-area").value
-
+            this.fetchFilter(this.searchWord)
+        },
+        fetchFilter(word) {
             var params = {
                 params: {
-                    'item_name': this.searchWord
+                    'item_name': word
                 }
             }
 

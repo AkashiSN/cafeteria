@@ -6,7 +6,7 @@
     @if (count($menus))
         @foreach($menus as $menu)
             <div>
-                <menu-card :menu="{{ $menu }}" :base-route="'{{ url("") }}'" :is-liked="{{ var_export($menu -> isLiked(), true) }}" />
+                <menu-card :menu="{{ $menu }}" :base-route="'{{ url("") }}'" :is-liked="{{ var_export($menu -> isLiked(), true) }}" :have-image="{{ var_export($menu -> haveImage(), true) }}" />
             </div>
         @endforeach
     @else
