@@ -94,7 +94,7 @@
             }
         },
         mounted () {
-            if (this.haveImage){
+            if (this.menu.evaluation && this.haveImage){
                 axios.get(this.imageRoute).then(res => {
                     if(res.data.status == 200) {
                         this.urlList = res.data.url_list
