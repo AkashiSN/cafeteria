@@ -5,7 +5,7 @@
                 <div class="col-10">
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
-                <div v-if="validFavoriteButton" class="col-2">
+                <div v-if="validFavoriteButton" class="col-2 button-component">
                     <favorite-button :menu-id="menu.id" :base-route="baseRoute" :is-liked="isLiked" />
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         <div class="col-2 card-text">{{ menu.salt }} g</div>
                     </div>
                 </div>
-                <div v-if="validSoldButton" class="col-2">
+                <div v-if="validSoldButton" class="col-2 button-component">
                     <sold-out-button :menu-id="menu.id" :base-route="this.baseRoute" :sold-out="menu.sold_out" />
                 </div>
             </div>

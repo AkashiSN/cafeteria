@@ -25,15 +25,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 @if (Auth::check())
-                    <li class="dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><img src="{{ Auth::getUser()->avatar }}" style="border-radius: 50%;" width="40"> {{ Auth::getUser()->name }}<span class="caret"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('menus.search') }}" >メニュー検索</a>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><img src="{{ Auth::getUser()->avatar }}" style="border-radius: 50%;" width="40"></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @if (Auth::user() -> is_admin)
                                 <a class="dropdown-item" href="{{ route('admin.menus.create') }}" >管理者ページ</a>
                             @else
-                                <a class="dropdown-item" href="{{ route('my_page') }}" >マイページ</a>
+                                <a class="dropdown-item" href="{{ route('my_page') }}" >{{ Auth::getUser()->name }}</a>
                             @endif
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('menus.search') }}" >メニュー検索</a>
                             <a class="dropdown-item" href="{{ route('logout') }}" >ログアウト</a>
                         </div>
                     </li>
@@ -48,7 +49,7 @@
 </nav>
 
 <!-- main content -->
-<div id="app" class="container container-stack mt-70 mb-10">
+<div id="app" class="container container-stack mt-40 mb-10">
     @yield('content')
 </div>
 
