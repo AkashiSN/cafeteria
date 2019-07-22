@@ -9,6 +9,6 @@
 
     <a class="btn btn-primary" href="{{ route('my_page.reviews') }}" role="button">レビューをみる</a>
     <a class="btn btn-primary" href="{{ route('my_page.favorites') }}" role="button">お気に入りをみる</a>
-    <a class="btn btn-primary" href="{{ route('my_page.modify') }}" role="button">ユーザー情報を変更する</a>
+    <a class="btn btn-primary" href="{{ route('my_page.edit') }}" role="button">ユーザー情報を変更する</a>
 </div>
 @endsection

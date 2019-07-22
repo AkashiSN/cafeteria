@@ -96,7 +96,7 @@ class UserController extends Controller
      *
      * @return Renderable
      */
-    public function modify()
+    public function edit()
     {
         $user_info = Auth::user();
         $user = array(
@@ -104,7 +104,7 @@ class UserController extends Controller
             'avatar' => $user_info -> avatar
         );
 
-        return view('users.modify', compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     /**

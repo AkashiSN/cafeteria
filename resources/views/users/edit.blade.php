@@ -19,8 +19,8 @@
         {{ Form::model($user, ['method' => 'put', 'route' => 'my_page.store', 'class' => 'form-horizontal', 'files' => true]) }}
 
         <div class="form-group">
-            {{ Form::label('user_name', 'ユーザー名') }}
-            {{ Form::text('user_name', old('user_name'), ['class' => 'form-control',  'placeholder' => $user['name']]) }}
+            {{ Form::label('name', 'ユーザー名') }}
+            {{ Form::text('name', old('name'), ['class' => 'form-control']) }}
         </div>
 
         <img src="{{ $user['avatar'] }}" style="border-radius: 50%;"  width="100"/>

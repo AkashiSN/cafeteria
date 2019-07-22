@@ -104,9 +104,9 @@ Route::middleware('auth')
             ) -> name('my_page.reviews');
 
             Route::get(
-                'modify',
-                'UserController@modify'
-            ) -> name('my_page.modify');
+                'edit',
+                'UserController@edit'
+            ) -> name('my_page.edit');
 
             Route::put(
                 'store',
