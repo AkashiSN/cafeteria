@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="col-1">
-            @if (Auth::check())
+            @if (Auth::check() && !Auth::user() -> is_admin)
             <favorite-button :menu-id="{{ $menu -> id }}" :base-route="'{{ url("") }}'" :is-liked="{{ var_export($menu -> isLiked(), true) }}" />
             @endif
         </div>
