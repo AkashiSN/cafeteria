@@ -69,30 +69,41 @@
     \begin{figure}[htbp]
         \centering
         \caption{メニュー画面}
-        \includegraphics[scale = 0.3]{image/menu.png}
+        \label{top_menu}
+        \includegraphics[width=1\textwidth]{image/top_menu.png}
     \end{figure}
-    まず最初にメニュー画面が表示されます。
-    メニュー画面は日替りメニュー、常設メニューの二つの画面からなり、画面上部にあるタブで切り替えることが出来ます(上図は日替わりメニューの画面)。
-    日替りメニュー画面の場合、画面左上にある日付を変更することで表示させたい日付のメニューを表示させることが出来ます。
+    まず最初にメニュー画面(図\ref{top_menu})が表示されます。
+    メニュー画面は日替りメニュー、常設メニューの二つの画面からなり、画面上部にあるタブで切り替えることが出来ます(図\ref{top_menu}は日替わりメニューの画面)。
+
+    日替りメニュー画面の場合、画面左上にある日付を変更することで表示させたい日付のメニューを表示させることが出来ます(図\ref{date_select})。
+    \begin{figure}[htbp]
+        \centering
+        \caption{日付選択}
+        \label{date_select}
+        \includegraphics[width=0.6\textwidth]{image/date_select.png}
+    \end{figure}
     \newpage
 
 \subsection{メニューカード}
     \begin{figure}[htbp]
     \centering
         \caption{メニューカード}
-        \includegraphics[scale = 0.3]{image/menucard.png}
+        \label{menu_card}
+        \includegraphics[width=0.9\textwidth]{image/menu_card.png}
     \end{figure}
 
-    メニューカードはそれぞれの料理毎に並べられています(図1)。
+    メニューカードはそれぞれの料理毎に並べられています(図\ref{top_menu})。
     カード上の提供中というボタンをクリックすると、売り切れの状態に変化させることが出来ます。
     売り切れの状態なら、売り切れというボタンをクリックすると提供中の状態に変化させる事が出来ます。
-    もしあなたがログインしているならば、ハートマークをクリックするとお気に入り登録する事が出来ます。
-    またお気に入り登録されたメニューはマイページより確認することが出来ます。
+
+    もしあなたがログインしているならば、ハートマークをクリックするとお気に入り登録する事が出来ます(図\ref{manu_card_love})。
+    また、お気に入り登録されたメニューはマイページより確認することが出来ます。
 
     \begin{figure}[htbp]
     \centering
-        \caption{売り切れの状態およびお気に入り登録済みの状態}
-        \includegraphics[scale = 0.3]{image/menucard2.png}
+        \caption{売り切れ・お気に入り登録済みの状態}
+        \label{manu_card_love}
+        \includegraphics[width=0.9\textwidth]{image/menu_card_love.png}
     \end{figure}
     メニューカード上のハートマークまたは提供中、売り切れのボタン以外の場所をクリックするとメニュー詳細画面に遷移します。
     \newpage
@@ -101,9 +112,10 @@
     \begin{figure}[htbp]
     \centering
         \caption{メニュー詳細画面}
-        \includegraphics[scale = 0.3]{image/detail.png}
+        \label{menu_detail}
+        \includegraphics[width=1\textwidth]{image/menu_detail.png}
     \end{figure}
-    メニュー詳細画面では他のユーザーが投稿したメニューの画像及びレビュー等を閲覧することが出来ます。
+    メニュー詳細画面(図\ref{menu_detail})では他のユーザーが投稿したメニューの画像及びレビュー等を閲覧することが出来ます。
     ここでも提供中または売り切れのボタンをクレックする事でその状態を変化させることが出来ます。
     画面右中部にある「もっと見る」をクリックすることによって、レビュー一覧画面に遷移する事が出来ます。
 
