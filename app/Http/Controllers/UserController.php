@@ -120,8 +120,8 @@ class UserController extends Controller
 
         $user = User::where('email', $user_info -> email) -> first();
 
-        if ($request -> input('user_name') !== null) {
-            $user -> name = $request -> input('user_name');
+        if ($request -> input('name') !== null) {
+            $user -> name = $request -> input('name');
         }
 
         if ($request -> file("file") !== null) {
