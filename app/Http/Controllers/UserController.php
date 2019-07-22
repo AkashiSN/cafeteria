@@ -124,15 +124,14 @@ class UserController extends Controller
             $user -> name = $request -> input('user_name');
         }
 
-        if ($request -> file("files") !== null) {
-            foreach ($request -> file("files") as $index => $e) {
-                $ext = $e['image'] -> guessExtension();
-                $image_name = uniqid("image_").".".$ext;
+        if ($request -> file("file") !== null) {
+            $file = $request -> file;
+            $ext = $file -> guessExtension();
+            $image_name = uniqid("image_").".".$ext;
 
-                $image_path = $e['image'] -> storeAs('icons', $image_name); // public/data/images/以下に保存
+            $image_path = $file -> storeAs('icons', $image_name); // public/data/images/以下に保存
 
-                $user -> avatar = $image_path;
-            }
+            $user -> avatar = url("data/".$image_path);
         }
 
         $user -> save();

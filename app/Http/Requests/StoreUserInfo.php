@@ -47,8 +47,8 @@ class StoreUserInfo extends FormRequest
     public function rules()
     {
         return [
-            'user_name'     => 'max:20',
-            'files.*.image' => 'image|max:10000',
+            'user_name' => 'max:20',
+            'file'      => 'image|max:10000',
         ];
     }
 
@@ -60,8 +60,8 @@ class StoreUserInfo extends FormRequest
     public function messages()
     {
         return [
-            'files.*.image.image' => '画像をアップロードしてください',
-            'files.*.image.max'   => '画像は１MB以下でお願いします',
+            'file.image' => '画像をアップロードしてください',
+            'file.max'   => '画像は１MB以下でお願いします',
         ];
     }
 }
