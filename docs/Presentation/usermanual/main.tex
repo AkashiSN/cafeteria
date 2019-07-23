@@ -1,9 +1,6 @@
-\documentclass[a4paper]{ltjsarticle}
-\usepackage{graphicx}
+\documentclass[a4paper]{jsarticle}
+\usepackage[dvipdfmx]{graphicx}
 \usepackage{enumitem}
-\usepackage{siunitx}
-\usepackage{multirow}
-\usepackage{cprotect}
 
 \setlist[enumerate,1]{label= \textcircled{\scriptsize \arabic*}}
 \setlist[enumerate,2]{label= \arabic*.}
@@ -12,13 +9,6 @@
 \hyphenpenalty=1000\relax
 \exhyphenpenalty=1000\relax
 \sloppy
-
-\makeatletter
-
-\def\Hline{
-    \noalign{\ifnum0=`}\fi\hrule \@height 3.\arrayrulewidth \futurelet
-    \reserved@a\@xhline}
-\makeatother
 
 \begin{document}
 % ------------------------------------------------------
@@ -36,22 +26,22 @@
 \Huge
 \vspace{1.0cm}
 \begin{center}
-    ユーザーマニュアル
+  食堂システム　ユーザーマニュアル
 \end{center}
 
 \vspace{0.5cm}
 \begin{center}
-    \LARGE
-    明石工業高等専門学校 3班
+  \LARGE
+  明石工業高等専門学校
 \end{center}
 
 \LARGE
 \begin{center}
-    \begin{tabular}{rl}
-        E1507 & 泉 和哉 \\
-        E1514 & 岡本 一真 \\
-        E1533 & 西 総一朗
-    \end{tabular}
+  \begin{tabular}{rl}
+    E1507 & 泉 和哉 \\
+    E1514 & 岡本 一真 \\
+    E1533 & 西 総一朗
+  \end{tabular}
 \end{center}
 
 \normalsize
@@ -64,137 +54,172 @@
 % ------------------------------------------------------
 % text start
 % ------------------------------------------------------
-
 \section{メニュー画面}
-    \begin{figure}[htbp]
-        \centering
-        \caption{メニュー画面}
-        \label{top_menu}
-        \includegraphics[width=1\textwidth]{image/top_menu.png}
-    \end{figure}
-    まず最初にメニュー画面(図\ref{top_menu})が表示されます。
-    メニュー画面は日替りメニュー、常設メニューの二つの画面からなり、画面上部にあるタブで切り替えることが出来ます(図\ref{top_menu}は日替わりメニューの画面)。
-
-    日替りメニュー画面の場合、画面左上にある日付を変更することで表示させたい日付のメニューを表示させることが出来ます(図\ref{date_select})。
-    \begin{figure}[htbp]
-        \centering
-        \caption{日付選択}
-        \label{date_select}
-        \includegraphics[width=0.6\textwidth]{image/date_select.png}
-    \end{figure}
-    \newpage
-
+\begin{figure}[htbp]
+	\centering
+    \caption{メニュー画面}
+	\includegraphics[scale = 0.22525]{image/menu.png}
+\end{figure}
+まず最初にメニュー画面が表示されます。メニュー画面は日替りメニュー、常設メニューの二つの画面からなり、画面上部にあるタブで切り替えることができます(上図は日替わりメニューの画面)。日替りメニュー画面の場合、画面左上にある日付を変更することで表示させたい日付のメニューを表示させることができます。
+\newpage
 \subsection{メニューカード}
-    \begin{figure}[htbp]
-    \centering
-        \caption{メニューカード}
-        \label{menu_card}
-        \includegraphics[width=0.9\textwidth]{image/menu_card.png}
-    \end{figure}
+\begin{figure}[htbp]
+\centering
+	\caption{メニューカード}
+	\includegraphics[scale = 0.2]{image/menucard.png}
+\end{figure}
 
-    メニューカードはそれぞれの料理毎に並べられています(図\ref{top_menu})。
-    カード上の提供中というボタンをクリックすると、売り切れの状態に変化させることが出来ます。
-    売り切れの状態なら、売り切れというボタンをクリックすると提供中の状態に変化させる事が出来ます。
-
-    もしあなたがログインしているならば、ハートマークをクリックするとお気に入り登録する事が出来ます(図\ref{manu_card_love})。
-    また、お気に入り登録されたメニューはマイページより確認することが出来ます。
-
-    \begin{figure}[htbp]
-    \centering
-        \caption{売り切れ・お気に入り登録済みの状態}
-        \label{manu_card_love}
-        \includegraphics[width=0.9\textwidth]{image/menu_card_love.png}
-    \end{figure}
-    メニューカード上のハートマークまたは提供中、売り切れのボタン以外の場所をクリックするとメニュー詳細画面に遷移します。
-    \newpage
-
+メニューカードはそれぞれの料理毎に並べられています。\\
+\begin{figure}[htbp]
+\centering
+	\caption{売り切れの状態およびお気に入り登録済みの状態}
+	\includegraphics[scale = 0.2]{image/menucard2.png}
+\end{figure}
+カード上の提供中というボタンをタップすると、売り切れの状態に変化させることができます。\\
+売り切れの状態なら、売り切れというボタンをタップすると提供中の状態に変化させることができます。\\
+もしあなたがログインしているならば、ハートマークをタップするとお気に入り登録することができます。またお気に入り登録されたメニューはマイページより確認することができます。\\
+メニューカード上のハートマークまたは提供中、売り切れのボタン以外の場所をタップするとメニュー詳細画面に遷移します。
+\newpage
 \section{メニュー詳細画面}
-    \begin{figure}[htbp]
-    \centering
-        \caption{メニュー詳細画面}
-        \label{menu_detail}
-        \includegraphics[width=1\textwidth]{image/menu_detail.png}
-    \end{figure}
-    メニュー詳細画面(図\ref{menu_detail})では他のユーザーが投稿したメニューの画像及びレビュー等を閲覧することが出来ます。
-    ここでも提供中または売り切れのボタンをクレックする事でその状態を変化させることが出来ます。
-    画面右中部にある「もっと見る」をクリックすることによって、レビュー一覧画面に遷移する事が出来ます。
-
+\begin{figure}[htbp]
+\centering
+	\caption{メニュー詳細画面}
+	\includegraphics[scale = 0.225]{image/detail.png}
+\end{figure}
+メニュー詳細画面では他のユーザーが投稿したメニューの画像及びレビュー等を閲覧することができます。\\
+ここでも提供中または売り切れのボタンをタップすることでその状態を変化させることができます。\\
+画面右中部にある「もっと見る」をタップすることによって、レビュー一覧画面に遷移することができます。\\
 \subsection{レビュー一覧画面}
-    \begin{figure}[htbp]
-    \centering
-        \caption{レビュー一覧画面}
-        \includegraphics[scale = 0.3]{image/review.png}
-    \end{figure}
-    レビュー一覧画面では、全てのユーザーのレビューを閲覧する事が出来ます。
-    また、画面右上部にある「レビューする」をクリックするとレビュー画面に遷移する事が出来ます。
-    但し、ログインした状態でなければ「レビューをする」が表示されずレビューをする事は出来ません。
-    \newpage
-
-\subsection{レビュー画面}
-    \begin{figure}[htbp]
-    \centering
-        \caption{レビュー画面}
-        \includegraphics[scale = 0.3]{image/review2.png}
-    \end{figure}
-    レビュー画面ではメニューを五段階評価(星の数)で評価し、コメント及び写真を投稿する事が出来ます。
-    星の数やコメントなどの設定が完了しましたら、送信ボタンをクリックする事でレビューを投稿する事が出来ます。
-    投稿された写真はメニュー詳細画面(図4)上部の写真の位置に反映されます。
-    投稿されたレビューは、そのメニューのレビュー一覧画面(図5)、マイページから確認する事が出来ます。
-
-\section{ログイン}
-    画面右上(図1)のアイコンをクリックして、表示されたドロップダウンの中にある「Sign in with Google」をクリックすると、ログイン画面に遷移します。
-    ログインにはGoogleアカウントが必要なので、お持ちでない方はアカウントを作成して頂く必要があります。
-    \begin{figure}[htbp]
-    \centering
-        \caption{ログイン画面}
-        \includegraphics[scale = 0.3]{image/login.png}
-    \end{figure}
-
-\section{ログアウト}
-    画面右上(図1)のアイコンをクリックして、表示されたドロップダウンの中にある「ログアウト」をクリックすると、ログアウトが完了します。
-
-\section{マイページ}
-    画面右上(図1)のアイコンをクリックして、表示されたドロップダウンの中にある「マイページ」をクリックすると、マイページに遷移します。但し、この操作にはログインが必要です。
-    \begin{figure}[htbp]
-    \centering
-        \caption{マイページ仮画面}
-        \includegraphics[scale = 0.3]{image/review2.png}
-    \end{figure}
-    \newpage
-
-    \subsection{マイページ・レビュー一覧画面}
-        マイページから「レビュー」をクリックすると今までに投稿したレビューを確認する事が出来ます(図9)。
-        \begin{figure}[htbp]
-        \centering
-            \caption{マイページ・レビュー一覧画面}
-            \includegraphics[scale = 0.3]{image/myreview.png}
-        \end{figure}
-
-    \subsection{マイページ・お気に入り画面}
-        マイページから「お気に入り」をクリックすると今までにお気に入り登録したメニューを確認することが出来ます。
-        \begin{figure}[htbp]
-        \centering
-            \caption{マイページ・お気に入り画面}
-            \includegraphics[scale = 0.3]{image/myfavorite.png}
-        \end{figure}
-        \newpage
-
-\section{管理者用画面}
-    \subsection{メニュー登録画面}
-        \begin{figure}[htbp]
-        \centering
-            \caption{メニュー登録画面(かり)}
-            \includegraphics[scale = 0.3]{image/myfavorite.png}
-        \end{figure}
-        この画面では、メニューの登録を行う事が出来ます。
-        各項目を入力した後に、Submitをクリックすると登録が完了します。
-
-    \subsection{メニューセット画面}
-        \begin{figure}[htbp]
-        \centering
-            \caption{メニューセット画面(かり)}
-            \includegraphics[scale = 0.3]{image/myfavorite.png}
-        \end{figure}
-        この画面では、メニューのセットを行うことが出来ます。
-
+\begin{figure}[htbp]
+\centering
+	\caption{レビュー一覧画面}
+	\includegraphics[scale = 0.225]{image/review.png}
+\end{figure}
+レビュー一覧画面では、全てのユーザーのレビューを閲覧することができます。\\
+また、画面右上部にある「レビューする」をタップするとレビュー画面に遷移することができます。
+但し、ログインした状態でなければ「レビューをする」が表示されずレビューをすることは出来ません。\\
+\newpage
+\subsection{レビュー画面(ログイン時のみ)}
+\begin{figure}[htbp]
+\centering
+	\caption{レビュー画面}
+	\includegraphics[scale = 0.225]{image/review2.png}
+\end{figure}
+レビュー画面ではメニューを五段階評価(星の数)で評価し、コメント及び写真を投稿することができます。\\
+星の数やコメントなどの設定が完了しましたら、送信ボタンをタップしてレビューを投稿してください。\\
+投稿された写真はメニュー詳細画面(図4)上部の写真の位置に反映されます。\\
+投稿されたレビューは、そのメニューのレビュー一覧画面、マイページから確認することができます。\\
+\begin{figure}[htbp]
+	\centering
+		\caption{レビュー一覧画面(レビュー投稿後)}
+		\includegraphics[scale = 0.225]{image/review_after_create.png}
+	\end{figure}
+	\newpage
+	\section{ドロップダウンの表示(ログイン時のみ)}
+\begin{figure}[htbp]
+	\centering
+	\caption{ドロップダウンの表示}
+	\includegraphics[scale = 0.22525]{image/dropdown_student.png}
+\end{figure}
+画面右上のアイコンをタップすると、ドロップダウンが表示されます。\\
+ドロップダウンからはマイページ、メニュー検索、ログアウトに遷移することができます。
+\section{マイページ(ログイン時のみ)}
+\begin{figure}[htbp]
+\centering
+	\caption{マイページ画面}
+	\includegraphics[scale = 0.225]{image/mypage.png}
+\end{figure}
+画面右上のアイコンをタップして、表示されたドロップダウンの中にあるユーザー名をタップすると、マイページに遷移します。\\
+マイページからはユーザー情報変更画面、レビュー一覧画面、お気に入り一覧画面に遷移することができます。
+\subsection{マイページ・ユーザー情報変更画面}
+\begin{figure}[htbp]
+	\centering
+	\caption{マイページ・ユーザー情報変更画面}
+	\includegraphics[scale = 0.225]{image/edit_user.png}
+\end{figure}
+この画面ではユーザー名やアイコンを変更することができます。
+\subsection{マイページ・レビュー一覧画面}
+\begin{figure}[htbp]
+\centering
+	\caption{マイページ・レビュー一覧画面}
+	\includegraphics[scale = 0.225]{image/myreview.png}
+\end{figure}
+この画面では今までに投稿したレビューを確認することができます。
+\newpage
+\subsection{マイページ・お気に入り一覧画面}
+\begin{figure}[htbp]
+\centering
+	\caption{マイページ・お気に入り一覧画面}
+	\includegraphics[scale = 0.225]{image/myfavorite.png}
+\end{figure}
+この画面では今までにお気に入り登録したメニューを確認することができます。
+\newpage
+\section{管理者用画面(管理者ログイン時)}
+\subsection{メニュー画面}
+\begin{figure}[htbp]
+	\centering
+		\caption{メニュー画面(管理者用)}
+		\includegraphics[scale = 0.225]{image/menu_admin.png}
+	\end{figure}
+	管理者ログイン時の場合ユーザーログイン時とは異なり、お気に入り登録やレビューを投稿することはできません。提供中の状態の切り替えを行うことはできます。\\
+	また右上のアイコンをタップするとドロップダウンが表示され、マイページ、管理者用ページ、メニュー検索、ログアウトが行えます。
+	\newpage
+\subsection{ドロップダウンの表示}
+\begin{figure}[htbp]
+	\centering
+		\caption{ドロップダウン画面(管理者用)}
+		\includegraphics[scale = 0.225]{image/dropdown_admin.png}
+	\end{figure}
+	右上のアイコンをタップすると上の画面のようにドロップダウンが表示されます。\\
+	ドロップダウンからマイページ、管理者用ページ(メニュー登録画面またはメニュー設定画面)、メニュー検索画面に遷移できます。\\
+\newpage
+\subsection{マイページ画面}
+\begin{figure}[htbp]
+	\centering
+		\caption{マイページ画面(管理者用)}
+		\includegraphics[scale = 0.225]{image/mypage_admin.png}
+	\end{figure}
+	この画面ではユーザーログイン時と同様にユーザー情報変更画面への遷移をすることができます。
+\subsection{メニュー登録画面}
+\begin{figure}[htbp]
+\centering
+	\caption{メニュー登録画面}
+	\includegraphics[scale = 0.225]{image/create_menu.png}
+\end{figure}
+この画面では、メニューの登録を行うことができます。\\
+各項目を入力した後に、登録をタップすると登録が完了します。\\
+登録したメニューを設定したい場合は、画面右上の「メニュー設定へ」をタップすることでメニュー設定画面に遷移することができます。
+\newpage
+\subsection{メニュー設定画面}
+\begin{figure}[htbp]
+\centering
+	\caption{メニュー設定画面}
+	\includegraphics[scale = 0.225]{image/set_menu.png}
+\end{figure}
+この画面では、メニューの設定を行うことができます。\\
+任意の場所をタップすると以下の画面が表示されるので、登録されたメニューの中から設定したいメニューを選択し、「変更する」をタップするとメニューの設定を行うことができます。
+\begin{figure}[htbp]
+\centering
+	\caption{メニュー設定画面}
+	\includegraphics[scale = 0.225]{image/set_menu2.png}
+\end{figure}
+\newpage
+\section{ログイン・ログアウト}
+	\begin{figure}[htbp]
+	\centering
+		\caption{ログイン画面}
+		\includegraphics[scale = 0.35]{image/login.png}
+	\end{figure}
+	画面右上のSign in with Googleをタップすると、ログイン画面に遷移します。\\
+	ログインにはGoogleアカウントが必要なので、お持ちでない方はアカウントを作成して頂く必要があります。
+	画面右上のアイコンをタップして、表示されたドロップダウンの中にある「ログアウト」をタップすると、ログアウトが完了します。
+	\newpage
+	\section{メニュー検索画面(ログイン時のみ)}
+	\begin{figure}[htbp]
+		\centering
+			\caption{メニュー検索画面}
+			\includegraphics[scale = 0.225]{image/menu_search_ramen.png}
+		\end{figure}
+		画面右上のアイコンをタップして、表示されたドロップダウンの中にある「メニュー検索」をタップするとメニュー検索画面に遷移することができます。\\
+		上の画面は「ラーメン」と検索したときの例です。		
 \end{document}
