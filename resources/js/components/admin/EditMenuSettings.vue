@@ -112,6 +112,10 @@ export default {
                 this.ramens = res.data.ramens
             }
         })
+
+        var today = new Date()
+        var week = Math.floor((today.getDate() - today.getDay() + 12) / 7) - 1
+        this.activeContent = week
     }
 }
 </script>
