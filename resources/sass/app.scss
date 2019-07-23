@@ -41,20 +41,6 @@ body { padding-top: 40px; }
     }
 }
 
-.error {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform : translate(-50%,-50%);
-    transform : translate(-50%,-50%);
-    width: 600px;
-    text-align: center;
-}
-
-.error p {
-    font-size: 30px;
-}
-
 ul.switched-contents {
     list-style: none;
 }
@@ -69,14 +55,14 @@ ul.switched-contents {
 }
 
 form {
-  .col-1 {
-    display: flex;
-    align-items: center;
-  }
-  .col-2 {
-    display: flex;
-    align-items: center;
-  }
+    .col-1 {
+        display: flex;
+        align-items: center;
+    }
+    .col-2 {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .evaluation {
