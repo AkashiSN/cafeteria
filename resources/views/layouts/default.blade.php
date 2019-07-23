@@ -48,7 +48,7 @@
 </nav>
 
 <!-- main content -->
-<div id="app" class="container container-stack mt-40 mb-10">
+<div id="app" class="container container-stack mt-5 mb-5 pt-md-5 pt-4">
     @yield('content')
 </div>
 

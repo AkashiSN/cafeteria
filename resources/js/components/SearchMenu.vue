@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <h2 class="text-justify">メニューを検索する</h2>
-        <div class="input-group mt-15 col-6">
+        <div class="input-group my-3 col-md-6">
             <input v-on:input="searchInterval" type="text" id="input-area" class="form-control" placeholder="メニュー名を入力してください">
         </div>
-        <div class="container mt-20 ph-0">
-            <div v-for="menu in menus">
+        <div v-for="menu in menus">
+            <div class="container my-3 px-0">
                 <menu-card :is-liked="false" :menu="menu" :base-route="baseRoute" :have-image="true" :valid-sold-button="false" :valid-favorite-button="false" />
             </div>
         </div>

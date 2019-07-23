@@ -1,48 +1,48 @@
 <template>
-    <div class="card mv-15 ph-15 pv-10" v-on:click="jump()">
-        <div class="card-body">
+    <div class="card" v-on:click="jump()">
+        <div class="card-body px-4 py-4">
             <div class="row">
                 <div class="col-10">
                     <h4 class="card-title">{{ menu.item_name }}</h4>
                 </div>
-                <div v-if="validFavoriteButton" class="col-2 button-component">
+                <div v-if="validFavoriteButton" class="col-2 px-md-4 px-0 button-component">
                     <favorite-button :menu-id="menu.id" :base-route="baseRoute" :is-liked="isLiked" />
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-2">
+            <div class="row mb-3">
+                <div class="col-md-3">
                     <p class="card-text">¥{{ menu.price }}</p>
                 </div>
-                <div class="col">
+                <div class="col-md-9">
                     <span v-if="menu.evaluation" class="evaluation" v-bind:style="{ '--rate': menu.evaluation * 20 + '%'}"></span>
                     <span v-else class="text-justify text-muted">レビューはまだありません</span>
                     <br/>
                 </div>
             </div>
 
-            <div class="row row-scrollable mt-2">
+            <div class="row row-scrollable my-2">
                 <div class="col-auto" v-for='(url, index) in urlList' :key='index'>
                     <img :src="url" height="140" >
                 </div>
             </div>
 
-            <div class="row mt-15">
-                <div class="col-10">
+            <div class="row">
+                <div class="col-md-10">
                     <div class="row">
                         <div class="col-auto card-text font-weight-bold">エネルギー</div>
-                        <div class="col-2 card-text">{{ menu.energy }} kcal</div>
+                        <div class="col-md-3 card-text">{{ menu.energy }} kcal</div>
                         <div class="col-auto card-text font-weight-bold">脂質</div>
-                        <div class="col-2 card-text">{{ menu.lipid }} g</div>
+                        <div class="col-md-3 card-text">{{ menu.lipid }} g</div>
                     </div>
                     <div class="row">
                         <div class="col-auto card-text font-weight-bold">タンパク質</div>
-                        <div class="col-2 card-text">{{ menu.protein }} g</div>
+                        <div class="col-md-3 card-text">{{ menu.protein }} g</div>
                         <div class="col-auto card-text font-weight-bold">塩分</div>
-                        <div class="col-2 card-text">{{ menu.salt }} g</div>
+                        <div class="col-md-3 card-text">{{ menu.salt }} g</div>
                     </div>
                 </div>
-                <div v-if="validSoldButton" class="col-2 button-component">
+                <div v-if="validSoldButton" class="col-md-2 button-component">
                     <sold-out-button :menu-id="menu.id" :base-route="this.baseRoute" :sold-out="menu.sold_out" />
                 </div>
             </div>

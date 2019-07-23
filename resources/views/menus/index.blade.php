@@ -10,7 +10,7 @@
     </li>
 </ul>
 
-<div class="container mt-10">
+<div class="container mt-2 px-0">
     <div class="tab-content" v-bind:class="{ active: tabContent === '1' }">
         @include('menus._daily')
     </div>

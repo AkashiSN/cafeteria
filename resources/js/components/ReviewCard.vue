@@ -1,8 +1,8 @@
 <template>
-    <div class="card mv-15 ph-15 pv-10">
+    <div class="card px-2 py-2">
         <div class="card-body">
             <div class="row">
-                <div class="col-9">
+                <div class="col-md-10">
                     <div class="row">
                         <div class="col-auto">
                             <img :src="review.user_avatar" style="border-radius: 50%;" width="40">
@@ -15,12 +15,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-md-2">
                     <p class="card-text text-muted">{{ formatDate(new Date(review.created_at), 'yyyy/MM/dd') }}</p>
                 </div>
             </div>
 
-            <div class="row mt-15">
+            <div class="row mx-2 mt-3">
                 <div class="col-auto">
                     <p class="card-text">{{ review.comment }}</p>
                 </div>

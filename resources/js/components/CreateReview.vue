@@ -1,15 +1,14 @@
 <template>
-    <div class="card mv-15 ph-15 pv-10">
-        <div class="card-body">
+    <div class="container my-3 py-3">
             <div class="row">
-                <div class="col-11">
+                <div class="col-md-11">
                     <h4 class="card-title">{{ itemName }}のレビュー</h4>
                 </div>
-                <div class="col-1">
+                <div class="col-md-1">
                     <a :href="route">戻る</a>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center my-3 ">
                 <form method="POST" :action="route" accept-charset="UTF-8" enctype="multipart/form-data" class="form">
                     <input name="_token" type="hidden" :value="csrf">
                     <div class="form-group">
@@ -26,12 +25,12 @@
                             <label for="star5"><span class="text">最悪</span>★</label>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="comment" class="col-3">コメント</label>
-                        <input class="form-control col-9" name="comment" type="text" id="comment">
+                    <div class="form-group row px-3">
+                        <label for="comment" class="col-md-9">コメント</label>
+                        <input class="form-control" name="comment" type="text" id="comment">
                     </div>
                     <div class="form-group row">
-                        <label for="files[][image]" class="col-3">写真</label>
+                        <label for="files[][image]" class="col-md-3">写真</label>
                         <input name="files[][image]" type="file" id="files[][image]" class="col-9" multiple data-filesize="5000">
                     </div>
                     <div class="form-group">
@@ -40,7 +39,6 @@
                 </form>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
