@@ -46,7 +46,8 @@ class UserController extends Controller
         $user_info = Auth::user();
         $user = array(
             'name' => $user_info -> name,
-            'avatar' => $user_info -> avatar
+            'avatar' => $user_info -> avatar,
+            'is_admin' => $user_info -> is_admin
         );
 
         return view('users.show', compact('user'));
@@ -136,6 +137,6 @@ class UserController extends Controller
 
         $user -> save();
 
-        return redirect() -> route('home');
+        return redirect() -> route('my_page');
     }
 }

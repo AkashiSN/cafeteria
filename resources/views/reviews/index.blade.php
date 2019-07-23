@@ -4,7 +4,7 @@
 <div class="container mt-20 ph-70">
     <div class="row">
         <div class="col-10">
-            <h2 class="text-justify">レビュー一覧</h2>
+            <h2 class="text-justify">{{ $menu_name }}のレビュー</h2>
         </div>
         @if (Auth::check())
             <div class="col-2">
@@ -12,8 +12,6 @@
             </div>
         @endif
     </div>
-
-    <p class="text-justify font-weight-bold">{{ $menu_name }}</p>
 
     @if (count($reviews_list))
         @foreach ($reviews_list as $review)
