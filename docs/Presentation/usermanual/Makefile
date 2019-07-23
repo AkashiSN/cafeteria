@@ -1,3 +1,4 @@
-main.pdf: main.tex
+usermanual.pdf: main.tex
 	platex main.tex
 	dvipdfmx main
+	mv main.pdf usermanual.pdf
