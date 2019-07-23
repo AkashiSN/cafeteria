@@ -41,12 +41,17 @@ Vue.component('set-menu-modal', require('./components/admin/SetMenuModal.vue').d
 const app = new Vue({
     el: '#app',
     data: {
-        activeContent: '0',
+        activeContent: '',
         tabContent: '1'
     },
     methods: {
-        change: function (num){
+        change(num){
             this.tabContent = num
         }
+    },
+    mounted() {
+        var today = new Date()
+        var week = Math.floor((today.getDate() - today.getDay() + 12) / 7) - 1
+        this.activeContent = week.toString()
     }
 });
